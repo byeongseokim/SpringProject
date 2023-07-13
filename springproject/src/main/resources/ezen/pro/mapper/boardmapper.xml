@@ -3,9 +3,42 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- SQL Mapping -->
-<mapper namespace="boardmapper">
-<insert id="">
-insert into board(bcon,btie,bwriter,cate) values(#{bcon},#{btie},#{bwriter},#{cate})
-</insert>
+<mapper namespace="ezen.pro.mapper.boardmapper">
+
+	<!-- insert -->
+	<insert id="insertboard">
+		insert into board(bcon,btie,bwriter,cate)
+		values(#{bcon},#{btie},#{bwriter},#{cate})
+	</insert>
+
+	<!-- read 변경해야함-->
+	<select id="readboard" resultType="ezen/pro/domain/boardVO">
+		select * from board where bno =
+		#{bno}
+	</select>
+
+
+	<!-- delete -->
+	<delete id="deleteboard">
+		delete from board where bno = #{bno}
+	</delete>
+	
+	<!-- update -->
+	<update id="updateboard">
+		update board
+		set btie = #{btie},
+		bcon = #{bcon},
+		bdate = sysdate
+		where bno = #{bno}
+	</update>
+
+
+	<!-- 페이지 변경해야함-->
+	<select id="pagingboard" resultType="ezen/pro/domain/boardVO">
+		SELECT bno, bcon, btie, bwriter, cate, bdate
+		FROM board
+		LIMIT 10 OFFSET #{offset}
+	</select>
+
 
 </mapper>

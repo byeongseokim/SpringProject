@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- SQL Mapping -->
-<mapper namespace="ezen.pro.controller.mapper.usermapper">
+<mapper namespace="ezen.pro.mapper.usermapper">
 <insert id="">
 insert into user(id,password,name,phone) values(#{id},#{password},#{name},#{phone})
 </insert>
