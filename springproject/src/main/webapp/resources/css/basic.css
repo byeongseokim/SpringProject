@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+*{
+	text-decoration: none
+}
+.css-transform{
+	/*start ------------*/
+	background-color: #2CA9E8; 
+	width:250px;
+	font-size: 50px;
+	text-align: center;
+	margin: auto;
+	border-radius:40px 40px 40px 40px;
+	
+}
+
+.MyView-module__my_login___tOTgr {
+    padding: 21px 20px 18px;
+    line-height: 20px;
+    text-align: center;
+    width: 300px;
+}
+.Layout-module__content_area___b_3TU{
+    background-color: #fff;
+    background-color: var(--color_block_bg);
+    position: relative;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0,0,0,.04);
+     box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0,0,0,.04);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}

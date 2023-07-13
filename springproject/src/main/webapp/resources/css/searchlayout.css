@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+.container {  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "header header header"
+    "body body body"
+    "footer footer footer";
+}
+
+.header { grid-area: header; }
+
+.footer { grid-area: footer; }
+
+.body { grid-area: body; }
