@@ -1,5 +1,5 @@
 package ezen.pro.mapper;
 
-public class catemapper {
+public interface catemapper {
 
 }

@@ -1,5 +1,6 @@
 package ezen.pro.mapper;
 
-public class boardmapper {
+
+public interface boardmapper {
 
 }

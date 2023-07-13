@@ -12,10 +12,26 @@
 <put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
 </definition>
 
+<definition name="board-layout" template="/WEB-INF/views/tiles/layout.jsp">
+<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
+<put-attribute name="body" value="" />
+<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
+<put-attribute name="title" value="메인페이지" /> 
+</definition>
+
+<definition name="mainpa" extends="board-layout">
+<put-attribute name="title" value="메인페이"></put-attribute>
+<put-attribute name="body" value="aaaa" />
+</definition>
+
 <definition name="main" extends="tiles-layout">
 <put-attribute name="title" value="메인페이지"></put-attribute>
 <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
 </definition>
+
+
+
+
 
 
 </tiles-definitions>
