@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- SQL Mapping -->
-<mapper namespace="replymapper">
+<mapper namespace="ezen.pro.mapper.replymapper">
 <insert id="">
 insert into reply(rwriter,rcon,bno) values(#{rwriter},#{rcno},#{bno})
 </insert>

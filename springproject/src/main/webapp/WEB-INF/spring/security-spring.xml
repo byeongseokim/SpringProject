@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<security:http auto-config="true" use-expressions="true">
+			<security:intercept-url pattern="/*" access="permitAll"/>
+			
+		<security:form-login username-parameter="id"
+		            password-parameter="password"
+		      		login-page="/main/main.do"
+		            default-target-url="/main/main.do"
+		            login-processing-url="/user/login.do"
+		            authentication-failure-url="/user/main.do?fail=true" />
+		<security:logout logout-url=""
+		        invalidate-session="true"
+		/>
+
+
+	</security:http>        		 
+ 	
+	<security:authentication-manager>
+	    
+	    <security:authentication-provider ref="customAuthenticationProvider"/>
+	    
+	</security:authentication-manager>	
+    
+    <bean id="customAuthenticationProvider" class="ezen.pro.security.customAuthenticationProvider"/>  
+    
+       
+</beans>

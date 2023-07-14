@@ -11,6 +11,6 @@ public class userVO {
 	private String password;
 	private String name;
 	private String phone;
-	private String grade;
+	private int grade;
 	
 }

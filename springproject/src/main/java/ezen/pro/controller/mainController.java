@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/*")
+@RequestMapping("/main/")
 public class mainController {
 	
 

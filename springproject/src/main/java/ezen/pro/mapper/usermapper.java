@@ -1,18 +1,16 @@
 package ezen.pro.mapper;
 
-import java.util.List;
-
 import ezen.pro.domain.userVO;
 
 public interface usermapper {
 	
-	public int insertuser();
+	public int insertuser(userVO vo);
 	
-	public List<userVO> selectuser();
+	public userVO selectuser(String id);
 	
-	public int deleteuser();
+	public int deleteuser(String id);
 	
-	public int updategrade();
+	public int updategrade(String id);
 	
 
 }

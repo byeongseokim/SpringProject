@@ -17,26 +17,26 @@ public class userServiceImpl implements userService {
 	usermapper mapper;
 
 	@Override
-	public int changegrade() {
+	public int changegrade(String id) {
 
-		return mapper.updategrade();
+		return mapper.updategrade(id);
 	}
 
 	@Override
-	public int deleteuser() {
+	public int deleteuser(String id) {
 
-		return mapper.deleteuser();
+		return mapper.deleteuser(id);
 	}
 
 	@Override
-	public int joinuser() {
+	public int joinuser(userVO vo) {
 
-		return mapper.insertuser();
+		return mapper.insertuser(vo);
 	}
 
 	@Override
-	public List<userVO> readuser() {
+	public userVO readuser(String id) {
 
-		return mapper.selectuser();		
+		return mapper.selectuser(id);		
 	}
 }

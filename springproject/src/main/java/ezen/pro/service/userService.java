@@ -7,11 +7,11 @@ import ezen.pro.domain.userVO;
 public interface userService {
 
 	
-	public int joinuser();
+	public int joinuser(userVO vo);
 	
-	public List<userVO> readuser();
+	public userVO readuser(String id);
 	
-	public int deleteuser();
+	public int deleteuser(String id);
 	
-	public int changegrade();
+	public int changegrade(String id);
 }

@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- SQL Mapping -->
-<mapper namespace="catemapper">
+<mapper namespace="ezen.pro.mapper.catemapper">
 <insert id="">
 insert into cate values(#{cate})
 </insert>
