@@ -21,8 +21,9 @@
 
 <definition name="mainpa" extends="board-layout">
 <put-attribute name="title" value="메인페이"></put-attribute>
-<put-attribute name="body" value="aaaa" />
+<put-attribute name="body" value="/WEB-INF/views/boardwriter.jsp" />
 </definition>
+
 
 <definition name="main" extends="tiles-layout">
 <put-attribute name="title" value="메인페이지"></put-attribute>

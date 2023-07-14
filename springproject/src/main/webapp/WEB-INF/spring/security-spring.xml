@@ -6,19 +6,17 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<security:http auto-config="true" use-expressions="true">
-			<security:intercept-url pattern="/*" access="permitAll"/>
+			<security:intercept-url pattern="/*.do" access="permitAll"/>
 			
 		<security:form-login username-parameter="id"
 		            password-parameter="password"
-		      		login-page="/main/main.do"
-		            default-target-url="/main/main.do"
-		            login-processing-url="/user/login.do"
-		            authentication-failure-url="/user/main.do?fail=true" />
-		<security:logout logout-url=""
+		      		login-page="/login.jsp"
+		      		default-target-url="/main/main.do"
+		      		login-processing-url="/user/login.do"
+		/>
+			<security:logout logout-url="/user/logout.do"
 		        invalidate-session="true"
 		/>
-
-
 	</security:http>        		 
  	
 	<security:authentication-manager>

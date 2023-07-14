@@ -28,20 +28,20 @@ public class customAuthenticationProvider implements AuthenticationProvider{
 	
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-		String userid=(String) authentication.getPrincipal();
+		String id=(String) authentication.getPrincipal();
 		String password=(String)authentication.getCredentials();
-		userVO  user = service.readuser(userid);
-
+		userVO  user = service.readuser(id);
+		System.out.println("ì—¬ê¸´ì•ˆì˜¤ë‹ˆ?");
 		if(user==null) {
-			throw new UsernameNotFoundException("¾ÆÀÌµð°¡ ¾ø½À´Ï´Ù");
+			throw new UsernameNotFoundException("ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½");
 		}
 
-		//¾ÏÈ£È­
+		//ï¿½ï¿½È£È­
 		//hashpassword=encoding(password);
 		BCryptPasswordEncoder hashpassword= new BCryptPasswordEncoder();
 		
 		if(!hashpassword.matches(password,user.getPassword())) {
-			throw new BadCredentialsException("ºñ¹Ð¹øÈ£°¡Æ²¸³´Ï´Ù");
+			throw new BadCredentialsException("ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½Æ²ï¿½ï¿½ï¿½Ï´ï¿½");
 		}
 		List<GrantedAuthority> role=new ArrayList<>();
 		if(user.getGrade()==2) {
@@ -49,7 +49,9 @@ public class customAuthenticationProvider implements AuthenticationProvider{
 		}else {
 			role.add(new SimpleGrantedAuthority("normal"));
 		}
-		UsernamePasswordAuthenticationToken result =new UsernamePasswordAuthenticationToken(userid, password,role);
+		UsernamePasswordAuthenticationToken result =new UsernamePasswordAuthenticationToken(id, password,role);
+		
+		result.setDetails(new useDatails());
 		return result;
 	}
 	

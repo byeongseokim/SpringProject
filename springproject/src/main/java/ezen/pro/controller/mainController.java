@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/main/")
+@RequestMapping("/main/*")
 public class mainController {
 	
 
@@ -14,6 +14,6 @@ public class mainController {
 	@GetMapping("/main.do")
 	public String main() {
 		
-	 return "main";
+	 return "mainpa";
 	}
 }

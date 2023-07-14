@@ -9,9 +9,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class useDatails implements UserDetails {
 	
-	private String useID; //»ç¿ëÀÚ¾ÆÀÌµð
-	private String password;//¾ÏÈ£È­ pw
-	private String authority;//»ç¿ëÀÚÀÇ ±ÇÇÑ
+	private String id; //ï¿½ï¿½ï¿½ï¿½Ú¾ï¿½ï¿½Ìµï¿½
+	private String password;//ï¿½ï¿½È£È­ pw
+	private String authority;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
 	
 	@Override
@@ -34,10 +34,10 @@ public class useDatails implements UserDetails {
 	}
 	@Override
 	public String getUsername() {
-		return useID;
+		return id;
 	}
-	public void setUsername(String useID) {
-		this.useID=useID;
+	public void setUsername(String id) {
+		this.id=id;
 	}
 	
 	@Override

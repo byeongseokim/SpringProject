@@ -8,7 +8,7 @@
 </head>
 <body>
     <p style="text-align: center;">회원가입페이지</p>
-    <form action="user/new.do" method="post" name="joinfrm">
+    <form action="/new.do" method="post" name="joinfrm">
     <table style="margin: auto;">
         <tr>
             <td>
@@ -58,7 +58,7 @@
         </tr>
         <tr>
             <td style="text-align: center;" colspan="2">
-                <input type="submit" value="회원가입" disabled>
+                <input type="submit" value="회원가입">
             </td>
         </tr>
     </table>
