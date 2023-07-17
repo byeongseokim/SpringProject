@@ -1,43 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- SQL Mapping -->
+<!-- SQL 매핑 -->
 <mapper namespace="ezen.pro.mapper.boardmapper">
 
-	<!-- insert -->
-	<insert id="insertboard">
-		insert into board(bcon,btie,bwriter,cate)
-		values(#{bcon},#{btie},#{bwriter},#{cate})
+	<!-- 등록 -->
+	<insert id="boardregister" parameterType="ezen.pro.domain.boardVO">
+	<![CDATA[
+	INSERT INTO board (bcon, btie, bwriter, cate, bdate, imageurl)
+	VALUES (#{bcon}, #{btie}, #{bwriter}, #{cate}, curdate(), #{imageurl})
+	]]> <!-- CDATA 사용 하는 이유 : 
+	         SQL 문에 XML에서 특수한 의미를 가지는 문자
+	         (예: <, >, &)가 포함될 수 있기 때문 -->
 	</insert>
 
-	<!-- read 변경해야함-->
-	<select id="readboard" resultType="ezen.pro.domain.boardVO">
-		select * from board where bno =
-		#{bno}
+	<!-- 조회 -->
+	<select id="getBoardDetail" parameterType="int" resultType="ezen.pro.domain.boardVO">
+		SELECT * FROM board WHERE bno = #{bno}
 	</select>
 
-
-	<!-- delete -->
-	<delete id="deleteboard">
-		delete from board where bno = #{bno}
+	<!-- 삭제 -->
+	<delete id="deleteboard" parameterType="int">
+		DELETE FROM board WHERE bno = #{bno}
 	</delete>
-	
-	<!-- update -->
-	<update id="updateboard">
-		update board
-		set btie = #{btie},
-		bcon = #{bcon}
-		where bno = #{bno}
+
+	<!-- 수정 -->
+	<update id="updateboard" parameterType="ezen.pro.domain.boardVO">
+		<![CDATA[
+		UPDATE board
+		SET btie = #{btie}, bcon = #{bcon}, bdate = curdate()
+		WHERE bno = #{bno}
+		]]>
 	</update>
 
-
-	<!-- 페이지 변경해야함-->
-	<select id="pagingboard" resultType="ezen.pro.domain.boardVO">
-		SELECT bno, bcon, btie, bwriter, cate, bdate
-		FROM board
-		LIMIT 10 OFFSET #{offset}
+	<!-- 페이징 -->
+	<select id="pagingboard" parameterType="int" resultType="ezen.pro.domain.boardVO">
+		SELECT *
+		FROM (
+		SELECT bno, bcon, btie, bwriter, cate, bdate, imageurl, @ROWNUM:=@ROWNUM+1 AS rowNum
+		FROM board, (SELECT @ROWNUM:=0) AS R
+		) T
+		LIMIT #{offset}, #{limit}
 	</select>
 
+	<!-- 모두 조회 -->
+	<select id="allreadboard" resultType="ezen.pro.domain.boardVO">
+		SELECT * FROM board
+	</select>
 
 </mapper>

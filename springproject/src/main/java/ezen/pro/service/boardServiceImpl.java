@@ -7,48 +7,38 @@ import org.springframework.stereotype.Service;
 
 import ezen.pro.domain.boardVO;
 import ezen.pro.mapper.boardmapper;
-import lombok.AllArgsConstructor;
 
 @Service
-@AllArgsConstructor
 public class boardServiceImpl implements boardService {
 
-	@Autowired
-	boardmapper mapper;
+    private final boardmapper boardMapper;
 
-	@Override
-	public void boardregister(boardVO board) {
-		
-		 mapper.insertboard(board);
-		 return;
-	}
+    @Autowired
+    public boardServiceImpl(boardmapper boardMapper) {
+        this.boardMapper = boardMapper;
+    }
 
-	@Override
-	public void boardmodify(boardVO board) {
-		
-		mapper.updateboard(board);
-		return;
-	}
+    // 모든 게시글 가져오기
+    @Override
+    public List<boardVO> getAllBoard() {
+        return boardMapper.getAllBoard();
+    }
 
-	@Override
-	public void boardremove(long bno) {
-		
-		mapper.deleteboard(bno);
-		return;
+    // 게시글 등록
+    @Override
+    public void boardRegister(boardVO board) {
+        boardMapper.boardRegister(board);
+    }
 
-	}
+    // 게시글 삭제
+    @Override
+    public void deleteBoard(int bno) {
+        boardMapper.deleteBoard(bno);
+    }
 
-	@Override
-	public List<boardVO> boardread(long bno) {
-		
-		return mapper.readboard(bno);
-
-	}
-
-	@Override
-	public List<boardVO> pagingboard() {
-		
-		return mapper.pagingboard();
-	}
-
+    // 게시글 상세 조회
+    @Override
+    public boardVO getBoardDetail(int bno) {
+        return boardMapper.getBoardDetail(bno);
+    }
 }

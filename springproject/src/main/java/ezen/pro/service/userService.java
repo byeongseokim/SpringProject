@@ -1,7 +1,5 @@
 package ezen.pro.service;
 
-import java.util.List;
-
 import ezen.pro.domain.userVO;
 
 public interface userService {

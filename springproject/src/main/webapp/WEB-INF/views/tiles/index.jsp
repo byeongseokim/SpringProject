@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
-<link href="${contextPath}/resources/css/mainlayout.css" rel="stylesheet">
+<link href="resources/css/mainlayout.css" rel="stylesheet">
 <title><tiles:insertAttribute name="title" /></title>
 </head>
 <body>

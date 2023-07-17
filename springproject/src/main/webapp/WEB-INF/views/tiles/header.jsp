@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-
-<link href="${contextPath}/resources/css/basic.css" rel="stylesheet">
+<link href="resources/css/basic.css" rel="stylesheet">
 <header>
 	<div>
 		<h1 class="css-transform" style="text-align: center;">NEVER</h1>
