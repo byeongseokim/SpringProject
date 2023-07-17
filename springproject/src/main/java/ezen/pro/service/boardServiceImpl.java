@@ -7,38 +7,36 @@ import org.springframework.stereotype.Service;
 
 import ezen.pro.domain.boardVO;
 import ezen.pro.mapper.boardmapper;
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class boardServiceImpl implements boardService {
 
-    private final boardmapper boardMapper;
+	@Autowired
+	boardmapper boardMapper;
 
-    @Autowired
-    public boardServiceImpl(boardmapper boardMapper) {
-        this.boardMapper = boardMapper;
-    }
-
-    // ¸ğµç °Ô½Ã±Û °¡Á®¿À±â
     @Override
     public List<boardVO> getAllBoard() {
         return boardMapper.getAllBoard();
     }
 
-    // °Ô½Ã±Û µî·Ï
+    // ê²Œì‹œê¸€ ë“±ë¡
     @Override
     public void boardRegister(boardVO board) {
         boardMapper.boardRegister(board);
     }
 
-    // °Ô½Ã±Û »èÁ¦
+    // ê²Œì‹œê¸€ ì‚­ì œ
     @Override
     public void deleteBoard(int bno) {
         boardMapper.deleteBoard(bno);
     }
 
-    // °Ô½Ã±Û »ó¼¼ Á¶È¸
+    // ê²Œì‹œê¸€ ìƒì„¸ ì¡°íšŒ
     @Override
     public boardVO getBoardDetail(int bno) {
         return boardMapper.getBoardDetail(bno);
     }
+
 }

@@ -39,7 +39,11 @@
 		<beans:property name="viewClass"
 			value="org.springframework.web.servlet.view.tiles3.TilesView" />
 		<beans:property name="order" value="1" />
+		
 	</beans:bean>
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<beans:property name="maxUploadSize" value="100000000"></beans:property>
+</beans:bean>
 		<context:component-scan
 		base-package="ezen.pro.controller" />
 

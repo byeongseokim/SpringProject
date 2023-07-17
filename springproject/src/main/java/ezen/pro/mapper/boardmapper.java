@@ -4,23 +4,24 @@ import java.util.List;
 
 import ezen.pro.domain.boardVO;
 
+
 public interface boardmapper {
-	
-	// °Ô½Ã±Û µî·Ï
+
+	// ê²Œì‹œê¸€ ë“±ë¡
 	public void boardRegister(boardVO board);
 	
-	// °Ô½Ã±Û »ó¼¼ Á¤º¸ Á¶È¸
+	// ê²Œì‹œê¸€ ìƒì„¸ ì •ë³´ ì¡°íšŒ
 	public boardVO getBoardDetail(int bno);
 	
-	// °Ô½Ã±Û ¼öÁ¤
+	// ê²Œì‹œê¸€ ìˆ˜ì •
 	public void updateBoard(boardVO board);
 	
-	// °Ô½Ã±Û »èÁ¦
+	// ê²Œì‹œê¸€ ì‚­ì œ
 	public void deleteBoard(int bno);
 	
-	// ÀüÃ¼ °Ô½Ã±Û ¸ñ·Ï Á¶È¸
+	// ì „ì²´ ê²Œì‹œê¸€ ëª©ë¡ ì¡°íšŒ
 	public List<boardVO> getAllBoard();
 	
-	// ÆäÀÌÂ¡ Ã³¸®µÈ °Ô½Ã±Û ¸ñ·Ï Á¶È¸
+	// í˜ì´ì§• ì²˜ë¦¬ëœ ê²Œì‹œê¸€ ëª©ë¡ ì¡°íšŒ
 	public List<boardVO> getPagingBoard(int offset, int limit);
 }

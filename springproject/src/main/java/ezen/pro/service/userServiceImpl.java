@@ -39,6 +39,4 @@ public class userServiceImpl implements userService {
 
 		return mapper.selectuser(id);		
 	}
-	
-	 
 }

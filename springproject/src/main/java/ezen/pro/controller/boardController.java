@@ -1,8 +1,17 @@
 package ezen.pro.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
+
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,90 +20,108 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.JsonObject;
+
 import ezen.pro.domain.boardVO;
-import ezen.pro.service.boardService;
+import ezen.pro.service.boardServiceImpl;
 
 @Controller
 @RequestMapping("/board")
 public class boardController {
 
-    private final boardService boardService;
+	@Autowired
+	boardServiceImpl boardService;
 
-    @Autowired
-    public boardController(boardService boardService) {
-        this.boardService = boardService;
-    }
+	@ResponseBody
+	@PostMapping("/uploadSummernoteImageFile")
+	public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile,HttpServletRequest request) {
+		JsonObject jsonObject = new JsonObject();
+//íŒŒì¼ì €ì¥ ì™¸ë¶€ ê²½ë¡œ, íŒŒì¼ëª…, ì €ì¥í•  íŒŒì¼ëª…         
+		try {
+			String originalFileName = multipartFile.getOriginalFilename();
+			String root = request.getSession().getServletContext().getRealPath("resources");
+			System.out.println("ì—¬ê¸°1");
+			String savePath = root + "\\image\\review\\summerimagefiles";
+			System.out.println(savePath);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+			String extension = originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
+			System.out.println("ì—¬ê¸°2.1");
+			String boardFileRename = sdf.format(new Date(System.currentTimeMillis())) + "." + extension;
+			File targetFile = new File(savePath);
+			if (!targetFile.exists()) {
+				targetFile.mkdir();
+				System.out.println("ì—¬ê¸°3");
+			}
+			System.out.println("ì—¬ê¸°4");
+			multipartFile.transferTo(new File(savePath + "\\" + boardFileRename));
+			System.out.println("ì—¬ê¸°5");
+			System.out.println(savePath);
+			jsonObject.addProperty("url", "/resources/image/review/summerimagefiles/" + boardFileRename);
+			jsonObject.addProperty("originName", originalFileName);
+			jsonObject.addProperty("reponseCode", "success");
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println(jsonObject);
+		return jsonObject;
 
-    // °Ô½Ã±Û ¸ñ·Ï Á¶È¸
+	}
+
+    // ê²Œì‹œê¸€ ëª©ë¡ ì¡°íšŒok
     @GetMapping("/main.do")
     public String getBoardList(Model model) {
-        // °Ô½Ã±Û ¸ñ·ÏÀ» °¡Á®¿Í¼­ ¸ğµ¨¿¡ Ãß°¡
+        // ê²Œì‹œê¸€ ëª©ë¡ì„ ê°€ì ¸ì™€ì„œ ëª¨ë¸ì— ì¶”ê°€
         List<boardVO> boardList = boardService.getAllBoard();
         model.addAttribute("boardList", boardList);
-        return "list"; // ¸ñ·Ï ÆäÀÌÁö ÅÛÇÃ¸´À¸·Î ÀÌµ¿
+        return "list"; // ëª©ë¡ í˜ì´ì§€ í…œí”Œë¦¿ìœ¼ë¡œ ì´ë™
     }
+//
 
-    // °Ô½Ã±Û »ó¼¼ Á¶È¸
+    // ê²Œì‹œê¸€ ìƒì„¸ ì¡°íšŒok
     @GetMapping("/detail")
     public String getBoardDetail(
             @RequestParam("bno") int bno,
             Model model
     ) {
-        // °Ô½Ã±Û »ó¼¼ ³»¿ëÀ» °¡Á®¿Í¼­ ¸ğµ¨¿¡ Ãß°¡
+        // ê²Œì‹œê¸€ ìƒì„¸ ë‚´ìš©ì„ ê°€ì ¸ì™€ì„œ ëª¨ë¸ì— ì¶”ê°€
         boardVO board = boardService.getBoardDetail(bno);
         model.addAttribute("board", board);
-        return "detail"; // »ó¼¼ ÆäÀÌÁö ÅÛÇÃ¸´À¸·Î ÀÌµ¿ÇÕ´Ï´Ù.
+        return "detail"; // ìƒì„¸ í˜ì´ì§€ í…œí”Œë¦¿ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤.
     }
 
-    // »õ·Î¿î °Ô½Ã±Û ÀÛ¼º ÆûÀ» º¸¿©ÁÖ±â À§ÇÔ
+    // ìƒˆë¡œìš´ ê²Œì‹œê¸€ ì‘ì„± í¼ì„ ë³´ì—¬ì£¼ê¸° ìœ„í•¨ok
     @GetMapping("/add")
     public String showAddBoardForm(Model model) {
-        model.addAttribute("board", new boardVO());
-        return "addboard"; // »õ·Î¿î °Ô½Ã±Û ÀÛ¼º Æû ÅÛÇÃ¸´À¸·Î ÀÌµ¿
+        return "addboard"; // ìƒˆë¡œìš´ ê²Œì‹œê¸€ ì‘ì„± í¼ í…œí”Œë¦¿ìœ¼ë¡œ ì´ë™
     }
 
-    // °Ô½Ã±Û µî·ÏÀ» Ã³¸®
+    // ê²Œì‹œê¸€ ë“±ë¡ì„ ì²˜ë¦¬ ok
     @PostMapping("/add")
     public String addBoard(
             @ModelAttribute("board") boardVO board,
             RedirectAttributes redirectAttributes
     ) {
-        // Á¦¸ñÀÌ nullÀÌ°Å³ª ºñ¾îÀÖ´ÂÁö È®ÀÎ
+        // ì œëª©ì´ nullì´ê±°ë‚˜ ë¹„ì–´ìˆëŠ”ì§€ í™•ì¸
         if (board.getBtie() == null || board.getBtie().isEmpty()) {
-            redirectAttributes.addFlashAttribute("error", "Á¦¸ñÀº ºñ¿ö µÑ ¼ö ¾ø½À´Ï´Ù.");
+            redirectAttributes.addFlashAttribute("error", "ì œëª©ì€ ë¹„ì›Œ ë‘˜ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
+            return "redirect:/board/add";
+        } 
+        if (board.getBcon() == null || board.getBtie().isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "ë‚´ìš©ì€ ë¹„ì›Œ ë‘˜ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             return "redirect:/board/add";
         }
-
-        // µ¥ÀÌÅÍº£ÀÌ½º¿¡ »õ·Î¿î °Ô½Ã±Û µî·Ï
+        // ë°ì´í„°ë² ì´ìŠ¤ì— ìƒˆë¡œìš´ ê²Œì‹œê¸€ ë“±ë¡
         boardService.boardRegister(board);
-        redirectAttributes.addFlashAttribute("message", "»õ·Î¿î °Ô½Ã±Û µî·ÏÀÌ ¼º°øÇÏ¿´½À´Ï´Ù.");
-        return "redirect:/board/list"; // ¸ñ·Ï ÆäÀÌÁö·Î ÀÌµ¿
+        redirectAttributes.addFlashAttribute("message", "ìƒˆë¡œìš´ ê²Œì‹œê¸€ ë“±ë¡ì´ ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤.");
+        return "redirect:/board/list"; // ëª©ë¡ í˜ì´ì§€ë¡œ ì´ë™
     }
     
-    @GetMapping("/board/detail")
-    public String getBoardDetail1(@RequestParam("bno") int bno, Model model) {
-        // ¿äÃ»µÈ °Ô½Ã¹°ÀÌ Å×½ºÆ® °Ô½Ã¹°ÀÎÁö È®ÀÎÇÕ´Ï´Ù.
-        if (bno == 1) {
-            // Å×½ºÆ® µ¥ÀÌÅÍ¸¦ »ç¿ëÇÏ¿© °Ô½Ã¹° °´Ã¼¸¦ »ı¼ºÇÕ´Ï´Ù.
-            boardVO board = new boardVO();
-            board.setBno(1);
-            board.setBtie("Å×½ºÆ® °Ô½Ã¹° Á¦¸ñ");
-            board.setBwriter("Å×½ºÆ® ÀÛ¼ºÀÚ");
-            board.setBcon("Å×½ºÆ® ³»¿ë");
-            board.setCate("Å×½ºÆ® Ä«Å×°í¸®");
-            board.setBdate(new Date());
-
-            // Å×½ºÆ® °Ô½Ã¹°À» ¸ğµ¨¿¡ Ãß°¡ÇÕ´Ï´Ù.
-            model.addAttribute("board", board);
-        } else {
-            // ¼­ºñ½º¸¦ ÅëÇØ Á¦°øµÈ bno¸¦ ±â¹İÀ¸·Î °Ô½Ã¹° »ó¼¼ Á¤º¸¸¦ °¡Á®¿É´Ï´Ù.
-            boardVO board = boardService.getBoardDetail(bno);
-            model.addAttribute("board", board);
-        }
-        
-        return "detail"; // »ó¼¼ º¸±â ÅÛÇÃ¸´À» ¹İÈ¯ÇÕ´Ï´Ù.
-    }
+  
 
 }

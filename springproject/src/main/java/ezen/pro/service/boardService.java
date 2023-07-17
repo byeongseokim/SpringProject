@@ -5,12 +5,12 @@ import java.util.List;
 import ezen.pro.domain.boardVO;
 
 public interface boardService {
+	
+    List<boardVO> getAllBoard();  // ì „ì²´ ê²Œì‹œê¸€ ëª©ë¡ ì¡°íšŒ
 
-    List<boardVO> getAllBoard();  // ÀüÃ¼ °Ô½Ã±Û ¸ñ·Ï Á¶È¸
+    void boardRegister(boardVO board);  // ê²Œì‹œê¸€ ë“±ë¡
 
-    void boardRegister(boardVO board);  // °Ô½Ã±Û µî·Ï
+    void deleteBoard(int bno);  // ê²Œì‹œê¸€ ì‚­ì œ
 
-    void deleteBoard(int bno);  // °Ô½Ã±Û »èÁ¦
-
-    boardVO getBoardDetail(int bno);  // °Ô½Ã±Û »ó¼¼ Á¶È¸
+    boardVO getBoardDetail(int bno);  // ê²Œì‹œê¸€ ìƒì„¸ ì¡°íšŒ
 }

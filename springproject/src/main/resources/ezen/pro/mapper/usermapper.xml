@@ -7,13 +7,13 @@
 <insert id="insertuser">
 insert into user(id,password,name,phone) values(#{id},#{password},#{name},#{phone})
 </insert>
-<delete id="deleteuser">
+<delete id="deleteuser" parameterType="Long">
 delete from user where id=#{id}
 </delete>
-<update id="updategrade">
+<update id="updategrade" >
 update user set grade=2 from id=#{id}
 </update>
 <select id="selectuser" resultType="ezen.pro.domain.userVO" >
-select * from user
+select id,password from user where id=#{id}
 </select>
 </mapper>
