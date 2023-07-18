@@ -4,7 +4,13 @@
 
 <!-- SQL Mapping -->
 <mapper namespace="ezen.pro.mapper.catemapper">
-<insert id="">
+<insert id="insertcate">
 insert into cate values(#{cate})
 </insert>
+<delete id="deletecate">
+delete from cate where cate=#{cate}
+</delete>
+<select id="selectcate" resultType="ezen.pro.domain.cateVO">
+select cate from cate
+</select>
 </mapper>

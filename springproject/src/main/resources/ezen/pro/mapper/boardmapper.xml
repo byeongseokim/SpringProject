@@ -7,8 +7,8 @@
 	<!-- 등록 -->
 	<insert id="boardregister" parameterType="ezen.pro.domain.boardVO">
 	<![CDATA[
-	INSERT INTO board (bcon, btie, bwriter, cate, bdate, imageurl)
-	VALUES (#{bcon}, #{btie}, #{bwriter}, #{cate}, curdate(), #{imageurl})
+	INSERT INTO board (bcon, btie, bwriter, cate)
+	VALUES (#{bcon}, #{btie}, #{bwriter}, #{cate})
 	]]> <!-- CDATA 사용 하는 이유 : 
 	         SQL 문에 XML에서 특수한 의미를 가지는 문자
 	         (예: <, >, &)가 포함될 수 있기 때문 -->

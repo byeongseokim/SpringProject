@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+ <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
+ <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
+ <%
+request.setCharacterEncoding("UTF-8");
+%>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
+	rel="stylesheet">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="/resources/sum/summernote-lite.js"></script>
 <script src="/resources/sum/lang/summernote-ko-KR.js"></script>
@@ -16,14 +20,27 @@ form {
 }
 </style>
 <body>
-	<form action="/" method="post">
-		<textarea id="summernote" name="editordata"></textarea>
+	<form action="../board/add.do" method="post">
+		<input type="text" name="btie" placeholder="제목">
+		<input type="text"  name="bwriter" id="id" readonly="readonly" value="작성자" >
+		<select name="cate" id="1" >
+		<c:forEach var="item" items="${cate}">
+			<option value="${item.cate}">${item.cate}</option>
+		</c:forEach>
+		</select>
+		<textarea id="summernote" name="bcon" >
+		</textarea>
 		<input type="button" class="btn btn-secondary mt-3 mx-2" value="작성취소" />
 		<input type="submit" class="btn btn-primary mt-3 mx-2" value="작성완료" />
+		 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		<input id="id" type="hidden" value="ad" name="id">
 	</form>
-
 	<script>
-
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	var id=$('#id').val();
+	
+	console.log(id);
     $(document).ready(function(){ 
         $('#summernote').summernote({ 
             height : 300, 
@@ -31,32 +48,30 @@ form {
             lang : "ko-KR", 
             callbacks:{ 
                 onImageUpload : function(files){ 
-                   uploadSummernoteImageFile(files[0],this); 
+                uploadSummernoteImageFile(files[0],this); 
                } 
             } 
         }); 
         function uploadSummernoteImageFile(file,editor){ 
             data = new FormData(); 
-            data.append("file",file); 
+            data.append("file",file);
+            data.append("id",id)
             $.ajax({ 
-         data:data, 
-         type:"POST", 
-         url:"../board/uploadSummernoteImageFile", 
-         dataType:"JSON", 
-         contentType:false, 
-         processData:false, 
-         success:function(data){ 
-             $(editor).summernote("insertImage",data.url); 
-             $("#thumbnailPath").append("<option value="+data.url+">"+data.originName+"</option>"); 
-
-         } 
-
+		         data:data, 
+		         type:"POST", 
+		         url:"../board/upload", 
+		         dataType:"JSON", 
+		         contentType:false, 
+		         processData:false,
+		         beforeSend : function(xhr){
+		     		xhr.setRequestHeader(header, token);
+		     	},
+		        success:function(data){ 
+		             $(editor).summernote("insertImage",data.url); 
+		             $("#thumbnailPath").append("<option value="+data.url+">"+data.originName+"</option>");
+         	} 
      }); 
-
-
         } 
-
-
     }); 
 
 </script>

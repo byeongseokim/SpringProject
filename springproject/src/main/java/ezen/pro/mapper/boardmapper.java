@@ -8,7 +8,7 @@ import ezen.pro.domain.boardVO;
 public interface boardmapper {
 
 	// 게시글 등록
-	public void boardRegister(boardVO board);
+	public void boardregister(boardVO board);
 	
 	// 게시글 상세 정보 조회
 	public boardVO getBoardDetail(int bno);

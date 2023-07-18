@@ -16,7 +16,6 @@ public class boardVO {
 	private String bwriter;
 	private String cate;
 	private Date bdate;
-	private String imageurl;
 	
 	
 	

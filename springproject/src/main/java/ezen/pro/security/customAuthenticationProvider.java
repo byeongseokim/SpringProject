@@ -31,9 +31,8 @@ public class customAuthenticationProvider implements AuthenticationProvider{
 		String id=(String) authentication.getPrincipal();
 		String password=(String)authentication.getCredentials();
 		userVO  user = service.readuser(id);
-		System.out.println("여긴안오니?");
 		if(user==null) {
-			throw new UsernameNotFoundException("���̵� �����ϴ�");
+			throw new UsernameNotFoundException("아이디가틀렸습니다");
 		}
 
 		//��ȣȭ
@@ -41,17 +40,17 @@ public class customAuthenticationProvider implements AuthenticationProvider{
 		BCryptPasswordEncoder hashpassword= new BCryptPasswordEncoder();
 		
 		if(!hashpassword.matches(password,user.getPassword())) {
-			throw new BadCredentialsException("��й�ȣ��Ʋ���ϴ�");
+			throw new BadCredentialsException("비밀번호가틀렸습니다.");
 		}
 		List<GrantedAuthority> role=new ArrayList<>();
 		if(user.getGrade()==2) {
 			role.add(new SimpleGrantedAuthority("admin"));
+			role.add(new SimpleGrantedAuthority("normal"));
 		}else {
 			role.add(new SimpleGrantedAuthority("normal"));
 		}
 		UsernamePasswordAuthenticationToken result =new UsernamePasswordAuthenticationToken(id, password,role);
 		
-		result.setDetails(new useDatails());
 		return result;
 	}
 	

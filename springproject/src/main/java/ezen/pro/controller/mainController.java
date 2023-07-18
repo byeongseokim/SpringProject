@@ -14,6 +14,8 @@ public class mainController {
 	@GetMapping("/main.do")
 	public String main() {
 		
-	 return "mainpa";
+	 return "listboard";
 	}
+	
+	
 }

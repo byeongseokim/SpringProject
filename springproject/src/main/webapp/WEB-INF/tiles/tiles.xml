@@ -5,7 +5,7 @@
 
 <tiles-definitions>
 
-<definition name="tiles-layout" template="/WEB-INF/views/tiles/index.jsp">
+<definition name="main-layout" template="/WEB-INF/views/tiles/index.jsp">
 <put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
 <put-attribute name="left" value="/WEB-INF/views/tiles/left.jsp" />
 <put-attribute name="body" value="" />
@@ -19,15 +19,19 @@
 <put-attribute name="title" value="메인페이지" /> 
 </definition>
 
-<definition name="mainpa" extends="board-layout">
-<put-attribute name="title" value="메인페이"></put-attribute>
+<definition name="addboard" extends="board-layout">
+<put-attribute name="title" value="글작성"></put-attribute>
 <put-attribute name="body" value="/WEB-INF/views/boardwriter.jsp" />
 </definition>
 
-
-<definition name="main" extends="tiles-layout">
+<definition name="main" extends="main-layout">
 <put-attribute name="title" value="메인페이지"></put-attribute>
 <put-attribute name="body" value="/WEB-INF/views/main.jsp" />
+</definition>
+
+<definition name="listboard" extends="board-layout">
+<put-attribute name="title" value="글목록창"></put-attribute>
+<put-attribute name="body" value="/WEB-INF/views/list.jsp" />
 </definition>
 
 

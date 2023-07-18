@@ -186,8 +186,6 @@ th, td {
 								<td class="bo_writer"><c:out value="${board.bwriter}" /></td>
 								<td class="bo_comments"><c:out value="${board.reply}" /></td>
 								<td class="bo_regDate"><c:out value="${board.bdate}" /></td>
-								<td class="bo_imageurl"><img
-									src="<c:url value='${board.imageurl}'/>" alt="Image" /></td>
 							</tr>
 						</c:forEach>
 
@@ -207,7 +205,7 @@ th, td {
 			</table>
 			<div class="add-post-box">
 				<div class="add-post-button">
-					<a href="<c:url value='/board/add'/>">새 글 추가</a>
+					<a href="<c:url value='../board/add.do'/>">새 글 추가</a>
 				</div>
 				<c:if test="${not empty message}">
 					<div class="flash-message ${messageType}">${message}</div>

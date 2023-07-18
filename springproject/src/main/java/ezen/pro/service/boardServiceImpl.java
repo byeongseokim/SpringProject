@@ -24,7 +24,7 @@ public class boardServiceImpl implements boardService {
     // 게시글 등록
     @Override
     public void boardRegister(boardVO board) {
-        boardMapper.boardRegister(board);
+        boardMapper.boardregister(board);
     }
 
     // 게시글 삭제
