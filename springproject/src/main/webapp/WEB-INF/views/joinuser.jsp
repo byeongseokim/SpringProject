@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>네버 회원가입</title>
-<link rel="icon" href="resources/images/nevermark.png" width="20"
+<link rel="icon" href="../resources/images/nevermark.png" width="20"
 	height="20">
 <link rel="stylesheet" href="../resources/css/joinuser.css">
 <script
@@ -19,7 +19,7 @@
 
 		<div class="member">
 			<!-- 1. 로고 -->
-			<img class="logo" src="resources/images/nevermainimage.png"
+			<img class="logo" src="../resources/images/nevermainimage.png"
 				width="250" height="70">
 
 			<!-- 2. 필드 -->
