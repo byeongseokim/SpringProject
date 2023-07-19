@@ -13,4 +13,6 @@ public interface boardService {
     void deleteBoard(int bno);  // 게시글 삭제
 
     boardVO getBoardDetail(int bno);  // 게시글 상세 조회
+    
+    public void changeBoard(boardVO board);
 }

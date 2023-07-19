@@ -12,5 +12,7 @@ public interface usermapper {
 	
 	public int updategrade(String id);
 	
-
+	public int selectgrade(String id);
+	
+	public int selectcheckid(String id);
 }

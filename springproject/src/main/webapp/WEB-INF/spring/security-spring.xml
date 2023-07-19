@@ -26,7 +26,7 @@
 	    
 	</security:authentication-manager>	
     
-    <bean id="customAuthenticationProvider" class="ezen.pro.security.customAuthenticationProvider"/>  
+    <bean id="customAuthenticationProvider" class="ezen.pro.security.customAuthenticationProvider"/>
     
        
 </beans>

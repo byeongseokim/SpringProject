@@ -14,4 +14,8 @@ public interface userService {
 	public int deleteuser(String id);
 	
 	public int changegrade(String id);
+	
+	public int readgrade(String id);
+	
+	public int check(String id);
 }

@@ -11,8 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -70,12 +74,12 @@ public class boardController {
 	}
 
     // 게시글 목록 조회ok
-    @GetMapping("/main.do")
+    @GetMapping("/list.do")
     public String getBoardList(Model model) {
         // 게시글 목록을 가져와서 모델에 추가
         List<boardVO> boardList = boardService.getAllBoard();
         model.addAttribute("boardList", boardList);
-        return "list"; // 목록 페이지 템플릿으로 이동
+        return "listboard"; // 목록 페이지 템플릿으로 이동
     }
 //
 
@@ -103,9 +107,24 @@ public class boardController {
         // 제목이 null이거나 비어있는지 확인
         // 데이터베이스에 새로운 게시글 등록
         boardService.boardRegister(board);
-        return "main"; // 목록 페이지로 이동
+        return "redirect:/board/list.do"; // 목록 페이지로 이동
     }
     
-  
+    @ResponseBody
+    @PutMapping("/update.do")
+    public boardVO chagemeboard(@RequestBody boardVO vo) {
+    	 boardService.changeBoard(vo);
+    	 boardVO vo1=boardService.getBoardDetail(vo.getBno());
+    	 return vo1;
+    }
+    
+   @ResponseBody 
+   @DeleteMapping("/delete.do/{bno}")
+    public String dropboard(@PathVariable("bno") String bno) {
+    	System.out.println(bno);
+    	int rebno=Integer.parseInt(bno);
+    boardService.deleteBoard(rebno);
+    return "success";
+    }
 
 }

@@ -39,4 +39,15 @@ public class userServiceImpl implements userService {
 
 		return mapper.selectuser(id);		
 	}
+	
+	@Override
+	public int readgrade(String id) {
+	
+		return mapper.selectgrade(id);
+	}
+	@Override
+	public int check(String id) {
+	
+		return mapper.selectcheckid(id);
+	}
 }

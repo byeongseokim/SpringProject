@@ -18,7 +18,7 @@ public class boardServiceImpl implements boardService {
 
     @Override
     public List<boardVO> getAllBoard() {
-        return boardMapper.getAllBoard();
+        return boardMapper.allreadboard();
     }
 
     // 게시글 등록
@@ -36,7 +36,11 @@ public class boardServiceImpl implements boardService {
     // 게시글 상세 조회
     @Override
     public boardVO getBoardDetail(int bno) {
-        return boardMapper.getBoardDetail(bno);
+        return boardMapper.getboarddetail(bno);
+    }
+    @Override
+    public void changeBoard(boardVO board) {
+    	boardMapper.updateboard(board);
     }
 
 }

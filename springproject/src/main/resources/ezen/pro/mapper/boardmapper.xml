@@ -20,17 +20,13 @@
 	</select>
 
 	<!-- 삭제 -->
-	<delete id="deleteboard" parameterType="int">
+	<delete id="deleteBoard" parameterType="int">
 		DELETE FROM board WHERE bno = #{bno}
 	</delete>
 
 	<!-- 수정 -->
-	<update id="updateboard" parameterType="ezen.pro.domain.boardVO">
-		<![CDATA[
-		UPDATE board
-		SET btie = #{btie}, bcon = #{bcon}, bdate = curdate()
-		WHERE bno = #{bno}
-		]]>
+	<update  id="updateboard"  parameterType="ezen.pro.domain.boardVO" >
+		UPDATE board SET btie = #{btie}, bcon = #{bcon} WHERE bno = #{bno}
 	</update>
 
 	<!-- 페이징 -->

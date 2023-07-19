@@ -11,16 +11,16 @@ public interface boardmapper {
 	public void boardregister(boardVO board);
 	
 	// 게시글 상세 정보 조회
-	public boardVO getBoardDetail(int bno);
+	public boardVO getboarddetail(int bno);
 	
 	// 게시글 수정
-	public void updateBoard(boardVO board);
+	public void updateboard(boardVO board);
 	
 	// 게시글 삭제
 	public void deleteBoard(int bno);
 	
 	// 전체 게시글 목록 조회
-	public List<boardVO> getAllBoard();
+	public List<boardVO> allreadboard();
 	
 	// 페이징 처리된 게시글 목록 조회
 	public List<boardVO> getPagingBoard(int offset, int limit);

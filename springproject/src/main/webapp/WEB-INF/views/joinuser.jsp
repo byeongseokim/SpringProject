@@ -16,25 +16,25 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
+
 	<form action="/user/new.do" method="post" id="form">
 		<div class="member">
 			<!-- 1. 로고 -->
-			<a href="http://localhost:8092/main/main.do" target="_self"
-						title="네버 홈페이지">
-			<img class="logo" src="/resources/images/nevermainimage.png"
-				width="250" height="70" ></a>
+			<a href="http://localhost:8092/main/main.do" target="_self" 
+						title="네버 홈페이지"> 
+			<img class="logo" src="/resources/images/nevermainimage.png" 
+				width="250" height="70" ></a> 
 			<!-- 2. 필드 -->
 			<div class="field">
 				<b>아이디</b> <span class="placehold-text">
-				<input style="width: auto%" id="id"  name="id" type="text" placeholder="아이디를 입력해주세요">&nbsp;<input style="width: auto" type="button" value="중복 검사" onClick="CheckDup();" class="btnDup">
-			<input type="hidden" id="idcheck" value=""></span>
+					<input style="width: auto%" id="id"  name="id" type="text" placeholder="아이디를 입력해주세요">&nbsp;<input style="width: auto" type="button" value="중복 검사" onClick="CheckDup();" class="btnDup"> 
+			<input type="hidden" id="idcheck" value=""></span> 
 			</div>
 			<div id='message'></div>
-			<!-- <div class="field">
-			<input style="text-align: right; float: right;" type="button" value="중복 검사" onClick="CheckDup();" class="btnDup">
+			<div class="field">
 			<input type="hidden" id="idcheck" value="">
-			<button style="text-align: right; float: right;"  onclick="CheckDup();">중복체크</button>
-			</div> -->
+		<!-- 	<button style="text-align: right; float: right;"  onclick="CheckDup();">중복체크</button> -->
+			</div>
 			<br>
 			<div class="field">
 				<b>비밀번호</b> <input name="password" type="password" id="password"

@@ -45,7 +45,7 @@ a {
     background: #fff;
 }
 /*input 아이디 form*/
-#input-id{
+#id{
     border: none;
     outline:none;
     width:100%;
@@ -59,7 +59,7 @@ a {
     background: #fff;
 }
 /*input 패스워드 form*/
-#input-pw{
+#password{
     border: none;
     outline:none;
     width:100%;

@@ -13,6 +13,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ezen.pro.domain.userVO;
 import ezen.pro.service.userServiceImpl;
@@ -26,7 +28,6 @@ public class userController {
 	
 	@GetMapping("/new.do")
 	public String newuser() {
-		
 		return "joinuser";
 	}
 	@PostMapping("/new.do")
@@ -61,6 +62,19 @@ public class userController {
             System.out.println("삭제하니?");
         }
 		return "redirect:/main/main.do";
+	}
+	
+	@ResponseBody
+	@PostMapping("/checkId.do")
+	public String checkid(@RequestParam("id")String id) {
+		int a=serviceImpl.check(id);
+		String rufrhk="";
+		System.out.println(id);
+		System.out.println(a);
+		if(a!=1) {
+			rufrhk="success";
+		}
+		return rufrhk;
 	}
 	
 }

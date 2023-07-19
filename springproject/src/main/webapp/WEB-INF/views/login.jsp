@@ -35,39 +35,37 @@ request.setCharacterEncoding("UTF-8");
 				<!--NAVER LOGO-->
 				<div class="logo">
 					<a href="http://localhost:8092/main/main.do" target="_self"
-						title="네버 홈페이지"><img src="/resources/images/nevermainimage.png"
-						class="image"></a>
+						title="네버 홈페이지"><img
+						src="/resources/images/nevermainimage.png" class="image"></a>
 				</div>
 			</header>
-
 			<!--로그인 부분-->
-			<section class="login-wrap">
 
-				<div class="login-id-wrap">
-					<input id="input-id" placeholder="아이디" type="text"></input>
-				</div>
-				<div class="login-pw-wrap">
-					<input id="input-pw" placeholder="비밀번호" type="password"></input>
-				</div>
-				<div class="login-btn-wrap">
-					<button id="login-btn">로그인</button>
-				</div>
+			<form action="/user/login.do" method="post">
+				<section class="login-wrap">
+					<div class="login-id-wrap">
+						<input  type="text" name='id' placeholder="아아디를 입력해주세요"
+							id="id"></input>
+					</div>
+					<div class="login-pw-wrap">
+						<input type='password' name='password' placeholder="비밀번호를 입력주세요"
+							id="password"></input>
+					</div>
+					<div class="login-btn-wrap">
+					<input id="login-btn" type="submit" value="로그인" >
+					</div>
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
 
-			</section>
-
+				</section>
+			</form>
 			<!--class,PW 찾기 및 회원가입 부분-->
 			<section class="find-signup-wrap">
 
 				<div id="find-signup-wrap-ko">
-					<span class="find-id"> <a
-						href="https://nid.naver.com/user2/help/idInquiry?lang=ko_KR"
-						target="_blank" title="QR코드 로그인">아이디 찾기</a>
-					</span> <span class="find-pw"> <a
-						href="https://nid.naver.com/user2/help/pwInquiry?lang=ko_KR"
-						target="_blank" title="일회용번호 로그인">비밀번호 찾기</a>
-					</span> <span class="sign-up"> <a
-						href="https://nid.naver.com/user2/V2Join?m=agree&lang=ko_KR"
-						target="_blank" title="일회용번호 로그인">회원가입</a>
+					<span class="find-id"> <a href="/">아이디 찾기</a>
+					</span> <span class="find-pw"> <a href="/">비밀번호 찾기</a>
+					</span> <span class="sign-up"> <a href="/">회원가입</a>
 					</span>
 				</div>
 			</section>
@@ -78,7 +76,7 @@ request.setCharacterEncoding("UTF-8");
 	</div>
 
 	<script>
-	/* 한영전환 */
+		/* 한영전환 */
 		function chageLangSelect() {
 			var langSelect = document.getElementById("id-lang");
 			var selectValue = langSelect.options[langSelect.selectedIndex].value;
@@ -126,7 +124,6 @@ request.setCharacterEncoding("UTF-8");
 		 }
 		 */
 	</script>
-
 </body>
 
 </html>
