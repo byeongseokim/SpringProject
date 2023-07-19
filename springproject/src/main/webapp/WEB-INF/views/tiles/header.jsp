@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
-
+ <c:set var="user_id" value='<%=(String)session.getAttribute("grade")%>' />
 <link href="${contextPath}/resources/css/basic.css" rel="stylesheet">
 <header>
 	<div>

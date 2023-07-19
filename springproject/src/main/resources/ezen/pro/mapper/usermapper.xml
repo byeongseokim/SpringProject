@@ -16,4 +16,10 @@ update user set grade=2 from id=#{id}
 <select id="selectuser" resultType="ezen.pro.domain.userVO" >
 select id,password from user where id=#{id}
 </select>
+<select id="selectgrade" resultType="Integer">
+select grade from user where id=#{id}
+</select>
+<select id="selectcheckid" resultType="Integer">
+select count(*) from user where id= #{id}
+</select>
 </mapper>

@@ -10,7 +10,7 @@
 		<div  class="MyView-module__my_login___tOTgr">
 		<a href="/user/login.do" style=" background-color: #2CA9E8; font-size:35px; border-radius:8px; color: black">NEVER 로그인</a><br><br><br>
 		<div>
-		<a href="/">회원가입&nbsp;</a><a href="/">아이디찾기&nbsp;</a><a href="/">비밀번호찾기</a>
+		<a href="/user/new.do">회원가입&nbsp;</a><a href="/">아이디찾기&nbsp;</a><a href="/">비밀번호찾기</a>
 		</div>
 		</div>
 	</div>

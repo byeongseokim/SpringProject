@@ -13,6 +13,7 @@ request.setCharacterEncoding("UTF-8");
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="/resources/sum/summernote-lite.js"></script>
 <script src="/resources/sum/lang/summernote-ko-KR.js"></script>
+ <c:set var="user_id" value='<%=(String)session.getAttribute("grade")%>' />
 <link rel="stylesheet" href="/resources/sum/summernote-lite.css">
 <style>
 form {
@@ -25,7 +26,16 @@ form {
 		<input type="text"  name="bwriter" id="id" readonly="readonly" value="작성자" >
 		<select name="cate" id="1" >
 		<c:forEach var="item" items="${cate}">
+			<c:choose>
+			<c:when test="${grade==2}">		
 			<option value="${item.cate}">${item.cate}</option>
+			</c:when>
+			<c:otherwise>
+				<c:if test="${item.cate!='공지'}">
+			<option value="${item.cate}">${item.cate}</option>
+				</c:if>
+			</c:otherwise>
+			</c:choose>
 		</c:forEach>
 		</select>
 		<textarea id="summernote" name="bcon" >
@@ -33,7 +43,6 @@ form {
 		<input type="button" class="btn btn-secondary mt-3 mx-2" value="작성취소" />
 		<input type="submit" class="btn btn-primary mt-3 mx-2" value="작성완료" />
 		 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-		<input id="id" type="hidden" value="ad" name="id">
 	</form>
 	<script>
 	var token = $("meta[name='_csrf']").attr("content");
