@@ -27,13 +27,13 @@ form {
 		<select name="cate" id="1" >
 		<c:forEach var="item" items="${cate}">
 			<c:choose>
-			<c:when test="${grade==2}">		
-			<option value="${item.cate}">${item.cate}</option>
-			</c:when>
-			<c:otherwise>
+				<c:when test="${grade==2}">		
+				<option value="${item.cate}">${item.cate}</option>
+				</c:when>
+				<c:otherwise>
 				<c:if test="${item.cate!='공지'}">
-			<option value="${item.cate}">${item.cate}</option>
-				</c:if>
+					<option value="${item.cate}">${item.cate}</option>
+					</c:if>
 			</c:otherwise>
 			</c:choose>
 		</c:forEach>

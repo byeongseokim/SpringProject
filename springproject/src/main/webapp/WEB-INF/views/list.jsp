@@ -152,7 +152,8 @@ th, td {
 	}
 }
 </style>
-
+<c:set var="grade" value='<%=(String) session.getAttribute("grade")%>' />
+<c:set var="user_id" value='<%=(String) session.getAttribute("userid")%>' />
 <div id="content">
 	<h2 class="sub_h2_tit">게시판</h2>
 	<!-- 게시판 시작 -->
@@ -169,49 +170,38 @@ th, td {
 						<th class="bo_num">번호</th>
 						<th class="bo_tit">제목</th>
 						<th class="bo_writer">글쓴이</th>
-						<th class="bo_comments">댓글</th>
 						<th class="bo_regDate">등록일</th>
 					</tr>
 				</thead>
 				<tbody>
 					<!-- <tbody> 태그 다음에 아래 코드를 추가하세요 -->
-					<c:if test="${not empty sdsd}">
+					<c:if test="${not empty boardList}">
 						<<c:forEach items="${boardList}" var="board">
 							<tr>
 								<td class="bo_num"><c:out value="${board.bno}" /></td>
-								<td class="bo_tit"><a
-									href="<c:url value='/board/detail?bno=${board.bno}'/>"
+								<td class="bo_tit"><a href="<c:url value='/board/detail.do?bno=${board.bno}'/>"
 									target="_blank"> <c:out value="${board.btie}" />
 								</a></td>
 								<td class="bo_writer"><c:out value="${board.bwriter}" /></td>
-								<td class="bo_comments"><c:out value="${board.reply}" /></td>
-								<td class="bo_regDate"><c:out value="${board.bdate}" /></td>
+								<td class="bo_regDate"><fmt:formatDate pattern="yy-MM-dd"
+										value="${board.bdate}" /></td>
 							</tr>
 						</c:forEach>
-
 					</c:if>
-
-					<!-- 테스트 텍스트 추가 -->
-					<tr>
-						<td class="bo_num">1</td>
-						<td class="bo_tit"><a
-							href="<c:url value='/board/detail?bno=1'/>"><c:out
-									value="${board.btie}" />테스트 게시물 제목</a></td>
-						<td class="bo_writer">테스트 작성자</td>
-						<td class="bo_comments">0</td>
-						<td class="bo_regDate">2023/07/16</td>
-					</tr>
 				</tbody>
 			</table>
-			<div class="add-post-box">
-				<div class="add-post-button">
-					<a href="<c:url value='../board/add.do'/>">새 글 추가</a>
+			<!-- 테스트 텍스트 추가 -->
+			<c:if test="${user_id!=null}">
+				<div class="add-post-box">
+					<div class="add-post-button">
+						<a href="<c:url value='../board/add.do'/>">새 글 추가</a>
+					</div>
+					<c:if test="${not empty message}">
+						<div class="flash-message ${messageType}">${message}</div>
+					</c:if>
 				</div>
-				<c:if test="${not empty message}">
-					<div class="flash-message ${messageType}">${message}</div>
-				</c:if>
-			</div>
-			<div class="nav">
+			</c:if>
+			<%-- 			<div class="nav">
 				<ul>
 					<c:if test="${requestScope.pageResponse.showPrev}">
 						<li class="nav_prev"><a
@@ -228,7 +218,7 @@ th, td {
 							href="<c:url value='/qna/list?page=${requestScope.pageResponse.page + 1}&size=${requestScope.pageResponse.size}'/>">[다음]</a></li>
 					</c:if>
 				</ul>
-			</div>
+			</div> --%>
 		</div>
 	</div>
 </div>

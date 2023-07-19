@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -70,12 +72,12 @@ public class boardController {
 	}
 
     // 게시글 목록 조회ok
-    @GetMapping("/main.do")
+    @GetMapping("/list.do")
     public String getBoardList(Model model) {
         // 게시글 목록을 가져와서 모델에 추가
         List<boardVO> boardList = boardService.getAllBoard();
         model.addAttribute("boardList", boardList);
-        return "list"; // 목록 페이지 템플릿으로 이동
+        return "listboard"; // 목록 페이지 템플릿으로 이동
     }
 //
 
@@ -106,6 +108,11 @@ public class boardController {
         return "main"; // 목록 페이지로 이동
     }
     
-  
+    @ResponseBody
+    @PutMapping("/update.do")
+    public String chagemeboard(@RequestBody boardVO vo) {
+    	
+    	return null;
+    }
 
 }

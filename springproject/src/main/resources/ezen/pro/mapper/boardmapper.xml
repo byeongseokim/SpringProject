@@ -15,7 +15,7 @@
 	</insert>
 
 	<!-- 조회 -->
-	<select id="getBoardDetail" parameterType="int" resultType="ezen.pro.domain.boardVO">
+	<select id="getboarddetail" parameterType="int" resultType="ezen.pro.domain.boardVO">
 		SELECT * FROM board WHERE bno = #{bno}
 	</select>
 
