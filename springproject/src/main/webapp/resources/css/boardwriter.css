@@ -1,0 +1,88 @@
+/* 전체 페이지 스타일 */
+body {
+	text-align: center;
+	background-color: #f6f6f6;
+	font-family: Arial, sans-serif;
+}
+
+link[rel="icon"] {
+	width: "20";
+	height: "20";
+}
+
+/* 폼 스타일 */
+form {
+	margin: 20px auto;
+	max-width: 800px;
+	padding: 20px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 입력 필드 스타일 */
+input[name="btie"] {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+/* 작성자 입력 필드 스타일 */
+input[name="bwriter"] {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+/* 카테고리 선택 드롭다운 스타일 */
+select[name="cate"] {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #fff;
+}
+
+/* Summernote 에디터 스타일 */
+#summernote {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    width: 1000px;
+}
+
+#summernote .note-toolbar button {
+    margin-right: 5px;
+}
+
+#summernote .note-toolbar button:last-child {
+    margin-right: 0;
+}
+/* 버튼 스타일 */
+.btn {
+	padding: 10px 20px;
+	border: none;
+	border-radius: 4px;
+	color: #fff;
+	background-color: #007bff;
+	cursor: pointer;
+}
+
+.btn-secondary {
+	background-color: #6c757d;
+}
+
+.btn-primary {
+	background-color: #007bff;
+}
+
+/* 숨겨진 입력 필드 스타일 */
+input[type="hidden"] {
+	display: none;
+}

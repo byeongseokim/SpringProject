@@ -58,7 +58,15 @@ a{
 .member input[type=submit]{
 background-color: #2CA9E8;
 color:#fff
+
 }
+
+/* .member input[value=중복 검사]{
+	background-color: #2CA9E8;	
+	flex-grow:1;
+	height: auto;
+	display: table;
+} */
 
 .member input:focus, .member select:focus{
     border: 1px solid #2db400;
@@ -92,7 +100,7 @@ color:#fff
 }
 
 .placehold-text{
-    display: block; /*span 으로 감싸서 크기영역을 블록요소로 만들어ㅜ저야한다*/
+    display: flex; /*span 으로 감싸서 크기영역을 블록요소로 만들어ㅜ저야한다*/
     position:relative;
     /* border: 1px solid #000; */
 }
