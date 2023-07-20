@@ -11,13 +11,13 @@
 }
 
 .body { grid-area: body;
-color: red }
+ }
 
 .sidebar { grid-area: sidebar;
-color: blue }
+ }
 
 .header { grid-area: header;
-color: black }
+ }
 
 .footer { grid-area: footer;
- color: green}
+}

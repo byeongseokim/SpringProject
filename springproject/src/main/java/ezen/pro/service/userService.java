@@ -18,4 +18,8 @@ public interface userService {
 	public int readgrade(String id);
 	
 	public int check(String id);
+	
+	public String searcid(userVO vo);
+	
+	public int searcpwd(userVO vo);
 }

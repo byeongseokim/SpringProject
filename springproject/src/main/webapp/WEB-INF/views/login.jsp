@@ -8,17 +8,13 @@ request.setCharacterEncoding("UTF-8");
 <head>
 <meta charset="UTF-8">
 <title>네버 로그인</title>
-<link rel="stylesheet" href="style.css">
-<script src="login.js"></script>
-<link rel="stylesheet" href="../resources/css/login.css">
-<link rel="icon" href="/resources/images/nevermark.png" width="20"
-	height="20">
+<link rel="stylesheet" href="/resources/css/login.css">
+<link rel="icon" href="/resources/images/nevermark.png" style="width:20; height: 20 ">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
-	<form action="/user/login.do" method="post">
 		<div class="main">
 			<!--웹페이지 상단-->
 			<header>
@@ -41,7 +37,7 @@ request.setCharacterEncoding("UTF-8");
 			</header>
 			<!--로그인 부분-->
 
-			<form action="/user/login.do" method="post">
+			<form id="logfrom" action="/user/login.do" method="post">
 				<section class="login-wrap">
 					<div class="login-id-wrap">
 						<input  type="text" name='id' placeholder="아아디를 입력해주세요"
@@ -52,24 +48,24 @@ request.setCharacterEncoding("UTF-8");
 							id="password"></input>
 					</div>
 					<div class="login-btn-wrap">
-					<input id="login-btn" type="submit" value="로그인" >
+					<input id="login-btn" type="submit" value="로그인" style="width: 100%;">
 					</div>
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
-
+				<input type="hidden" id="errMsg" value='${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}' />
 				</section>
 			</form>
 			<!--class,PW 찾기 및 회원가입 부분-->
 			<section class="find-signup-wrap">
 
 				<div id="find-signup-wrap-ko">
-					<span class="find-id"> <a href="/">아이디 찾기</a>
-					</span> <span class="find-pw"> <a href="/">비밀번호 찾기</a>
-					</span> <span class="sign-up"> <a href="/">회원가입</a>
+					<span class="find-id"> <a href="/" class="fidi">아이디 찾기</a>
+					</span> <span class="find-pw"> <a href="/" class="fipw">비밀번호 찾기</a>
+					</span> <span class="sign-up"> <a href="/" class="siup">회원가입</a>
 					</span>
 				</div>
 			</section>
-	</form>
+			</div>
 	<!--footer-->
 	<div class="footer" style="margin: auto;">
 		<%@ include file="/WEB-INF/views/tiles/footer.jsp"%>
@@ -82,48 +78,32 @@ request.setCharacterEncoding("UTF-8");
 			var selectValue = langSelect.options[langSelect.selectedIndex].value;
 
 			if (selectValue == 'ko') {
-				document.getElementById("input-id").placeholder = '아이디';
-				document.getElementById("input-pw").placeholder = '비밀번호';
-				document.getElementById("login-btn").textContent = '로그인';
-				document.getElementById("stay-text").textContent = '로그인 상태 유지';
-				document.getElementById("ip-check").style.display = '';
-				document.getElementById("easy-login-text").textContent = '더욱 간편한 로그인';
-				document.getElementById("easy-login-wrap").style.height = '90px';
-				document.getElementById("easy-login-wrap-ko").style.display = '';
-				document.getElementById("easy-login-wrap-en").style.display = 'none';
-				document.getElementById("find-signup-wrap-ko").style.display = '';
-				document.getElementById("find-signup-wrap-en").style.display = 'none';
-
+				document.getElementById("id").placeholder = '아이디';
+				document.getElementById("password").placeholder = '비밀번호';
+				document.getElementById("login-btn").value = '로그인';
+				$(".fidi").text("아이디 찾기");
+				$(".fipw").text("비밀번호 찾기");
+				$(".siup").text("회원가입");
 			} else {
-				document.getElementById("input-id").placeholder = 'Username';
-				document.getElementById("input-pw").placeholder = 'Password';
-				document.getElementById("login-btn").textContent = 'Sign in';
-				document.getElementById("stay-text").textContent = 'Stay Signed in';
-				document.getElementById("ip-check").style.display = 'none';
-				document.getElementById("easy-login-text").textContent = 'Easier sign in';
-				document.getElementById("easy-login-wrap").style.height = '215px';
-				document.getElementById("easy-login-wrap-ko").style.display = 'none';
-				document.getElementById("easy-login-wrap-en").style.display = '';
-				document.getElementById("find-signup-wrap-ko").style.display = 'none';
-				document.getElementById("find-signup-wrap-en").style.display = '';
+				document.getElementById("id").placeholder = 'Username';
+				document.getElementById("password").placeholder = 'Password';
+				document.getElementById("login-btn").value= 'Sign in';
+				$(".fidi").text("find_id");
+				$(".fipw").text("find_password");
+				$(".siup").text("singup");
 
 			}
 		}
 
-		/* 	function ipCheck(){  
-
-		 var ipcheck = document.getElementById("ip-context");
-		
-		 if(ipcheck.textContent == 'OFF'){
-		 ipcheck.textContent = 'ON'
-		 ipcheck.style.color = '#03c75a';
-		 }else{
-		 ipcheck.textContent = 'OFF'
-		 ipcheck.style.color = 'rgb(160,160,160)';
-		 }
-		 }
-		 */
+		$(function() {
+			$('#logfrom #id').focus();
+			// 에러가 있는 경우 메세지 처리
+			var errMsg = $('#errMsg').val();
+			$('#errMsg').val('');
+			if(errMsg != '') {
+				alert(errMsg);
+				errMsg='';
+				$('#formContent').find('#id').focus();
+			}
+		});
 	</script>
-</body>
-
-</html>

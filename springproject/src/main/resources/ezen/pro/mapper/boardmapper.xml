@@ -26,7 +26,7 @@
 
 	<!-- 수정 -->
 	<update  id="updateboard"  parameterType="ezen.pro.domain.boardVO" >
-		UPDATE board SET btie = #{btie}, bcon = #{bcon} WHERE bno = #{bno}
+		UPDATE board SET btie = #{btie}, bcon = #{bcon}, cate=#{cate} WHERE bno = #{bno}
 	</update>
 
 	<!-- 페이징 -->

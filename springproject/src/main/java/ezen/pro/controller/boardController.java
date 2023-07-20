@@ -87,8 +87,10 @@ public class boardController {
     @GetMapping("/detail.do")
     public String getBoardDetail(@RequestParam("bno") int bno, Model model) {
         // 게시글 상세 내용을 가져와서 모델에 추가
+    	List<cateVO> cate=cateServiceImpl.readcate();
         boardVO board = boardService.getBoardDetail(bno);
         model.addAttribute("board", board);
+        model.addAttribute("cate",cate);
         return "detail"; // 상세 페이지 템플릿으로 이동합니다.
     }
 
@@ -114,8 +116,7 @@ public class boardController {
     @PutMapping("/update.do")
     public boardVO chagemeboard(@RequestBody boardVO vo) {
     	 boardService.changeBoard(vo);
-    	 boardVO vo1=boardService.getBoardDetail(vo.getBno());
-    	 return vo1;
+    	 return boardService.getBoardDetail(vo.getBno());
     }
     
    @ResponseBody 

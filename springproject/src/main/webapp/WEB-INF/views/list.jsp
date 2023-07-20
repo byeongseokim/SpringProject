@@ -179,8 +179,8 @@ th, td {
 						<<c:forEach items="${boardList}" var="board">
 							<tr>
 								<td class="bo_num"><c:out value="${board.bno}" /></td>
-								<td class="bo_tit"><a href="<c:url value='/board/detail.do?bno=${board.bno}'/>"
-									target="_blank"> <c:out value="${board.btie}" />
+								<td class="bo_tit"><a href="<c:url value='/board/detail.do?bno=${board.bno}'/>">
+								<c:out value="${board.btie}" />
 								</a></td>
 								<td class="bo_writer"><c:out value="${board.bwriter}" /></td>
 								<td class="bo_regDate"><fmt:formatDate pattern="yy-MM-dd"

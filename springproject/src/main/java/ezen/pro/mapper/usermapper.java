@@ -15,4 +15,9 @@ public interface usermapper {
 	public int selectgrade(String id);
 	
 	public int selectcheckid(String id);
+	
+	public String selectid(userVO vo);
+	
+	public int selectpw(userVO vo);
+	
 }

@@ -22,4 +22,10 @@ select grade from user where id=#{id}
 <select id="selectcheckid" resultType="Integer">
 select count(*) from user where id= #{id}
 </select>
+<select id="selectid" resultType="String">
+select id from user where name=#{name} and phone=#{phone}
+</select>
+<update id="selectpw">
+update user set password=#{password} where name=#{name} and id=#{id}
+</update>
 </mapper>

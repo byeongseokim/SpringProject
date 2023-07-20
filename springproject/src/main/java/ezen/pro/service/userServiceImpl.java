@@ -50,4 +50,13 @@ public class userServiceImpl implements userService {
 	
 		return mapper.selectcheckid(id);
 	}
+	@Override
+	public String searcid(userVO vo) {
+		
+		return mapper.selectid(vo);
+	}
+	@Override
+	public int searcpwd(userVO vo) {
+		return mapper.selectpw(vo);
+	}
 }

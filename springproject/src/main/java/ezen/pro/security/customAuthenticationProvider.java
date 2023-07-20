@@ -34,10 +34,7 @@ public class customAuthenticationProvider implements AuthenticationProvider{
 		if(user==null) {
 			throw new UsernameNotFoundException("아이디가틀렸습니다");
 		}
-		//��ȣȭ
-		//hashpassword=encoding(password);
 		BCryptPasswordEncoder hashpassword= new BCryptPasswordEncoder();
-		
 		if(!hashpassword.matches(password,user.getPassword())) {
 			throw new BadCredentialsException("비밀번호가틀렸습니다.");
 		}

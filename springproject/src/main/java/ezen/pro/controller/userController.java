@@ -1,5 +1,7 @@
 package ezen.pro.controller;
 
+import java.util.Random;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,12 +27,13 @@ import ezen.pro.service.userServiceImpl;
 public class userController {
 	
 	@Autowired
-	userServiceImpl serviceImpl;
+	userServiceImpl userserviceImpl;
 	
 	@GetMapping("/new.do")
 	public String newuser() {
 		return "joinuser";
 	}
+	
 	@PostMapping("/new.do")
 	public String newuser(userVO vo) {
 		 BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -37,7 +41,7 @@ public class userController {
 		 System.out.println(vo.getName());
 		 vo.setPassword(securePw);
 		 System.out.println(vo.getPassword());
-		 serviceImpl.joinuser(vo);
+		 userserviceImpl.joinuser(vo);
 		 return "main";
 	}
 	
@@ -67,14 +71,55 @@ public class userController {
 	@ResponseBody
 	@PostMapping("/checkId.do")
 	public String checkid(@RequestParam("id")String id) {
-		int a=serviceImpl.check(id);
-		String rufrhk="";
+		int a=userserviceImpl.check(id);
+		String result="";
 		System.out.println(id);
 		System.out.println(a);
 		if(a!=1) {
-			rufrhk="success";
+			result="success";
 		}
-		return rufrhk;
+		return result;
 	}
 	
+	@ResponseBody
+	@PostMapping(value = "/idsearc",produces="application/json;charset=UTF-8")
+	public String searcid(@RequestBody userVO vo) {
+		System.out.println("드와라");
+		try {
+			String id=userserviceImpl.searcid(vo);
+			if(id==""||id.equals("")) {
+			return "아이디가 존재하지 않습니다.";
+			}
+		    return id;
+		}catch(Exception e) {
+			System.out.println("1");
+			return "아이디가 존재하지 않습니다.";
+		}
+	}
+	
+	@ResponseBody
+	@PostMapping("/pwdsearc")
+	public String searcpwd(@RequestBody userVO vo) {
+		String result="";
+		 int leftLimit = 48; // letter 'a'
+		    int rightLimit = 122; // letter 'z'
+		    int targetStringLength = 10;
+		    Random random = new Random();
+		    String newpassword = random.ints(leftLimit, rightLimit + 1)
+		                                   .limit(targetStringLength)
+		                                   .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+		                                   .toString();
+		try {
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			String securePw = encoder.encode(newpassword);
+			vo.setPassword(securePw);
+		    int a= userserviceImpl.searcpwd(vo);
+		    if(a!=1) {
+		    	return "정보가 존재하지않습니다";
+		    }
+		    return newpassword;
+		}catch(Exception e) {
+			return "일치하는 정보가 존재하지 않습니다.";
+		}
+	}
 }

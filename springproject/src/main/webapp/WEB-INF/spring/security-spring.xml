@@ -14,6 +14,7 @@
 		      		login-page="/login.jsp"
 		      		default-target-url="/main/main.do"
 		      		login-processing-url="/user/login.do"
+		      		authentication-failure-url="/user/login.do?fail=true"
 		/>
 			<security:logout logout-url="/user/logout.do"
 		        invalidate-session="true"

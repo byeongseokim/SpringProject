@@ -26,7 +26,7 @@
 
 <definition name="main" extends="main-layout">
 <put-attribute name="title" value="메인페이지"></put-attribute>
-<put-attribute name="body" value="/WEB-INF/views/main.jsp" />
+<put-attribute name="body" value="/WEB-INF/views/memberinfo.jsp" />
 </definition>
 
 <definition name="listboard" extends="board-layout">

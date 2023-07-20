@@ -16,13 +16,24 @@
 <link rel="stylesheet" href="/resources/sum/summernote-lite.css">
 <div>
 	<form id="boardform" name="boardform" action="post">
-		<input id="hod" type="hidden" name="_method" value=""> <input
-			type="text" name="btie" id="btie"
-			value='<c:out value="${board.btie}"/>' disabled> <input
-			type="text" name="bwriter" id="id" readonly="readonly"
-			value='<c:out value="${board.bwriter}"/>'>
-		<textarea name="bcon" id="bcon" disabled>
-			</textarea>
+	<input type="text" name="valcate" id="cate" value='[<c:out value="${board.cate}"/>]' style="width: 100px;text-align: center;" disabled>
+	<select style="display: none;" id="selcate" name="cate" id="1" >
+		<c:forEach var="item" items="${cate}">
+			<c:choose>
+				<c:when test="${grade==2}">		
+				<option value="${item.cate}">${item.cate}</option>
+				</c:when>
+				<c:otherwise>
+				<c:if test="${item.cate!='공지'}">
+					<option value="${item.cate}">${item.cate}</option>
+					</c:if>
+			</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		</select>
+	<input type="text" name="btie" id="btie" value='<c:out value="${board.btie}"/>' disabled>
+	 <input type="text" name="bwriter" id="id" readonly="readonly" value='<c:out value="${board.bwriter}"/>'>
+		<textarea name="bcon" id="bcon" disabled></textarea>
 		<div id="base_btn">
 			<c:if test="${user_id ==board.bwriter||grade==2}">
 				<input type="button" class="btn btn-success" value="수정"
@@ -66,6 +77,8 @@
 		 document.getElementById("btie").disabled=false;
 		//글번호와 작성자와 작성날짜는 여전히 disabled이기떄문에 변경할수없다. 변경할수있는부분은 타이틀과 내용뿐.
 		 document.getElementById("bcon").disabled=false;
+		 $("#selcate").attr("style","block");
+		 $("#cate").attr("type","hidden");
 		 $('#bcon').summernote('enable');
 		 document.getElementById("modify_btn").style.display="block";
 		 document.getElementById("base_btn").style.display="none";
@@ -108,7 +121,8 @@
 		 var data={
 			 "bno":${board.bno},
 			 "bcon":$("#bcon").val(),
-			"btie":$("#btie").val()
+			"btie":$("#btie").val(),
+			"cate":$("#selcate").val()
 		 }
 		 console.log(data);
 		 $.ajax({
@@ -125,6 +139,9 @@
 			$('#bcon').summernote('disable');
 			document.getElementById("modify_btn").style.display="none";
 			document.getElementById("base_btn").style.display="block";
+			document.getElementById("selcate").style.display="none";
+			 $("#cate").attr("type","text");
+			 $("#cate").val(data.cate);
 			alert("글 수정이 완료 되었습니다.");
 	     	},
 	     	error:function(error){
