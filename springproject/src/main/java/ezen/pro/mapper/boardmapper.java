@@ -3,6 +3,7 @@ package ezen.pro.mapper;
 import java.util.List;
 
 import ezen.pro.domain.boardVO;
+import ezen.pro.domain.pageVO;
 
 
 public interface boardmapper {
@@ -19,9 +20,8 @@ public interface boardmapper {
 	// 게시글 삭제
 	public void deleteBoard(int bno);
 	
-	// 전체 게시글 목록 조회
-	public List<boardVO> allreadboard();
+	// 페이징 리스트 조회
+	public List<boardVO> pagingboard(pageVO vo);
 	
-	// 페이징 처리된 게시글 목록 조회
-	public List<boardVO> getPagingBoard(int offset, int limit);
+	public int totboard();
 }

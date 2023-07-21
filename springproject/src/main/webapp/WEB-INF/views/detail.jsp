@@ -64,7 +64,7 @@
 		});
 	 });
      function backToList(obj) {
-	    obj.action="/board/list.do";
+	    obj.action="/board/list.do/${nowpage}";
 	    obj.method="get"
 	    obj.submit();
      }
@@ -113,7 +113,7 @@
 	     		xhr.setRequestHeader(header, token);
 	     	},
 	     	success:function(data){
-	     		location.href = '/board/list.do'
+	     		location.href = '/board/list.do/${nowpage}'
 	     	}
 		}); 
 	  }

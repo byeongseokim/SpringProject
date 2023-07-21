@@ -5,43 +5,41 @@
 <mapper namespace="ezen.pro.mapper.boardmapper">
 
 	<!-- 등록 -->
-	<insert id="boardregister" parameterType="ezen.pro.domain.boardVO">
+	<insert id="boardregister"
+		parameterType="ezen.pro.domain.boardVO">
 	<![CDATA[
 	INSERT INTO board (bcon, btie, bwriter, cate)
 	VALUES (#{bcon}, #{btie}, #{bwriter}, #{cate})
-	]]> <!-- CDATA 사용 하는 이유 : 
-	         SQL 문에 XML에서 특수한 의미를 가지는 문자
-	         (예: <, >, &)가 포함될 수 있기 때문 -->
+	]]> <!-- CDATA 사용 하는 이유 : SQL 문에 XML에서 특수한 의미를 가지는 문자 (예: <, >, &)가 포함될 수 있기 
+			때문 -->
 	</insert>
-
-	<!-- 조회 -->
-	<select id="getboarddetail" parameterType="int" resultType="ezen.pro.domain.boardVO">
-		SELECT * FROM board WHERE bno = #{bno}
-	</select>
 
 	<!-- 삭제 -->
 	<delete id="deleteBoard" parameterType="int">
-		DELETE FROM board WHERE bno = #{bno}
+		DELETE FROM board WHERE
+		bno = #{bno}
 	</delete>
 
 	<!-- 수정 -->
-	<update  id="updateboard"  parameterType="ezen.pro.domain.boardVO" >
-		UPDATE board SET btie = #{btie}, bcon = #{bcon}, cate=#{cate} WHERE bno = #{bno}
+	<update id="updateboard" parameterType="ezen.pro.domain.boardVO">
+		UPDATE board SET btie = #{btie}, bcon = #{bcon}, cate=#{cate} WHERE
+		bno = #{bno}
 	</update>
 
 	<!-- 페이징 -->
-	<select id="pagingboard" parameterType="int" resultType="ezen.pro.domain.boardVO">
-		SELECT *
-		FROM (
-		SELECT bno, bcon, btie, bwriter, cate, bdate, imageurl, @ROWNUM:=@ROWNUM+1 AS rowNum
-		FROM board, (SELECT @ROWNUM:=0) AS R
-		) T
-		LIMIT #{offset}, #{limit}
+	<select id="pagingboard" resultType="ezen.pro.domain.boardVO">
+		select A.* from
+		(select ROW_NUMBER() over(ORDER BY bno) AS rownum, t.*
+		from board t ) A
+		order by bno desc  LIMIT #{count} offset #{pagenum}
 	</select>
 
 	<!-- 모두 조회 -->
-	<select id="allreadboard" resultType="ezen.pro.domain.boardVO">
-		SELECT * FROM board
+	<select id="totboard" resultType="Integer">
+		SELECT count(*) FROM board
+	</select>
+	<select id="getboarddetail" resultType="ezen.pro.domain.boardVO">
+		select * from board where bno=#{bno}
 	</select>
 
 </mapper>

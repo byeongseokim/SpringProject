@@ -48,7 +48,7 @@ request.setCharacterEncoding("UTF-8");
 							id="password"></input>
 					</div>
 					<div class="login-btn-wrap">
-					<input id="login-btn" type="submit" value="로그인" style="width: 100%;">
+					<input id="login-btn" type="submit" value="로그인" style="width:100%" >
 					</div>
 					<input type="hidden" name="${_csrf.parameterName}"
 						value="${_csrf.token}" />
@@ -59,18 +59,13 @@ request.setCharacterEncoding("UTF-8");
 			<section class="find-signup-wrap">
 
 				<div id="find-signup-wrap-ko">
-					<span class="find-id"> <a href="/" class="fidi">아이디 찾기</a>
-					</span> <span class="find-pw"> <a href="/" class="fipw">비밀번호 찾기</a>
-					</span> <span class="sign-up"> <a href="/" class="siup">회원가입</a>
+					<span class="find-id"> <a href="/user/checkid.do" class="fidi">아이디 찾기</a>
+					</span> <span class="find-pw"> <a href="/user/checkid.do" class="fipw">비밀번호 찾기</a>
+					</span> <span class="sign-up"> <a href="/user/new.do" class="siup">회원가입</a>
 					</span>
 				</div>
 			</section>
 			</div>
-	<!--footer-->
-	<div class="footer" style="margin: auto;">
-		<%@ include file="/WEB-INF/views/tiles/footer.jsp"%>
-	</div>
-
 	<script>
 		/* 한영전환 */
 		function chageLangSelect() {

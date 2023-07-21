@@ -68,8 +68,14 @@ public class userController {
 		return "redirect:/main/main.do";
 	}
 	
+	@GetMapping("/checkid.do")
+	public String checkid() {
+
+		return "memberinfo";
+	}
+	
 	@ResponseBody
-	@PostMapping("/checkId.do")
+	@PostMapping("/checkid.do")
 	public String checkid(@RequestParam("id")String id) {
 		int a=userserviceImpl.check(id);
 		String result="";
@@ -98,7 +104,7 @@ public class userController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/pwdsearc")
+	@PostMapping(value ="/pwdsearc" ,produces="application/json;charset=UTF-8")
 	public String searcpwd(@RequestBody userVO vo) {
 		String result="";
 		 int leftLimit = 48; // letter 'a'

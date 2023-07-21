@@ -25,7 +25,7 @@ request.setCharacterEncoding("UTF-8");
 				class="image"></a>
 				<br><br><br>
 		</div>
-	<form action="../board/add.do" method="post">
+	<form name="boardform" action="/board/add.do" method="post">
 	<div class="border">
 	<br>
 		<input type="text" name="btie" placeholder="  제목">
@@ -49,7 +49,7 @@ request.setCharacterEncoding("UTF-8");
 		<textarea id="summernote" name="bcon" >
 		</textarea></div>
 		<br>
-		<input type="button" class="btn btn-secondary mt-3 mx-2" value="작성취소" />
+		<input type="button" class="btn btn-secondary mt-3 mx-2" onClick="backToList(boardform)" value="작성취소" />
 		<input type="submit" class="btn btn-primary mt-3 mx-2" value="작성완료" />
 		 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		 </div>
@@ -93,5 +93,9 @@ request.setCharacterEncoding("UTF-8");
      }); 
         } 
     }); 
-
+    function backToList(obj) {
+	    obj.action="/board/list.do/1";
+	    obj.method="get"
+	    obj.submit();
+     }
 </script>

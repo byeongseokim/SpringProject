@@ -26,30 +26,34 @@ import com.google.gson.JsonObject;
 
 import ezen.pro.domain.boardVO;
 import ezen.pro.domain.cateVO;
+import ezen.pro.domain.pageVO;
 import ezen.pro.service.boardServiceImpl;
 import ezen.pro.service.cateServiceImpl;
 
 @Controller
 @RequestMapping("/board")
 public class boardController {
-
+	
+	pageVO page=new pageVO();
+	
 	@Autowired
 	boardServiceImpl boardService;
 	@Autowired
 	cateServiceImpl cateServiceImpl;
-	
+
 	@ResponseBody
 	@PostMapping("/upload")
-	public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile,HttpServletRequest request,@RequestParam("id") String id) {
+	public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile,
+			HttpServletRequest request, @RequestParam("id") String id) {
 		JsonObject jsonObject = new JsonObject();
 //파일저장 외부 경로, 파일명, 저장할 파일명         
 		try {
 			System.out.println(id);
 			String originalFileName = multipartFile.getOriginalFilename();
 			String root = request.getSession().getServletContext().getRealPath("resources");
-			String savePath = root + "\\image\\review\\summerimagefiles\\"+id;
-			//이게경로야 이게파일으름을 yyymmddhhmmss으로해서 
-			//초단위로 나눠서 이름나눠서하는거라 어디요?
+			String savePath = root + "\\image\\review\\summerimagefiles\\" + id;
+			// 이게경로야 이게파일으름을 yyymmddhhmmss으로해서
+			// 초단위로 나눠서 이름나눠서하는거라 어디요?
 			System.out.println(savePath);
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 			String extension = originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
@@ -58,9 +62,9 @@ public class boardController {
 			if (!targetFile.exists()) {
 				targetFile.mkdir();
 			}
-			
+
 			multipartFile.transferTo(new File(savePath + "\\" + boardFileRename));
-			jsonObject.addProperty("url", "/resources/image/review/summerimagefiles/"+id+"/"+boardFileRename);
+			jsonObject.addProperty("url", "/resources/image/review/summerimagefiles/" + id + "/" + boardFileRename);
 			jsonObject.addProperty("originName", originalFileName);
 			jsonObject.addProperty("reponseCode", "success");
 		} catch (IllegalStateException e) {
@@ -73,59 +77,87 @@ public class boardController {
 
 	}
 
-    // 게시글 목록 조회ok
-    @GetMapping("/list.do")
-    public String getBoardList(Model model) {
-        // 게시글 목록을 가져와서 모델에 추가
-        List<boardVO> boardList = boardService.getAllBoard();
-        model.addAttribute("boardList", boardList);
-        return "listboard"; // 목록 페이지 템플릿으로 이동
-    }
+	// 게시글 목록 조회ok
+	@GetMapping("/list.do/{nowpage}")
+	public String getBoardList(Model model,@PathVariable("nowpage") String nowpage) {
+		int nowpagenum =Integer.parseInt(nowpage);
+		// 게시글 목록을 가져와서 모델에 추가
+		page.setPagenum((nowpagenum - 1) * page.getCount());
+		int tot = boardService.totboard();
+		tot = (int) (((double) tot / (double) page.getCount()) + 1);
+		List<boardVO> boardList = boardService.pagingboard(page);
+		model.addAttribute("cou",page.getCount());
+		model.addAttribute("page", tot);
+		model.addAttribute("boardList", boardList);
+		model.addAttribute("nowpage", nowpage);
+		return "listboard"; // 목록 페이지 템플릿으로 이동
+	}
+	
+	@ResponseBody
+	@GetMapping("/list.do")
+	public List<boardVO> postBoardList(@RequestBody String nowpage) {
+		int nowpagenum =Integer.parseInt(nowpage);
+		// 게시글 목록을 가져와서 모델에 추가
+		page.setPagenum((nowpagenum - 1) * 10);
+		int tot = boardService.totboard();
+		tot = (int) (((double) tot / (double) page.getCount()) + 1);
+		List<boardVO> boardList = boardService.pagingboard(page);
+		return boardList; // 목록 페이지 템플릿으로 이동
+	}
 //
 
-    // 게시글 상세 조회ok
-    @GetMapping("/detail.do")
-    public String getBoardDetail(@RequestParam("bno") int bno, Model model) {
-        // 게시글 상세 내용을 가져와서 모델에 추가
-    	List<cateVO> cate=cateServiceImpl.readcate();
-        boardVO board = boardService.getBoardDetail(bno);
-        model.addAttribute("board", board);
-        model.addAttribute("cate",cate);
-        return "detail"; // 상세 페이지 템플릿으로 이동합니다.
-    }
+	// 게시글 상세 조회ok
+	@GetMapping("/detail.do")
+	public String getBoardDetail(@RequestParam("bno") int bno, Model model,@RequestParam("nowpage") String nowpage) {
+		// 게시글 상세 내용을 가져와서 모델에 추가
+		List<cateVO> cate = cateServiceImpl.readcate();
+		boardVO board = boardService.getBoardDetail(bno);
+		model.addAttribute("board", board);
+		model.addAttribute("cate", cate);
+		model.addAttribute("nowpage",nowpage);
+		return "detail"; // 상세 페이지 템플릿으로 이동합니다.
+	}
 
-    // 새로운 게시글 작성 폼을 보여주기 위함ok
-    @GetMapping("/add.do")
-    public String showAddBoardForm(Model model) {
-    	List<cateVO> cate=cateServiceImpl.readcate();
-    	model.addAttribute("cate",cate);
-    	return "addboard"; // 새로운 게시글 작성 폼 템플릿으로 이동
-    	
-    }
+	// 새로운 게시글 작성 폼을 보여주기 위함ok
+	@GetMapping("/add.do")
+	public String showAddBoardForm(Model model) {
+		List<cateVO> cate = cateServiceImpl.readcate();
+		model.addAttribute("cate", cate);
+		return "addboard"; // 새로운 게시글 작성 폼 템플릿으로 이동
 
-    // 게시글 등록을 처리 ok
-    @PostMapping("/add.do")
-    public String addBoard(boardVO board) {
-        // 제목이 null이거나 비어있는지 확인
-        // 데이터베이스에 새로운 게시글 등록
-        boardService.boardRegister(board);
-        return "redirect:/board/list.do"; // 목록 페이지로 이동
-    }
-    
-    @ResponseBody
-    @PutMapping("/update.do")
-    public boardVO chagemeboard(@RequestBody boardVO vo) {
-    	 boardService.changeBoard(vo);
-    	 return boardService.getBoardDetail(vo.getBno());
-    }
-    
-   @ResponseBody 
-   @DeleteMapping("/delete.do/{bno}")
-    public String dropboard(@PathVariable("bno") String bno) {
-    	System.out.println(bno);
-    	int rebno=Integer.parseInt(bno);
-    boardService.deleteBoard(rebno);
-    return "success";
-    }
+	}
 
+	// 게시글 등록을 처리 ok
+	@PostMapping("/add.do")
+	public String addBoard(boardVO board) {
+		// 제목이 null이거나 비어있는지 확인
+		// 데이터베이스에 새로운 게시글 등록
+		boardService.boardRegister(board);
+		return "redirect:/board/list.do/1"; // 목록 페이지로 이동
+	}
+
+	@ResponseBody
+	@PutMapping("/update.do")
+	public boardVO chagemeboard(@RequestBody boardVO vo) {
+		boardService.changeBoard(vo);
+		return boardService.getBoardDetail(vo.getBno());
+	}
+
+	@ResponseBody
+	@DeleteMapping("/delete.do/{bno}")
+	public String dropboard(@PathVariable("bno") String bno) {
+		System.out.println(bno);
+		int rebno = Integer.parseInt(bno);
+		boardService.deleteBoard(rebno);
+		return "success";
+	}
+
+	@ResponseBody
+	@PutMapping(value ="/updatecount",produces="application/json;charset=UTF-8")
+	public String count(@RequestBody String count){
+		System.out.println(count);
+		int countnum=Integer.parseInt(count);
+		page.setCount(countnum);
+		return count+"개로 변경되었습니다";
+	}
 }
