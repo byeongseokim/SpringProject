@@ -1,88 +1,219 @@
-/* 전체 페이지 스타일 */
-body {
-	text-align: center;
-	background-color: #f6f6f6;
-	font-family: Arial, sans-serif;
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap')
+	;
+/* font-family: 'Noto Sans KR', sans-serif; */
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap')
+	;
+/* font-family: 'Noto Serif KR', serif; */
+@import
+	url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap')
+	;
+/* font-family: 'Montserrat', sans-serif; */
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	outline: none;
 }
 
-link[rel="icon"] {
-	width: "20";
-	height: "20";
-}
-
-/* 폼 스타일 */
 form {
-	margin: 20px auto;
-	max-width: 800px;
-	padding: 20px;
-	background-color: #fff;
-	border: 1px solid #ccc;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	text-align: center;
 }
 
-/* 제목 입력 필드 스타일 */
-input[name="btie"] {
-	width: 100%;
-	padding: 10px;
-	margin-bottom: 10px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
+body {
+	/* font-family: 'Noto Serif KR', serif; */
+	color: #222;
+	overflow-x: hidden;
+	font-size: 0.9rem;
 }
 
-/* 작성자 입력 필드 스타일 */
-input[name="bwriter"] {
-	width: 100%;
-	padding: 10px;
-	margin-bottom: 10px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
+/* #footer {
+	text-align: center;
+	margin: 0px 0px 0px 820px;
+} */
+
+img {
+	margin: auto;
+	display: block;
 }
 
-/* 카테고리 선택 드롭다운 스타일 */
-select[name="cate"] {
-	width: 100%;
-	padding: 10px;
-	margin-bottom: 10px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	background-color: #fff;
+input[name=btie] {
+	width: 52%;
+	height: 50px;
+	font-weight: bold;
+	
+	margin: 0 auto;
 }
 
-/* Summernote 에디터 스타일 */
-#summernote {
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fff;
-    width: 1000px;
+input[name=bwriter] {
+	width: 9%;
+	height: 50px;
+	font-weight: bold;
+	text-align: center;
 }
 
-#summernote .note-toolbar button {
-    margin-right: 5px;
+input[type=button]{
+	text-align: center;
+	text-shadow: -1px 0px white, 0px 1px white, 1px 0px white, 0px -1px white;
+  	width: 130px;
+  	height: 40px;
+  	padding: 0;
+
+  
 }
 
-#summernote .note-toolbar button:last-child {
-    margin-right: 0;
-}
-/* 버튼 스타일 */
-.btn {
-	padding: 10px 20px;
-	border: none;
-	border-radius: 4px;
-	color: #fff;
-	background-color: #007bff;
-	cursor: pointer;
+input[type=submit]{
+	text-align: center;
+  	width: 130px;
+  	height: 40px;
+  	line-height: 42px;
+  	padding: 0;
+	background: #2CA9E8;
+  	color: white;
+  	border: none;
 }
 
-.btn-secondary {
-	background-color: #6c757d;
+
+/* tag */
+h1 {
+	text-align: center;
+	font-weight: 900;
+	font-size: 2.2rem;
+	padding-top: 20px;
+	margin-bottom: 20px;
 }
 
-.btn-primary {
-	background-color: #007bff;
+h2 {
+	text-align: center;
+	font-size: 1.2rem;
+	margin-bottom: 30px;
 }
 
-/* 숨겨진 입력 필드 스타일 */
-input[type="hidden"] {
+a {
+	text-decoration: none;
+}
+
+a:hover, a:active {
+	text-decoration: underline;
+}
+
+article {
+	width: 90%;
+	margin: 80px auto;
+}
+
+select {
+	font-weight: bold;
+	font-size: 13px;
+	width: 20%;
+	padding: 15px;
+	border-radius: 5px;
+	border: 1px solid #ddd;
+	/*화살표 이미지*/
+	background:
+		url(https://user-images.githubusercontent.com/109255531/189028908-e6d72135-5de2-4432-b69e-ab3131d09a4f.png)
+		no-repeat;
+	background-position: 95%;
+	background-size: 10px;
+	/*원래 있던 화살표 제거*/
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+/*원래 있던 화살표 제거 - 인익스*/
+select::-ms-expand {
 	display: none;
+}
+
+select:focus {
+	border: 1px solid #222;
+}
+
+select:disabled {
+	background: #ddd;
+}
+
+textarea {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 0.95rem;
+	width: 100%;
+	height: 300px;
+	padding: 15px;
+	border-radius: 5px;
+	border: 1px solid #ddd;
+	resize: none;
+}
+
+div.summernote { /* 서머노트 */
+	width: 800px;
+	margin: 0px 0px 0px 137px;
+	text-align: left;
+}
+
+div.border { /* 테두리 */
+	border-radius: 8px;
+	width: 1000px;
+	height: 540px;
+	border: 2px solid #000;
+	padding-left: 1%;
+	margin: auto;
+	justify-content: space-around;
+}
+
+input {
+	font-size: 0.95rem;
+	width: 300px;
+	/* padding: 15px; */
+	border-radius: 5px;
+	border: 1px solid #ddd;
+	margin: auto;
+}
+
+button {
+	display: table-row-group;
+	width: 40px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background: white;
+	padding: 15px;
+	font-size: 10px;
+	margin: 5px 0;
+	transition: 0.3s;
+	width: 40px;
+}
+
+button:hover, button:active {
+	cursor: pointer;
+	box-shadow: 0px 0px 10px 0px #aaa;
+	background: #eee;
+}
+
+input[class=btn btn-secondary mt-3 mx-2],
+input[calss=btn btn-primary mt-3 mx-2]{
+	
+  	width: 130px;
+  	height: 40px;
+  	line-height: 42px;
+  	padding: 0;
+  	border: solid 3px black;
+  	text-align: center;
+}
+
+@media ( max-width :768px) {
+	* {
+		width: 100%;
+	}
+	/* div.border {
+		width: 100%;
+	}
+	div.summernote {
+		width: 100%;
+	}
+	footer {
+	 	width: 100%;
+	}
+	input {
+		width: 100%;
+	} */
 }

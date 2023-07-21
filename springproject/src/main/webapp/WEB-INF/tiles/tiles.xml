@@ -5,34 +5,69 @@
 
 <tiles-definitions>
 
-<definition name="main-layout" template="/WEB-INF/views/tiles/index.jsp">
-<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
-<put-attribute name="left" value="/WEB-INF/views/tiles/left.jsp" />
-<put-attribute name="body" value="" />
-<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
-</definition>
+	<definition name="main-layout"
+		template="/WEB-INF/views/tiles/index.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/tiles/header.jsp" />
+		<put-attribute name="left"
+			value="/WEB-INF/views/tiles/left.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/tiles/footer.jsp" />
+	</definition>
 
-<definition name="board-layout" template="/WEB-INF/views/tiles/layout.jsp">
-<put-attribute name="header" value="/WEB-INF/views/tiles/header.jsp" />
-<put-attribute name="body" value="" />
-<put-attribute name="footer" value="/WEB-INF/views/tiles/footer.jsp" />
-<put-attribute name="title" value="메인페이지" /> 
-</definition>
+	<definition name="form-layout"
+		template="/WEB-INF/views/tiles/form.jsp">
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/tiles/footer.jsp" />
+	</definition>
 
-<definition name="addboard" extends="board-layout">
-<put-attribute name="title" value="글작성"></put-attribute>
-<put-attribute name="body" value="/WEB-INF/views/boardwriter.jsp" />
-</definition>
 
-<definition name="main" extends="main-layout">
-<put-attribute name="title" value="메인페이지"></put-attribute>
-<put-attribute name="body" value="/WEB-INF/views/memberinfo.jsp" />
-</definition>
 
-<definition name="listboard" extends="board-layout">
-<put-attribute name="title" value="글목록창"></put-attribute>
-<put-attribute name="body" value="/WEB-INF/views/list.jsp" />
-</definition>
+	<definition name="board-layout"
+		template="/WEB-INF/views/tiles/layout.jsp">
+		<put-attribute name="header"
+			value="/WEB-INF/views/tiles/header.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/tiles/footer.jsp" />
+		<put-attribute name="title" value="메인페이지" />
+	</definition>
 
+
+	<definition name="addboard" extends="form-layout">
+		<put-attribute name="title" value="글작성"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/boardwriter.jsp" />
+	</definition>
+
+
+	<definition name="main" extends="main-layout">
+		<put-attribute name="title" value="메인페이지"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/main.jsp" />
+	</definition>
+
+
+	<definition name="listboard" extends="board-layout">
+		<put-attribute name="title" value="글목록창"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/list.jsp" />
+	</definition>
+
+
+	<definition name="login" extends="form-layout">
+		<put-attribute name="title" value="네버 로그인" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/login.jsp" />
+	</definition>
+
+
+	<definition name="joinuser" extends="form-layout">
+		<put-attribute name="title" value="네버 홈페이지" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/joinuser.jsp" />
+	</definition>
 
 </tiles-definitions>
