@@ -86,10 +86,9 @@ public class boardController {
 	@GetMapping("/list.do")
 	public String getBoardList(Model model, pageVO vo) {
 		// 게시글 목록을 가져와서 모델에 추가
-		System.out.println("!");
-		System.out.println("1.1"+vo.getCate());
+		System.out.println(vo.getWord());
 		if(vo.getWord()!=null) {
-			vo.setWord(vo.getWord().equals("검색어를 입력해주세요")?null:vo.getWord());
+			vo.setWord(vo.getWord().equals("undefined")?null:vo.getWord());
 			page.setWord(vo.getWord());
 		}
 		if(vo.getCate()!=null){

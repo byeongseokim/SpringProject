@@ -30,7 +30,7 @@
 					</select></td>
 					<td><input type="text"
 						style="width: 500px; height: 50px; font-size: 45px" name="word"
-						id="word" value="검색어를 입력해주세요" onclick="$('#word').val('')"></td>
+						id="word" placeholder="검색어를 입력해주세요." onclick="$('#word').val('')"></td>
 					<td><input type="button" value="검색"
 						style="width: 100px; height: 50px; font-size: 30px"
 						onclick="serchboard()"></td>

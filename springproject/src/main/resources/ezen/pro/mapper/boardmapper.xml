@@ -15,8 +15,10 @@
 				and cate=#{cate}
 			</if>
 		</if>
-		<if test="cate!=null">
-			where cate=#{cate}
+		<if test="word==null">
+			<if test="cate!=null">
+				where cate=#{cate}
+			</if>
 		</if>
 	</sql>
 	<!-- 등록 -->
@@ -55,7 +57,8 @@
 	</select>
 
 	<!-- 모두 조회 -->
-	<select id="totboard" resultType="Integer" parameterType="ezen.pro.domain.pageVO">
+	<select id="totboard" resultType="Integer"
+		parameterType="ezen.pro.domain.pageVO">
 		SELECT count(*) FROM board
 		<include refid="serch" />
 	</select>
