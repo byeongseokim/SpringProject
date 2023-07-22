@@ -84,11 +84,10 @@ public class boardController {
 		// 게시글 목록을 가져와서 모델에 추가
 		System.out.println("!");
 		System.out.println("1.1"+vo.getCate());
-		System.out.println(vo.getWord());
 		if(vo.getWord()!=null) {
+			vo.setWord(vo.getWord().equals("검색어를 입력해주세요")?null:vo.getWord());
 			page.setWord(vo.getWord());
 		}
-		System.out.println("2.1");
 		if(vo.getCate()!=null){
 			vo.setCate(vo.getCate().equals("옵션")?null:vo.getCate());
 			if(vo.getCate()!=null){

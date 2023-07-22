@@ -20,33 +20,45 @@
 	</div>
 	<div>
 		<form id="serform">
-			<table >
+			<table>
 				<tr colspan="3">
-					<td>
-					<select style="display: block;" id="selcate" name="cate" id="1">
-					<option >옵션</option>
+					<td><select style="display: block;" id="selcate" id="1" name="cate">
+							<option>옵션</option>
 							<c:forEach var="item" items="${cate}">
 								<option value="${item.cate}">${item.cate}</option>
 							</c:forEach>
 					</select></td>
-					<td><input type="text" 
-						style="width: 500px; height: 50px; font-size: 45px" name="word" id="word" value="검색어를 입력해주세요" onclick="$('#word').val('')"></td>
+					<td><input type="text"
+						style="width: 500px; height: 50px; font-size: 45px" name="word"
+						id="word" value="검색어를 입력해주세요" onclick="$('#word').val('')"></td>
 					<td><input type="button" value="검색"
 						style="width: 100px; height: 50px; font-size: 30px"
 						onclick="serchboard()"></td>
 				</tr>
 			</table>
+			<div>
+				<c:forEach var="cate" items="${cate}">
+					<input type="button" onclick="serchcate('${cate.cate}')" value="${cate.cate}">
+				</c:forEach>
+			</div>
 		</form>
 	</div>
 
 	<script>
-	var token = $("meta[name='_csrf']").attr("content");
-	var header = $("meta[name='_csrf_header']").attr("content");
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
 		function serchboard() {
 			console.log("실행!");
-		$("#serform").attr("action",'/board/list.do');
-		$("#serform").submit();
+			$("#serform").attr("action", '/board/list.do');
+			$("#selcate").attr("name","cate");
+			console.log($("#selcate").val());
+			$("#serform").submit();
 		};
-		
+		function serchcate(index){
+			$("#serform").attr("action", '/board/list.do');
+			$("#selcate").val(index);
+			console.log($("#selcate").val());
+			$("#serform").submit();
+		}
 	</script>
 </header>

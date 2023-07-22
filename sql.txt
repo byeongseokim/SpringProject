@@ -1,0 +1,41 @@
+drop table if exists board;
+drop table if exists user;
+drop table if exists reply;
+drop table if exists cate;
+
+
+CREATE TABLE `board` (
+  `bno` int(11) NOT NULL AUTO_INCREMENT,
+  `bcon` text NOT NULL,
+  `btie` varchar(100) NOT NULL,
+  `bwriter` varchar(10) NOT NULL,
+  `cate` varchar(10) DEFAULT NULL,
+  `bdate` datetime DEFAULT current_timestamp(),
+  PRIMARY KEY (`bno`)
+);
+CREATE TABLE `cate` (
+  `cate` varchar(10) NOT NULL,
+  PRIMARY KEY (`cate`)
+);
+CREATE TABLE `reply` (
+  `rwriter` varchar(10) NOT NULL,
+  `rcon` varchar(200) NOT NULL,
+  `bno` int(11) DEFAULT NULL,
+  `rno` int(11) NOT NULL AUTO_INCREMENT,
+  `rdate` date DEFAULT curdate(),
+  PRIMARY KEY (`rno`)
+);
+CREATE TABLE `user` (
+  `id` varchar(20) NOT NULL,
+  `password` varchar(200) DEFAULT NULL,
+  `name` varchar(10) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `grade` varchar(2) DEFAULT '1',
+  PRIMARY KEY (`id`)
+);
+INSERT into cate values("공지");
+INSERT into cate values("자유게시판");
+INSERT into cate values("게임게시판");
+INSERT into cate values("커뮤니티게시판");
+ alter table board add CONSTRAINT `board_cate` FOREIGN KEY (`cate`) REFERENCES `cate` (`cate`);
+ alter table reply add CONSTRAINT `reply_board` FOREIGN KEY (`bno`) REFERENCES `board` (`bno`);

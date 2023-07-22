@@ -7,12 +7,16 @@
 		<if test="word!=null">
 			where
 			<if test="word!=null">
-				bwriter like CONCAT('%', #{word}, '%') or btie like CONCAT('%', #{word},
+				bwriter like CONCAT('%', #{word}, '%') or btie like
+				CONCAT('%', #{word},
 				'%') or bcon like CONCAT('%', #{word}, '%')
 			</if>
 			<if test="cate!=null">
 				and cate=#{cate}
 			</if>
+		</if>
+		<if test="cate!=null">
+			where cate=#{cate}
 		</if>
 	</sql>
 	<!-- 등록 -->
@@ -45,22 +49,22 @@
 		(select
 		ROW_NUMBER() over(ORDER BY bno) AS rownum, t.*
 		from board t ) A
-<include refid="serch"></include>
+		<include refid="serch" />
 		order by
 		bno desc LIMIT #{count} offset #{pagenum}
 	</select>
 
 	<!-- 모두 조회 -->
-	<select id="totboard" resultType="Integer">
+	<select id="totboard" resultType="Integer" parameterType="ezen.pro.domain.pageVO">
 		SELECT count(*) FROM board
-		<include refid="serch"></include>
+		<include refid="serch" />
 	</select>
-	
+
 	<select id="getboarddetail" resultType="ezen.pro.domain.boardVO">
 		select * from board where
 		bno=#{bno}
 	</select>
-	
+
 
 
 </mapper>
