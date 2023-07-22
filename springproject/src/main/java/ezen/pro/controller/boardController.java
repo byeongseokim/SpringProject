@@ -27,8 +27,10 @@ import com.google.gson.JsonObject;
 import ezen.pro.domain.boardVO;
 import ezen.pro.domain.cateVO;
 import ezen.pro.domain.pageVO;
+import ezen.pro.domain.replyVO;
 import ezen.pro.service.boardServiceImpl;
 import ezen.pro.service.cateServiceImpl;
+import ezen.pro.service.replyServiceImpl;
 
 @Controller
 @RequestMapping("/board")
@@ -37,6 +39,8 @@ public class boardController {
 	pageVO page=new pageVO();
 
 	
+	@Autowired
+	replyServiceImpl replyServiceImpl;
 	@Autowired
 	boardServiceImpl boardService;
 	@Autowired
@@ -132,6 +136,8 @@ public class boardController {
 		// 게시글 상세 내용을 가져와서 모델에 추가
 		List<cateVO> cate = cateServiceImpl.readcate();
 		boardVO board = boardService.getBoardDetail(bno);
+		List<replyVO> reply= replyServiceImpl.selectreply(bno);
+		model.addAttribute("reply",reply);
 		model.addAttribute("board", board);
 		model.addAttribute("cate", cate);
 		model.addAttribute("nowpage",nowpage);

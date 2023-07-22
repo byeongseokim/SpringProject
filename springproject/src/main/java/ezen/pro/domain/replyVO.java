@@ -13,6 +13,6 @@ public class replyVO {
 	private String rcon;
 	private int rno;
 	private int bno;
-	private Date Rdate;
+	private Date rdate;
 	
 }

@@ -15,16 +15,18 @@ public class cateServiceImpl implements cateService{
 
 	@Autowired
 	catemapper catemapper;
-	
 	@Override
 		public void addcate(cateVO vo) {
 		catemapper.insertcate(vo);
 		
 		}
+	
 	@Override
 	public void dropcate(cateVO vo) {
 	 catemapper.deletecate(vo);	
 	}
+	
+	
 	@Override
 	public List<cateVO> readcate() {
 		return  catemapper.selectcate();

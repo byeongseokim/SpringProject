@@ -4,8 +4,16 @@
 
 <!-- SQL Mapping -->
 <mapper namespace="ezen.pro.mapper.replymapper">
-<insert id="">
-insert into reply(rwriter,rcon,bno) values(#{rwriter},#{rcno},#{bno})
-</insert>
-
+	<insert id="insertreply">
+		insert into reply(rwriter,rcon,bno) values(#{rwriter},#{rcno},#{bno})
+	</insert>
+	<select id="selectreply" resultType="ezen.pro.domain.replyVO">
+		select rwriter,rcon,bno,rno,rdate from reply where bno=#{bno}
+	</select>
+	<update id="updatereply">
+		update reply set rcon=#{rcon} where rno=#{rno}
+	</update>
+	<delete id="deletereply">
+		delete from reply where rno=#{rno}
+	</delete>
 </mapper>

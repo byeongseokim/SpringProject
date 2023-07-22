@@ -12,27 +12,31 @@
 <script src="/resources/sum/summernote-lite.js"></script>
 <script src="/resources/sum/lang/summernote-ko-KR.js"></script>
 <c:set var="grade" value='<%=(String) session.getAttribute("grade")%>' />
-<c:set var="user_id" value='<%=(String) session.getAttribute("userid")%>' />
+<c:set var="user_id"
+	value='<%=(String) session.getAttribute("userid")%>' />
 <link rel="stylesheet" href="/resources/sum/summernote-lite.css">
 <div>
 	<form id="boardform" name="boardform" action="post">
-	<input type="text" name="valcate" id="cate" value='[<c:out value="${board.cate}"/>]' style="width: 100px;text-align: center;" disabled>
-	<select style="display: none;" id="selcate" name="cate" id="1" >
-		<c:forEach var="item" items="${cate}">
-			<c:choose>
-				<c:when test="${grade==2}">		
-				<option value="${item.cate}">${item.cate}</option>
-				</c:when>
-				<c:otherwise>
-				<c:if test="${item.cate!='공지'}">
-					<option value="${item.cate}">${item.cate}</option>
-					</c:if>
-			</c:otherwise>
-			</c:choose>
-		</c:forEach>
-		</select>
-	<input type="text" name="btie" id="btie" value='<c:out value="${board.btie}"/>' disabled>
-	 <input type="text" name="bwriter" id="id" readonly="readonly" value='<c:out value="${board.bwriter}"/>'>
+		<input type="text" name="valcate" id="cate"
+			value='[<c:out value="${board.cate}"/>]'
+			style="width: 100px; text-align: center;" disabled> <select
+			style="display: none;" id="selcate" name="cate" id="1">
+			<c:forEach var="item" items="${cate}">
+				<c:choose>
+					<c:when test="${grade==2}">
+						<option value="${item.cate}">${item.cate}</option>
+					</c:when>
+					<c:otherwise>
+						<c:if test="${item.cate!='공지'}">
+							<option value="${item.cate}">${item.cate}</option>
+						</c:if>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+		</select> <input type="text" name="btie" id="btie"
+			value='<c:out value="${board.btie}"/>' disabled> <input
+			type="text" name="bwriter" id="id" readonly="readonly"
+			value='<c:out value="${board.bwriter}"/>'>
 		<textarea name="bcon" id="bcon" disabled></textarea>
 		<div id="base_btn">
 			<c:if test="${user_id ==board.bwriter||grade==2}">
@@ -42,16 +46,47 @@
 					onclick="removeboard()">
 				<!-- onclick="삭제ajax"  -->
 			</c:if>
-			<input type="button" class="btn btn-secondary" value="목록으로가기" onClick="backToList(boardform)">
+			<input type="button" class="btn btn-secondary" value="목록으로가기"
+				onClick="backToList(boardform)">
 		</div>
 		<div style="display: none;" id="modify_btn">
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" /> <input type=button value="수정반영하기"
 				onClick="modifyboard()">
 			<!-- put타입ajx여기서 값을변경해서그전에꺼삭제하고받아온걸로 값변경하기 id=summ노트도지워야함 -->
-			<input type="button" value="취소" onClick="fn_disable()">
-			<input type="hidden" value="${nowpage}" name="pagenum">
+			<input type="button" value="취소" onClick="fn_disable()"> <input
+				type="hidden" value="${nowpage}" name="pagenum">
 		</div>
+		<hr>
+		<div>
+			reply <input type="button" value="댓글작성" onclick=""
+				style="float: right;">
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<td>작성자</td>
+					<td>내용</td>
+					<td>작성일자</td>
+					<td></td>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${reply}" var="tem">
+					<tr>
+						<th><input style="border: none" type="text" readonly
+							value="${tem.rwriter}"></th>
+						<th><input style="border: none" type="text" readonly
+							value="${tem.rcon}"></th>
+						<th><input style="border: none" type="text" readonly
+							value="<fmt:formatDate pattern='yy-MM-dd' value='${board.bdate}'/>">
+							<input type="hidden" value="${tem.bno}"> <input
+							type="hidden" value="${tem.rno}"></th>
+
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 	</form>
 </div>
 <script>
