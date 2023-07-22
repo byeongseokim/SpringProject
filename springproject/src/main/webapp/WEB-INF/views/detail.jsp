@@ -50,6 +50,7 @@
 				onClick="modifyboard()">
 			<!-- put타입ajx여기서 값을변경해서그전에꺼삭제하고받아온걸로 값변경하기 id=summ노트도지워야함 -->
 			<input type="button" value="취소" onClick="fn_disable()">
+			<input type="hidden" value="${nowpage}" name="pagenum">
 		</div>
 	</form>
 </div>
@@ -64,7 +65,8 @@
 		});
 	 });
      function backToList(obj) {
-	    obj.action="/board/list.do/${nowpage}";
+    	
+	    obj.action="/board/list.do";
 	    obj.method="get"
 	    obj.submit();
      }

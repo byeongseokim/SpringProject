@@ -23,5 +23,5 @@ public interface boardmapper {
 	// 페이징 리스트 조회
 	public List<boardVO> pagingboard(pageVO vo);
 	
-	public int totboard();
+	public int totboard(pageVO vo);
 }

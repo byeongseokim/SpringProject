@@ -36,26 +36,34 @@
 				</tr>
 			</thead>
 			<tbody id='boardlistview'>
-				<c:forEach items="${boardList}" var="board">
+			<c:choose>
+			<c:when test="${boardList[0]!=null}">
+					<c:forEach items="${boardList}" var="board">
+						<tr>
+							<th class="bo_num"><c:out value="${board.rownum}" /> <input
+								type=hidden value="${board.bno}"></th>
+							<th class="bo_tit"><a
+								href="/board/detail.do?bno=${board.bno}&nowpage=${nowpage}$word=${word}">
+									<c:out value="${board.btie}" />
+							</a></th>
+							<th class="bo_writer"><c:out value="${board.bwriter}" /></th>
+							<th class="bo_regDate"><fmt:formatDate pattern="yy-MM-dd"
+									value="${board.bdate}" /></th>
+						</tr>
+					</c:forEach>
+					</c:when>
+					<c:otherwise>
 					<tr>
-						<th class="bo_num"><c:out value="${board.rownum}" /> <input
-							type=hidden value="${board.bno}"></th>
-						<th class="bo_tit"><a
-							href="/board/detail.do?bno=${board.bno}&nowpage=${nowpage}">
-								<c:out value="${board.btie}" />
-						</a></th>
-						<th class="bo_writer"><c:out value="${board.bwriter}" /></th>
-						<th class="bo_regDate"><fmt:formatDate pattern="yy-MM-dd"
-								value="${board.bdate}" /></th>
-								</tr>
-				</c:forEach>
-	
+					<td colspan="4">
+					검색 결과가 존재하지 않습니다
+					</td>
+					</tr>
+					</c:otherwise>
+				</c:choose>
+				
 			</tbody>
-			<tbody id='viewboardlist'></tbody>
 		</table>
-
 		<!-- 게시판 목록 영역 -->
-		<div id="board_wrap"></div>
 		<!-- 테스트 텍스트 추가 -->
 		<c:if test="${user_id!=null}">
 			<div class="add-post-box">
@@ -71,6 +79,7 @@
 			</c:forEach>
 		</ul>
 		<input type="hidden" value="${nowpage}" id="nowpage">
+		<input type="hidden" value="${nowword }" id="nowword">
 	</div>
 </div>
 
@@ -96,14 +105,17 @@ function modifycount(){
     	 //$("#list_wra").empty();
     	 location.reload();
     	// boardload();
-	} 
+	}
 }); 
 }
 </script>
 <script>
-	function movepage(index){
-	$("body").load('/board/list.do/'+index,function(){
-
+	function movepage(idx){
+		console.log(idx);
+		var index='pagenum='+idx+'&word='+$("#nowword").val()+'&cate='+$("#selcate").val();
+		
+		console.log(index);
+	$("body").load('/board/list.do',index,function(){
 	});
 }
 

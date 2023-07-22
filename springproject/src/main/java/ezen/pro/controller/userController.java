@@ -88,7 +88,7 @@ public class userController {
 	}
 	
 	@ResponseBody
-	@PostMapping(value = "/idsearc",produces="application/json;charset=UTF-8")
+	@PostMapping(value = "/idsearch",produces="application/json;charset=UTF-8")
 	public String searcid(@RequestBody userVO vo) {
 		System.out.println("드와라");
 		try {
@@ -104,7 +104,7 @@ public class userController {
 	}
 	
 	@ResponseBody
-	@PostMapping(value ="/pwdsearc" ,produces="application/json;charset=UTF-8")
+	@PostMapping(value ="/pwdsearch" ,produces="application/json;charset=UTF-8")
 	public String searcpwd(@RequestBody userVO vo) {
 		String result="";
 		 int leftLimit = 48; // letter 'a'

@@ -35,6 +35,7 @@ import ezen.pro.service.cateServiceImpl;
 public class boardController {
 	
 	pageVO page=new pageVO();
+
 	
 	@Autowired
 	boardServiceImpl boardService;
@@ -53,7 +54,7 @@ public class boardController {
 			String root = request.getSession().getServletContext().getRealPath("resources");
 			String savePath = root + "\\image\\review\\summerimagefiles\\" + id;
 			// 이게경로야 이게파일으름을 yyymmddhhmmss으로해서
-			// 초단위로 나눠서 이름나눠서하는거라 어디요?
+			//
 			System.out.println(savePath);
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 			String extension = originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
@@ -78,32 +79,52 @@ public class boardController {
 	}
 
 	// 게시글 목록 조회ok
-	@GetMapping("/list.do/{nowpage}")
-	public String getBoardList(Model model,@PathVariable("nowpage") String nowpage) {
-		int nowpagenum =Integer.parseInt(nowpage);
+	@GetMapping("/list.do")
+	public String getBoardList(Model model, pageVO vo) {
 		// 게시글 목록을 가져와서 모델에 추가
-		page.setPagenum((nowpagenum - 1) * page.getCount());
-		int tot = boardService.totboard();
+		System.out.println("!");
+		System.out.println("1.1"+vo.getCate());
+		System.out.println(vo.getWord());
+		if(vo.getWord()!=null) {
+			page.setWord(vo.getWord());
+		}
+		System.out.println("2.1");
+		if(vo.getCate()!=null){
+			vo.setCate(vo.getCate().equals("옵션")?null:vo.getCate());
+			if(vo.getCate()!=null){
+				page.setCate(vo.getCate());
+			}
+		}
+		vo.setPagenum(vo.getPagenum()==0? 1 :vo.getPagenum());
+		page.setPagenum((vo.getPagenum() - 1) *page.getCount());
+		int tot = boardService.totboard(page);
+		System.out.println(page.getCate());
+		System.out.println(page.getWord());
 		tot = (int) (((double) tot / (double) page.getCount()) + 1);
 		List<boardVO> boardList = boardService.pagingboard(page);
 		model.addAttribute("cou",page.getCount());
 		model.addAttribute("page", tot);
 		model.addAttribute("boardList", boardList);
-		model.addAttribute("nowpage", nowpage);
+		model.addAttribute("nowpage", vo.getPagenum());
+		List<cateVO> cate = cateServiceImpl.readcate();
+		model.addAttribute("cate", cate);
+		model.addAttribute("nowword",page.getWord());
+		page.setCate(null);
+		page.setWord(null);
 		return "listboard"; // 목록 페이지 템플릿으로 이동
 	}
-	
-	@ResponseBody
-	@GetMapping("/list.do")
-	public List<boardVO> postBoardList(@RequestBody String nowpage) {
-		int nowpagenum =Integer.parseInt(nowpage);
-		// 게시글 목록을 가져와서 모델에 추가
-		page.setPagenum((nowpagenum - 1) * 10);
-		int tot = boardService.totboard();
-		tot = (int) (((double) tot / (double) page.getCount()) + 1);
-		List<boardVO> boardList = boardService.pagingboard(page);
-		return boardList; // 목록 페이지 템플릿으로 이동
-	}
+//	
+//	@ResponseBody
+//	@GetMapping("/list.do")
+//	public List<boardVO> postBoardList(@RequestBody String nowpage) {
+//		int nowpagenum =Integer.parseInt(nowpage);
+//		// 게시글 목록을 가져와서 모델에 추가
+//		page.setPagenum((nowpagenum - 1) * 10);
+//		int tot = boardService.totboard();
+//		tot = (int) (((double) tot / (double) page.getCount()) + 1);
+//		List<boardVO> boardList = boardService.pagingboard(page);
+//		return boardList; // 목록 페이지 템플릿으로 이동
+//	}
 //
 
 	// 게시글 상세 조회ok
@@ -160,4 +181,6 @@ public class boardController {
 		page.setCount(countnum);
 		return count+"개로 변경되었습니다";
 	}
+	
+
 }

@@ -74,7 +74,7 @@ function searciddb(){
 	console.log(JSON.stringify(data));
 	$.ajax({
         type:"POST", 
-        url:"/user/idsearc",
+        url:"/user/idsearch",
         contentType : "application/json; charset=utf-8",
         data:JSON.stringify(data),
         dataType:"text",
@@ -99,7 +99,7 @@ function searcpwddb(){
 			console.log(JSON.stringify(data));
 			$.ajax({
 		        type:"POST", 
-		        url:"/user/pwdsearc",
+		        url:"/user/pwdsearch",
 		        contentType : "application/json; charset=utf-8",
 		        data:JSON.stringify(data),
 		        dataType:"text",

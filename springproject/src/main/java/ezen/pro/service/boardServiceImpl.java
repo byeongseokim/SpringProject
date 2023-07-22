@@ -48,8 +48,8 @@ public class boardServiceImpl implements boardService {
     
     //게시글 총갯수
     @Override
-    public int totboard() {
-    	return boardMapper.totboard();
+    public int totboard(pageVO vo) {
+    	return boardMapper.totboard(vo);
     }
 
 }

@@ -3,7 +3,18 @@
 
 <!-- SQL 매핑 -->
 <mapper namespace="ezen.pro.mapper.boardmapper">
-
+	<sql id="serch">
+		<if test="word!=null">
+			where
+			<if test="word!=null">
+				bwriter like CONCAT('%', #{word}, '%') or btie like CONCAT('%', #{word},
+				'%') or bcon like CONCAT('%', #{word}, '%')
+			</if>
+			<if test="cate!=null">
+				and cate=#{cate}
+			</if>
+		</if>
+	</sql>
 	<!-- 등록 -->
 	<insert id="boardregister"
 		parameterType="ezen.pro.domain.boardVO">
@@ -22,24 +33,34 @@
 
 	<!-- 수정 -->
 	<update id="updateboard" parameterType="ezen.pro.domain.boardVO">
-		UPDATE board SET btie = #{btie}, bcon = #{bcon}, cate=#{cate} WHERE
+		UPDATE board SET btie =
+		#{btie}, bcon = #{bcon}, cate=#{cate} WHERE
 		bno = #{bno}
 	</update>
 
 	<!-- 페이징 -->
-	<select id="pagingboard" resultType="ezen.pro.domain.boardVO">
+	<select id="pagingboard" resultType="ezen.pro.domain.boardVO"
+		parameterType="ezen.pro.domain.pageVO">
 		select A.* from
-		(select ROW_NUMBER() over(ORDER BY bno) AS rownum, t.*
+		(select
+		ROW_NUMBER() over(ORDER BY bno) AS rownum, t.*
 		from board t ) A
-		order by bno desc  LIMIT #{count} offset #{pagenum}
+<include refid="serch"></include>
+		order by
+		bno desc LIMIT #{count} offset #{pagenum}
 	</select>
 
 	<!-- 모두 조회 -->
 	<select id="totboard" resultType="Integer">
 		SELECT count(*) FROM board
+		<include refid="serch"></include>
 	</select>
+	
 	<select id="getboarddetail" resultType="ezen.pro.domain.boardVO">
-		select * from board where bno=#{bno}
+		select * from board where
+		bno=#{bno}
 	</select>
+	
+
 
 </mapper>

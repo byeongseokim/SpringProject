@@ -17,5 +17,5 @@ public interface boardService {
     
     public void changeBoard(boardVO board); //게시글 업데이트
     
-    public int totboard();
+    public int totboard(pageVO vo);
 }
