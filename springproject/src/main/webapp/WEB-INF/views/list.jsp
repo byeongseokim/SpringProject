@@ -8,8 +8,8 @@
 <meta id="_csrf" name="_csrf" content="${_csrf.token}" />
 <meta id="_csrf_header" name="_csrf_header"
 	content="${_csrf.headerName}" />
-<link rel="shortcut icon" href="/resources/images/nevermark.ico" type="image/x-icon">
-<link rel="stylesheet" href="/resources/css/list.css"> 
+	<link rel="stylesheet" href="/resources/css/list.css"> 
+	<link rel="shortcut icon" href="/resources/images/nevermark.ico" type="image/x-icon">
 <c:set var="grade" value='<%=(String) session.getAttribute("grade")%>' />
 <c:set var="user_id"
 	value='<%=(String) session.getAttribute("userid")%>' />
@@ -64,7 +64,8 @@
 				
 			</tbody>
 		</table>
-		<br>
+			<br>
+		
 		<c:if test="${user_id!=null}">
 			<div class="add-post-box">
 				<div class="add-post-button">
@@ -80,7 +81,8 @@
 			</c:forEach>
 		</ul></div>
 		<input type="hidden" value="${nowpage}" id="nowpage">
-		<input type="hidden" value="${nowword }" id="nowword">
+		<input type="hidden" value="${nowword}" id="nowword">
+		<input type="hidden" value="${categori}" id="nowcate">
 		
 	</div>
 </div>
@@ -114,8 +116,7 @@ function modifycount(){
 <script>
 	function movepage(idx){
 		console.log(idx);
-		var index='pagenum='+idx+'&word='+$("#nowword").val()+'&cate='+$("#selcate").val();
-		
+		var index='pagenum='+idx+'&word='+$("#nowword").val()+'&cate='+$("#nowcate").val();
 		console.log(index);
 	$("body").load('/board/list.do',index,function(){
 	});

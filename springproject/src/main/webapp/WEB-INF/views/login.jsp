@@ -9,6 +9,7 @@ request.setCharacterEncoding("UTF-8");
 <meta charset="UTF-8">
 <title>네버 로그인</title>
 <link rel="stylesheet" href="/resources/css/login.css">
+<link rel="icon" href="/resources/images/nevermark.png" style="width:20; height: 20 ">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
@@ -29,7 +30,7 @@ request.setCharacterEncoding("UTF-8");
 
 				<!--NAVER LOGO-->
 				<div class="logo">
-					<a href="/main/main.do" target="_self"
+					<a href="http://localhost:8092/main/main.do" target="_self"
 						title="네버 홈페이지"><img
 						src="/resources/images/nevermainimage.png" class="image"></a>
 				</div>
@@ -39,7 +40,7 @@ request.setCharacterEncoding("UTF-8");
 			<form id="logfrom" action="/user/login.do" method="post">
 				<section class="login-wrap">
 					<div class="login-id-wrap">
-						<input  type="text" name='id' placeholder="아이디를 입력해주세요"
+						<input  type="text" name='id' placeholder="아아디를 입력해주세요"
 							id="id"></input>
 					</div>
 					<div class="login-pw-wrap">

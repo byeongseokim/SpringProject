@@ -11,28 +11,30 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class replyServiceImpl implements replyService{
+public class replyServiceImpl implements replyService {
 
 	@Autowired
 	replymapper replymapper;
-	
+
 	@Override
-		public void deletereply(int rno) {
-			replymapper.deletereply(rno);
-			
-		}
+	public void deletereply(int rno) {
+		replymapper.deletereply(rno);
+	}
+
 	@Override
 	public void insertreply(replyVO vo) {
 		replymapper.insertreply(vo);
 	}
+
 	@Override
 	public List<replyVO> selectreply(int bno) {
 		return replymapper.selectreply(bno);
 	}
+
 	@Override
 	public void updatereply(replyVO vo) {
-		
+
 		replymapper.updatereply(vo);
 	}
-	
+
 }

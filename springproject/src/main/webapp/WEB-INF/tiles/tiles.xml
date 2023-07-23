@@ -75,11 +75,10 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/memberinfo.jsp" />
 	</definition>
-	
+
 	<definition name="detail" extends="form-layout">
 		<put-attribute name="title" value="상세보기" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/detail.jsp" />
 	</definition>
-
 </tiles-definitions>

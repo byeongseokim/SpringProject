@@ -76,7 +76,7 @@ request.setCharacterEncoding("UTF-8");
             $.ajax({ 
 		         data:data, 
 		         type:"POST", 
-		         url:"../board/upload", 
+		         url:"/board/upload", 
 		         dataType:"JSON", 
 		         contentType:false, 
 		         processData:false,

@@ -5,7 +5,7 @@
 <!-- SQL Mapping -->
 <mapper namespace="ezen.pro.mapper.replymapper">
 	<insert id="insertreply">
-		insert into reply(rwriter,rcon,bno) values(#{rwriter},#{rcno},#{bno})
+		insert into reply(rwriter,rcon,bno) values(#{rwriter},#{rcon},#{bno})
 	</insert>
 	<select id="selectreply" resultType="ezen.pro.domain.replyVO">
 		select rwriter,rcon,bno,rno,rdate from reply where bno=#{bno}

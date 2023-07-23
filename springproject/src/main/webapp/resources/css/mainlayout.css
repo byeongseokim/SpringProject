@@ -1,23 +1,11 @@
-@charset "UTF-8";
 .container {  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 0.5fr 1fr 0.5fr;
   gap: 0px 0px;
   grid-auto-flow: row;
-  grid-template-areas:
-    "header header header"
-    "body body sidebar"
-    "footer footer footer";
 }
-
-.body { grid-area: body;
- }
-
-.sidebar { grid-area: sidebar;
- }
-
-.header { grid-area: header;
- }
-
-.footer { grid-area: footer;
-}
+.header { grid-area: 1 / 1 / 2 / 4; }
+.footer { grid-area: 3 / 1 / 4 / 4; }
+.body { grid-area: 2 / 1 / 3 / 4; }
+.hreader { grid-area: 1 / 1 / 2 / 4; }
+.sidebar { grid-area: 2 / 3 / 3 / 4; }

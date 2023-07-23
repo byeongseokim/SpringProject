@@ -51,45 +51,84 @@
 		</div>
 		<div style="display: none;" id="modify_btn">
 			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" />
-				<input type="hidden" name="pagenum" value="${nowpage}">
-				 <input type=button value="수정반영하기" onClick="modifyboard()">
+				value="${_csrf.token}" /> <input type="hidden" name="pagenum"
+				value="${nowpage}"> <input type=button value="수정반영하기"
+				onClick="modifyboard()">
 			<!-- put타입ajx여기서 값을변경해서그전에꺼삭제하고받아온걸로 값변경하기 id=summ노트도지워야함 -->
 			<input type="button" value="취소" onClick="fn_disable()">
-				
+
 		</div>
 		<hr>
 		<div>
-			reply <input type="button" value="댓글작성" onclick=""
-				style="float: right;">
+			reply
+			<c:if test="${user_id!=null}">
+			 <input type="text" id="replycon">
+			 <input type="button" value="댓글작성" onclick="createreply()">
+			 </c:if>
 		</div>
-		<table>
-			<thead>
-				<tr>
-					<td>작성자</td>
-					<td>내용</td>
-					<td>작성일자</td>
-					<td></td>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${reply}" var="tem">
+		<div id="replyboard">
+			<table id="replytabel">
+				<thead>
 					<tr>
-						<th><input style="border: none" type="text" readonly
-							value="${tem.rwriter}"></th>
-						<th><input style="border: none" type="text" readonly
-							value="${tem.rcon}"></th>
-						<th><input style="border: none" type="text" readonly
-							value="<fmt:formatDate pattern='yy-MM-dd' value='${board.bdate}'/>">
-							<input type="hidden" value="${tem.bno}"> <input
-							type="hidden" value="${tem.rno}"></th>
-
+						<td>작성자</td>
+						<td>내용</td>
+						<td>작성일자</td>
+						<td colspan="2"></td>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					<c:forEach items="${reply}" var="tem" varStatus="status">
+						<tr>
+							<th><input style="border: none" type="text" readonly
+								value="${tem.rwriter}"></th>
+							<th><input style="border: none" type="text" readonly
+								value="${tem.rcon}" id="rcon${status.count}"></th>
+							<th><input style="border: none" type="text" readonly
+								value="<fmt:formatDate pattern='yyyy-MM-dd' value='${board.bdate}'/>"></th>
+							<c:if test="${ grade==2||user_id==tem.rwriter}">
+							<th id="delbtn${status.count}" style="color: red" ><input type="button" onclick="deletereply(${tem.rno})" value="삭제"></th>
+							<th id="modbtn${status.count}" style="color: green"><input type="button" onclick="updatereply(${status.count})" value="수정"></th>
+							<th id="redelbtn${status.count}" style="color: blue; display: none" ><input type="button" onclick="btn_modify(${status.count})" value="수정하기"></th>
+							<th id="cancelbtn${status.count}" style="color: red; display: none"><input type="button" onclick="resetbtn(${status.count})" value="취소"></th>
+							</c:if>
+						</tr>
+						<input type="hidden" id="rerno${status.count}" value="${tem.rno}">
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 	</form>
 </div>
+<script>
+function viewreply(data){
+	 $("#replytabel").remove();
+	  var replyhead='<table id="replytabel"><thead><tr><td>작성자</td><td>내용</td><td>작성일자</td>';
+	  replyhead+='<td colspan="2"></td></tr></thead><tbody id="replytbody"><tbody><table> ';
+	  $("#replyboard").append(replyhead);
+	  $.each(data,function(index,item){
+		  var redate= new Date(item.rdate);
+		  var year = redate.getFullYear();
+		  var month = ('0' + (redate.getMonth() + 1)).slice(-2);
+		  var day = ('0' + redate.getDate()).slice(-2);
+		  var dateString = year + '-' + month  + '-' + day;
+		  var replybody = '<tr><th><input style="border: none" type="text" readonly value="'+item.rwriter+'">';
+		   replybody+='</th><th><input style="border: none" type="text" readonly value="'+item.rcon+'" id="rcon'+index+'"></th>';
+		   replybody+='<th><input type="text" style="border: none" value="'+dateString+'" readonly></th>';
+ 		  if("${user_id}"==item.rwriter){
+ 		   replybody+='<th style="color: red" id="delbtn'+index+'" ><input type="button" onclick="deletereply('+item.rno+')" value="삭제"></th><th style="color: green"><input type="button" onclick="updatereply('+index+')" value="수정"></th>';
+		   replybody+='<th id="redelbtn'+index+'" style="color: blue; display: none" ><input type="button" onclick="btn_modify('+index+')" value="수정하기"></th>';
+		   replybody+='<th id="cancelbtn'+index+'" style="color: red; display: none"><input type="button" onclick="resetbtn('+index+')" value="취소"></th>';
+		   }else if("${grade}"==2){
+			replybody+='<th style="color: red" id="delbtn'+index+'" ><input type="button" onclick="deletereply('+index+')" value="삭제"></th><th style="color: green"><input type="button" onclick="updatereply('+index+')" value="수정"></th>';
+			 replybody+='<th id="redelbtn'+index+'" style="color: blue; display: none" ><input type="button" onclick="btn_modify('+index+')" value="수정하기"></th>';
+			replybody+='<th id="cancelbtn'+index+'" style="color: red; display: none"><input type="button" onclick="resetbtn('+index+')" value="취소"></th>';
+		   }
+ 		 console.log(replybody);
+		   replybody+='<input type="hidden" id="rerno'+index+'" value="'+item.rno+'">';
+		$("#replytbody").append(replybody); 
+	})
+}
+</script>
 <script>
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
@@ -100,6 +139,94 @@
 			  spellCheck: true
 		});
 	 });
+	 function createreply(){
+			var replydate={
+				"rwriter":"${user_id}",
+				"bno":${board.bno},
+				"rcon":$("#replycon").val()
+			}
+			console.log(replydate);
+			console.log(JSON.stringify(replydate));
+			$.ajax({ 
+			    data:JSON.stringify(replydate), 
+			    type:"POST", 
+			    url:"/reply/addreply.do", 
+			    dataType:"JSON",
+			    contentType : "application/json; charset=utf-8",
+			    beforeSend : function(xhr){
+					xhr.setRequestHeader(header, token);
+				},
+				success:function(data){
+				 	viewreply(data); 
+				},
+				error:function(error){
+					console.log(error);
+				}
+		});
+		}
+		function deletereply(index){
+			var replydate={
+				"bno":${board.bno}
+			}
+			$.ajax({ 
+			    data:JSON.stringify(replydate), 
+			    type:"delete", 
+			    url:"/reply/removereply.do/"+index, 
+			    dataType:"JSON",
+			    contentType : "application/json; charset=utf-8",
+			    beforeSend : function(xhr){
+					xhr.setRequestHeader(header, token);
+				},
+				success:function(data){
+			 		viewreply(data); 
+				},
+				error:function(error){
+					console.log(error);
+				}
+		});
+		}
+		function updatereply(index){
+			$("#rcon"+index).attr("readonly",false);
+			$("#rcon"+index).css("border","");
+			$("#delbtn"+index).css("display","none");
+			$("#modbtn"+index).css("display","none");
+			$("#redelbtn"+index).css("display","");
+			$("#cancelbtn"+index).css("display","");
+			}
+		function resetbtn(index){
+			$("#rcon"+index).attr("readonly",true);
+			$("#rcon"+index).css("border","none");
+			$("#delbtn"+index).css("display","");
+			$("#modbtn"+index).css("display","");
+			$("#redelbtn"+index).css("display","none");
+			$("#cancelbtn"+index).css("display","none");
+			}
+			
+		function btn_modify(index){
+			var replydate={
+					"rwriter":"${user_id}",
+					"bno":${board.bno},
+					"rcon":$("#rcon"+index).val(),
+					"rno":$("#rerno"+index).val()
+				}
+			console.log(replydate);
+		 		 $.ajax({ 
+				    data:JSON.stringify(replydate), 
+				    type:"put", 
+				    url:"/reply/modifyreply.do/", 
+				    dataType:"JSON",
+				    contentType : "application/json; charset=utf-8",
+				    beforeSend : function(xhr){
+						xhr.setRequestHeader(header, token);
+					},
+					success:function(data){
+						viewreply(data); 
+					},
+					error:function(error){
+						console.log(error);
+					}
+			}); 
+		}
      function backToList(obj) {
 	    obj.action="/board/list.do";
 	    obj.method="get"
@@ -123,21 +250,6 @@
 	            data = new FormData(); 
 	            data.append("file",file);
 	            data.append("id",id)
-	            $.ajax({ 
-			         data:data, 
-			         type:"POST", 
-			         url:"/board/upload", 
-			         dataType:"JSON", 
-			         contentType:false, 
-			         processData:false,
-			         beforeSend : function(xhr){
-			     		xhr.setRequestHeader(header, token);
-			     	},
-			        success:function(data){ 
-			             $(editor).summernote("insertImage",data.url); 
-			             $("#thumbnailPath").append("<option value="+data.url+">"+data.originName+"</option>");
-	         	} 
-	     }); 
 	      } 
 	 }
 	 function removeboard() {

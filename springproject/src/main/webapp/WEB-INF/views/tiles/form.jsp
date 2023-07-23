@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="${contextPath}/resources/css/mainlayout.css" rel="stylesheet">
+<link href="${contextPath}/resources/css/boardmain.css" rel="stylesheet">
 <title><tiles:insertAttribute name="title" /></title>
 </head>
 <body>
