@@ -1,1 +1,104 @@
 @charset "UTF-8";
+
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap')
+	;
+/* font-family: 'Noto Sans KR', sans-serif; */
+@import
+	url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR&display=swap')
+	;
+/* font-family: 'Noto Serif KR', serif; */
+@import
+	url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap')
+	;
+/* font-family: 'Montserrat', sans-serif; */
+* {
+	padding: 0;
+	box-sizing: border-box;
+	outline: none;
+}
+
+img.logo {
+	margin: auto;
+	display: block;
+}
+
+form {
+	text-align: left;
+}
+
+input[name=btie] {
+	margin: 10px auto;
+	width: 56%;
+}
+
+input[class=btn btn-success] {
+	margin: 0 auto;
+}
+
+body {
+	/* font-family: 'Noto Serif KR', serif; */
+	color: #222;
+	overflow-x: hidden;
+	font-size: 0.9rem;
+}
+
+textarea {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 0.95rem;
+	width: 100%;
+	height: 300px;
+	padding: 15px;
+	border-radius: 5px;
+	border: 1px solid #ddd;
+	resize: none;
+}
+
+div.summernote { /* �꽌癒몃끂�듃 */
+	width: 800px;
+	margin: 0px 0px 0px 137px;
+	text-align: left;
+}
+
+div.border { /* �뀒�몢由� */
+	border-radius: 8px;
+	width: 1000px;
+	height: 750px;
+	border: 2px solid #000;
+	padding-left: 1%;
+	padding-right: 1%; margin : auto;
+	justify-content: space-around;
+	margin: auto
+}
+
+div[id=base_btn] {
+	padding-left: 1%;
+}
+
+input {
+	font-size: 0.95rem;
+	width: 310px;
+	padding: 8px;
+	border-radius: 5px;
+	border: 1px solid #ddd;
+	margin: auto;
+}
+
+button {
+	display: table-row-sgroup;
+	width: 40px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background: white;
+	padding: 15px;
+	font-size: 10px;
+	margin: 5px 0;
+	transition: 0.3s;
+	width: 40px;
+}
+
+@media ( max-width :768px) {
+	* {
+		width: 100%;
+	}
+}

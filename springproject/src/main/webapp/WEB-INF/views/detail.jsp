@@ -15,44 +15,53 @@
 <c:set var="user_id"
 	value='<%=(String) session.getAttribute("userid")%>' />
 <link rel="stylesheet" href="/resources/sum/summernote-lite.css">
-
+<link rel="stylesheet" href="/resources/css/detail.css">
+<br>
+<br>
 <a href="/main/main.do" target="_self" title="네버 홈페이지"> <img
 	class="logo" src="/resources/images/nevermainimage.png" width="250"
 	height="70"></a>
+<br>
+<br>
+<br>
 
 <div>
 	<form id="boardform" name="boardform" action="post">
-		<input type="text" name="valcate" id="cate"
-			value='[<c:out value="${board.cate}"/>]'
-			style="width: 100px; text-align: center;" disabled> <select
-			style="display: none;" id="selcate" id="1">
-			<c:forEach var="item" items="${cate}">
-				<c:choose>
-					<c:when test="${grade==2}">
-						<option value="${item.cate}">${item.cate}</option>
-					</c:when>
-					<c:otherwise>
-						<c:if test="${item.cate!='공지'}">
+		<div class="border">
+		<br>
+			<input type="text" name="valcate" id="cate"
+				value='[<c:out value="${board.cate}"/>]'
+				style="width: 100px; text-align: center;" disabled> <select
+				style="display: none;" id="selcate" id="1">
+				<c:forEach var="item" items="${cate}">
+					<c:choose>
+						<c:when test="${grade==2}">
 							<option value="${item.cate}">${item.cate}</option>
-						</c:if>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-		</select> <input type="text" name="btie" id="btie"
-			value='<c:out value="${board.btie}"/>' disabled> <input
-			type="text" name="bwriter" id="id" readonly="readonly"
-			value='<c:out value="${board.bwriter}"/>'>
-		<textarea name="bcon" id="bcon" disabled></textarea>
-		<div id="base_btn">
-			<c:if test="${user_id ==board.bwriter||grade==2}">
-				<input type="button" class="btn btn-success" value="수정"
-					onclick="fn_enable()">
-				<input type="button" class="btn btn-danger" value="삭제"
-					onclick="removeboard()">
-				<!-- onclick="삭제ajax"  -->
-			</c:if>
-			<input type="button" class="btn btn-secondary" value="목록으로가기"
-				onClick="backToList(boardform)">
+						</c:when>
+						<c:otherwise>
+							<c:if test="${item.cate!='공지'}">
+								<option value="${item.cate}">${item.cate}</option>
+							</c:if>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</select><input type="text" name="btie" id="btie"
+				value='<c:out value="${board.btie}"/>' disabled> <input
+				type="text" name="bwriter" id="id" readonly="readonly"
+				value='<c:out value="${board.bwriter}"/>'>
+			<textarea name="bcon" id="bcon" disabled></textarea>
+			<br>
+			<div id="base_btn">
+				<c:if test="${user_id ==board.bwriter||grade==2}">
+					<input type="button" class="btn btn-success" value="수정"
+						onclick="fn_enable()">
+					<input type="button" class="btn btn-danger" value="삭제"
+						onclick="removeboard()">
+					<!-- onclick="삭제ajax"  -->
+				</c:if>
+				<input type="button" class="btn btn-secondary" value="목록으로가기"
+					onClick="backToList(boardform)">
+			</div>
 		</div>
 		<div style="display: none;" id="modify_btn">
 			<input type="hidden" name="${_csrf.parameterName}"
