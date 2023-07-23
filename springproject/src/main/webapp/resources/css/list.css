@@ -1,0 +1,139 @@
+h1[class=sub_h2_tit] {
+	text-align: center;
+	background: ffffff;
+}
+
+/* Container styles */
+div.container_wrap {
+	width: 1100px;
+	margin: 0 auto;
+}
+
+.post-options {
+	display: flex;
+	align-items: center;
+}
+
+.post-options p {
+	margin-right: 10px;
+}
+
+select[id=countnumber] {
+	width: 10%
+}
+
+/* Table styles */
+table#list_wrap {
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	width: 100%;
+	margin: auto;
+}
+
+/* Table header styles */
+#list_wrap th {
+	font-size: 16px;
+	font-weight: bold;
+	color: #004080;
+	text-align: center;
+	padding: 12px;
+	text-decoration: none;
+}
+
+/* Table cell styles */
+#list_wrap td {
+	text-align: center;
+	padding: 12px;
+}
+
+/* Table row styles */
+#list_wrap tbody tr:nth-child(even) {
+	background-color: #f5f5f5;
+}
+
+/* Pagination styles */
+/* ul.pagination {
+	list-style: none;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+} */
+
+ul {
+	text-align: center;
+}
+
+/* div[class=page].ul {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #2CA9E8;;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 5px;
+	transition: background-color 0.2s;
+} */
+
+div.page ul {
+  list-style: none;
+  text-align: center;
+  padding: 10px 20px;
+}
+
+div.page ul li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+div.page ul li input[type="button"] {
+  padding: 10px 20px;
+  background-color: #2CA9E8;
+  color: #ffffff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+div.page ul li input[type="button"]:hover {
+  background-color: #0074a6;
+}
+
+
+/* ul.pagination li {
+	margin: 0 5px;
+}
+
+ul.pagination li a {
+	padding: 8px 16px;
+	background-color: #004080;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 5px;
+	transition: background-color 0.2s;
+}
+
+ul.pagination li a:hover {
+	background-color: #003366;
+} */
+
+/* New post button styles */
+.add-post-box {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 20px;
+}
+
+.add-post-button a {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #2CA9E8;;
+	color: #fff;
+	text-decoration: none;
+	border-radius: 5px;
+	transition: background-color 0.2s;
+}
+
+.add-post-button a:hover {
+	background-color: #0074a6;
+}

@@ -8,17 +8,18 @@
 <meta id="_csrf" name="_csrf" content="${_csrf.token}" />
 <meta id="_csrf_header" name="_csrf_header"
 	content="${_csrf.headerName}" />
+<link rel="shortcut icon" href="/resources/images/nevermark.ico" type="image/x-icon">
+<link rel="stylesheet" href="/resources/css/list.css"> 
 <c:set var="grade" value='<%=(String) session.getAttribute("grade")%>' />
 <c:set var="user_id"
 	value='<%=(String) session.getAttribute("userid")%>' />
 <div id="content">
-	<h2 class="sub_h2_tit">게시판</h2>
+	<h1 class="sub_h2_tit">게시판</h1>
 	<!-- 게시판 시작 -->
 	<div class="container_wrap">
 		<div class="container_inner">
-			<p>게시물갯수</p>
 			<select id="countnumber" onchange="modifycount()">
-				<option>갯수</option>
+				<option>게시물 개수</option>
 				<option value="10">10</option>
 				<option value="15">15</option>
 				<option value="20">20</option>
@@ -63,8 +64,7 @@
 				
 			</tbody>
 		</table>
-		<!-- 게시판 목록 영역 -->
-		<!-- 테스트 텍스트 추가 -->
+		<br>
 		<c:if test="${user_id!=null}">
 			<div class="add-post-box">
 				<div class="add-post-button">
@@ -72,15 +72,15 @@
 				</div>
 			</div>
 		</c:if>
+		<div class="page">
 		<ul>
 			<c:forEach begin="1" end="${page}" var="num">
 				<li><input type="button" onclick="movepage(${num})"
 					value="${num}"></li>
 			</c:forEach>
-		</ul>
+		</ul></div>
 		<input type="hidden" value="${nowpage}" id="nowpage">
-		<input type="hidden" value="${nowword}" id="nowword">
-		<input type="hidden" value="${categori}" id="nowcate">
+		<input type="hidden" value="${nowword }" id="nowword">
 		
 	</div>
 </div>
@@ -114,7 +114,8 @@ function modifycount(){
 <script>
 	function movepage(idx){
 		console.log(idx);
-		var index='pagenum='+idx+'&word='+$("#nowword").val()+'&cate='+$("#nowcate").val();
+		var index='pagenum='+idx+'&word='+$("#nowword").val()+'&cate='+$("#selcate").val();
+		
 		console.log(index);
 	$("body").load('/board/list.do',index,function(){
 	});
