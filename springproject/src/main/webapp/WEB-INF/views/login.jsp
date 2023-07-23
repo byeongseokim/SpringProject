@@ -40,7 +40,7 @@ request.setCharacterEncoding("UTF-8");
 			<form id="logfrom" action="/user/login.do" method="post">
 				<section class="login-wrap">
 					<div class="login-id-wrap">
-						<input  type="text" name='id' placeholder="아아디를 입력해주세요"
+						<input  type="text" name='id' placeholder="아이디를 입력해주세요"
 							id="id"></input>
 					</div>
 					<div class="login-pw-wrap">
