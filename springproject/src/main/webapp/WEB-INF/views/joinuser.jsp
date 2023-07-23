@@ -61,10 +61,6 @@
 			<!-- 3. 가입하기 버튼 -->
 			<input type="button" onClick="join();" class="btnOk" value="가입하기">
 		 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-			<!-- 4. 푸터 -->
-			<div class="footer" style="margin: auto;">
-				<%@ include file="/WEB-INF/views/tiles/footer.jsp"%>
-			</div>
 		</div>
 	</form>
 
