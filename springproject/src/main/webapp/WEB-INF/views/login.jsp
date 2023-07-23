@@ -30,7 +30,7 @@ request.setCharacterEncoding("UTF-8");
 
 				<!--NAVER LOGO-->
 				<div class="logo">
-					<a href="http://localhost:8092/main/main.do" target="_self"
+					<a href="/main/main.do" target="_self"
 						title="네버 홈페이지"><img
 						src="/resources/images/nevermainimage.png" class="image"></a>
 				</div>

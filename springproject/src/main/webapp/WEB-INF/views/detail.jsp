@@ -15,6 +15,11 @@
 <c:set var="user_id"
 	value='<%=(String) session.getAttribute("userid")%>' />
 <link rel="stylesheet" href="/resources/sum/summernote-lite.css">
+
+<a href="/main/main.do" target="_self" title="네버 홈페이지"> <img
+	class="logo" src="/resources/images/nevermainimage.png" width="250"
+	height="70"></a>
+
 <div>
 	<form id="boardform" name="boardform" action="post">
 		<input type="text" name="valcate" id="cate"
@@ -62,9 +67,9 @@
 		<div>
 			reply
 			<c:if test="${user_id!=null}">
-			 <input type="text" id="replycon">
-			 <input type="button" value="댓글작성" onclick="createreply()">
-			 </c:if>
+				<input type="text" id="replycon">
+				<input type="button" value="댓글작성" onclick="createreply()">
+			</c:if>
 		</div>
 		<div id="replyboard">
 			<table id="replytabel">
@@ -86,10 +91,16 @@
 							<th><input style="border: none" type="text" readonly
 								value="<fmt:formatDate pattern='yyyy-MM-dd' value='${board.bdate}'/>"></th>
 							<c:if test="${ grade==2||user_id==tem.rwriter}">
-							<th id="delbtn${status.count}" style="color: red" ><input type="button" onclick="deletereply(${tem.rno})" value="삭제"></th>
-							<th id="modbtn${status.count}" style="color: green"><input type="button" onclick="updatereply(${status.count})" value="수정"></th>
-							<th id="redelbtn${status.count}" style="color: blue; display: none" ><input type="button" onclick="btn_modify(${status.count})" value="수정하기"></th>
-							<th id="cancelbtn${status.count}" style="color: red; display: none"><input type="button" onclick="resetbtn(${status.count})" value="취소"></th>
+								<th id="delbtn${status.count}" style="color: red"><input
+									type="button" onclick="deletereply(${tem.rno})" value="삭제"></th>
+								<th id="modbtn${status.count}" style="color: green"><input
+									type="button" onclick="updatereply(${status.count})" value="수정"></th>
+								<th id="redelbtn${status.count}"
+									style="color: blue; display: none"><input type="button"
+									onclick="btn_modify(${status.count})" value="수정하기"></th>
+								<th id="cancelbtn${status.count}"
+									style="color: red; display: none"><input type="button"
+									onclick="resetbtn(${status.count})" value="취소"></th>
 							</c:if>
 						</tr>
 						<input type="hidden" id="rerno${status.count}" value="${tem.rno}">

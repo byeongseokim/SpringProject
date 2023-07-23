@@ -18,7 +18,7 @@
 	<form action="/user/new.do" method="post" id="form">
 		<div class="member">
 			<!-- 1. 로고 -->
-			<a href="http://localhost:8092/main/main.do" target="_self" 
+			<a href="/main/main.do" target="_self" 
 						title="네버 홈페이지"> 
 			<img class="logo" src="/resources/images/nevermainimage.png" 
 				width="250" height="70" ></a> 
