@@ -14,13 +14,10 @@ request.setCharacterEncoding("UTF-8");
  <c:set var="grade" value='<%=(String)session.getAttribute("grade")%>' />
 <c:set var="user_id" value='<%=(String) session.getAttribute("userid")%>' />
 <link rel="stylesheet" href="/resources/sum/summernote-lite.css">
-<link rel="icon" href="/resources/images/nevermark.png"
-	style="  width:20; height:20;"> 
 <link rel="stylesheet" href="/resources/css/boardwriter.css"> 
-
 <br>
 <div class="logo">
-			<a href="http://localhost:8092/main/main.do" target="_self"
+			<a href="/main/main.do" target="_self"
 				title="네버 홈페이지"><img src="/resources/images/nevermainimage.png"
 				class="image"></a>
 				<br><br><br>
@@ -94,7 +91,7 @@ request.setCharacterEncoding("UTF-8");
         } 
     }); 
     function backToList(obj) {
-	    obj.action="/board/list.do/1";
+	    obj.action="/board/list.do";
 	    obj.method="get"
 	    obj.submit();
      }

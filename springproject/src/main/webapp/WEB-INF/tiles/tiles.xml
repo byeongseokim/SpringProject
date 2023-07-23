@@ -65,9 +65,20 @@
 
 
 	<definition name="joinuser" extends="form-layout">
-		<put-attribute name="title" value="네버 홈페이지" />
+		<put-attribute name="title" value="네버 회원가입" />
 		<put-attribute name="body"
 			value="/WEB-INF/views/joinuser.jsp" />
 	</definition>
 
+	<definition name="memberinfo" extends="form-layout">
+		<put-attribute name="title" value="아이디/비밀번호찾기" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/memberinfo.jsp" />
+	</definition>
+
+	<definition name="detail" extends="form-layout">
+		<put-attribute name="title" value="상세보기" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/detail.jsp" />
+	</definition>
 </tiles-definitions>

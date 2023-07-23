@@ -37,7 +37,7 @@ import ezen.pro.service.replyServiceImpl;
 public class boardController {
 	
 	pageVO page=new pageVO();
-
+	int pagenumber;
 	
 	@Autowired
 	replyServiceImpl replyServiceImpl;
@@ -86,33 +86,34 @@ public class boardController {
 	@GetMapping("/list.do")
 	public String getBoardList(Model model, pageVO vo) {
 		// 게시글 목록을 가져와서 모델에 추가
-		System.out.println(vo.getWord());
+		System.out.println(vo.getCate());
 		if(vo.getWord()!=null) {
-			vo.setWord(vo.getWord().equals("undefined")?null:vo.getWord());
+			vo.setWord(vo.getWord().equals("")?null:vo.getWord());
 			page.setWord(vo.getWord());
 		}
 		if(vo.getCate()!=null){
-			vo.setCate(vo.getCate().equals("옵션")?null:vo.getCate());
+			if(vo.getCate().equals("옵션")) {
+				page.setCate(null);
+				vo.setCate(null);
+			}
 			if(vo.getCate()!=null){
 				page.setCate(vo.getCate());
 			}
 		}
-		vo.setPagenum(vo.getPagenum()==0? 1 :vo.getPagenum());
-		page.setPagenum((vo.getPagenum() - 1) *page.getCount());
-		int tot = boardService.totboard(page);
 		System.out.println(page.getCate());
-		System.out.println(page.getWord());
+		pagenumber=(vo.getPagenum()==0? 1 :vo.getPagenum());
+		page.setPagenum((pagenumber - 1) *page.getCount());
+		int tot = boardService.totboard(page);
 		tot = (int) (((double) tot / (double) page.getCount()) + 1);
 		List<boardVO> boardList = boardService.pagingboard(page);
 		model.addAttribute("cou",page.getCount());
 		model.addAttribute("page", tot);
 		model.addAttribute("boardList", boardList);
-		model.addAttribute("nowpage", vo.getPagenum());
+		model.addAttribute("nowpage",pagenumber);
 		List<cateVO> cate = cateServiceImpl.readcate();
 		model.addAttribute("cate", cate);
 		model.addAttribute("nowword",page.getWord());
-		page.setCate(null);
-		page.setWord(null);
+		model.addAttribute("categori",page.getCate());
 		return "listboard"; // 목록 페이지 템플릿으로 이동
 	}
 //	
@@ -131,7 +132,7 @@ public class boardController {
 
 	// 게시글 상세 조회ok
 	@GetMapping("/detail.do")
-	public String getBoardDetail(@RequestParam("bno") int bno, Model model,@RequestParam("nowpage") String nowpage) {
+	public String getBoardDetail(@RequestParam("bno") int bno, Model model) {
 		// 게시글 상세 내용을 가져와서 모델에 추가
 		List<cateVO> cate = cateServiceImpl.readcate();
 		boardVO board = boardService.getBoardDetail(bno);
@@ -139,7 +140,7 @@ public class boardController {
 		model.addAttribute("reply",reply);
 		model.addAttribute("board", board);
 		model.addAttribute("cate", cate);
-		model.addAttribute("nowpage",nowpage);
+		model.addAttribute("nowpage",pagenumber);
 		return "detail"; // 상세 페이지 템플릿으로 이동합니다.
 	}
 

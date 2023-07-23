@@ -79,7 +79,9 @@
 			</c:forEach>
 		</ul>
 		<input type="hidden" value="${nowpage}" id="nowpage">
-		<input type="hidden" value="${nowword }" id="nowword">
+		<input type="hidden" value="${nowword}" id="nowword">
+		<input type="hidden" value="${categori}" id="nowcate">
+		
 	</div>
 </div>
 
@@ -112,8 +114,7 @@ function modifycount(){
 <script>
 	function movepage(idx){
 		console.log(idx);
-		var index='pagenum='+idx+'&word='+$("#nowword").val()+'&cate='+$("#selcate").val();
-		
+		var index='pagenum='+idx+'&word='+$("#nowword").val()+'&cate='+$("#nowcate").val();
 		console.log(index);
 	$("body").load('/board/list.do',index,function(){
 	});

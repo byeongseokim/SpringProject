@@ -20,7 +20,7 @@
 		<input type="text" name="valcate" id="cate"
 			value='[<c:out value="${board.cate}"/>]'
 			style="width: 100px; text-align: center;" disabled> <select
-			style="display: none;" id="selcate" name="cate" id="1">
+			style="display: none;" id="selcate" id="1">
 			<c:forEach var="item" items="${cate}">
 				<c:choose>
 					<c:when test="${grade==2}">
@@ -51,11 +51,12 @@
 		</div>
 		<div style="display: none;" id="modify_btn">
 			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" /> <input type=button value="수정반영하기"
-				onClick="modifyboard()">
+				value="${_csrf.token}" />
+				<input type="hidden" name="pagenum" value="${nowpage}">
+				 <input type=button value="수정반영하기" onClick="modifyboard()">
 			<!-- put타입ajx여기서 값을변경해서그전에꺼삭제하고받아온걸로 값변경하기 id=summ노트도지워야함 -->
-			<input type="button" value="취소" onClick="fn_disable()"> <input
-				type="hidden" value="${nowpage}" name="pagenum">
+			<input type="button" value="취소" onClick="fn_disable()">
+				
 		</div>
 		<hr>
 		<div>
@@ -100,7 +101,6 @@
 		});
 	 });
      function backToList(obj) {
-    	
 	    obj.action="/board/list.do";
 	    obj.method="get"
 	    obj.submit();
@@ -126,7 +126,7 @@
 	            $.ajax({ 
 			         data:data, 
 			         type:"POST", 
-			         url:"../board/upload", 
+			         url:"/board/upload", 
 			         dataType:"JSON", 
 			         contentType:false, 
 			         processData:false,

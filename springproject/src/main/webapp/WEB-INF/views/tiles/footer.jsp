@@ -12,7 +12,7 @@
 			<div >
 				<div class="col-lg-3 col-md-6 footer-contact">
 					<h3>NEVER</h3>
-					<p>EzneAcademy<br> 경기도안산시상록구<br>광덕1로 375 KR 강우빌딩 
+					<p>EzenAcademy<br> 경기도안산시상록구<br>광덕1로 375 KR 강우빌딩 
 					<br> <br> <strong>Phone:</strong> +1 5589 55488
 						55<br> <strong>adress&nbsp;&nbsp;</strong>https://github.com/byeongseokim/SpringProject<br>
 					</p>

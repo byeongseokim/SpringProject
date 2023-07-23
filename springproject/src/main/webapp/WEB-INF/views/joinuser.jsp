@@ -9,8 +9,6 @@
 <meta id="_csrf" name="_csrf" content="${_csrf.token}" />
 <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}" />
 <title>네버 회원가입</title>
-<link rel="icon" href="/resources/images/nevermark.png" width="20"
-	height="20">
 <link rel="stylesheet" href="/resources/css/joinuser.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

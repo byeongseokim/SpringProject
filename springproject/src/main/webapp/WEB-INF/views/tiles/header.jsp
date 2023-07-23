@@ -15,7 +15,7 @@
 <link href="${contextPath}/resources/css/basic.css" rel="stylesheet">
 <header>
 	<div>
-		<h1 class="css-transform" style="text-align: center;">NEVER</h1>
+		<h1 class="css-transform" style="text-align: center;"><a href=/main/main.do>NEVER</a></h1>
 		<br>
 	</div>
 	<div>
@@ -37,6 +37,7 @@
 				</tr>
 			</table>
 			<div>
+				<input type="button" onclick="serchca()" value="전체 보기">
 				<c:forEach var="cate" items="${cate}">
 					<input type="button" onclick="serchcate('${cate.cate}')" value="${cate.cate}">
 				</c:forEach>
@@ -57,6 +58,11 @@
 		function serchcate(index){
 			$("#serform").attr("action", '/board/list.do');
 			$("#selcate").val(index);
+			console.log($("#selcate").val());
+			$("#serform").submit();
+		}
+		function serchca(){
+			$("#serform").attr("action", '/board/list.do');
 			console.log($("#selcate").val());
 			$("#serform").submit();
 		}
