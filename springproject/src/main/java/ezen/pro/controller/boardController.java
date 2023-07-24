@@ -159,7 +159,7 @@ public class boardController {
 		// 제목이 null이거나 비어있는지 확인
 		// 데이터베이스에 새로운 게시글 등록
 		boardService.boardRegister(board);
-		return "redirect:/board/list.do/1"; // 목록 페이지로 이동
+		return "redirect:/board/list.do"; // 목록 페이지로 이동
 	}
 
 	@ResponseBody

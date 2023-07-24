@@ -109,7 +109,7 @@
 		var token = $("meta[name='_csrf']").attr("content");
 		var header = $("meta[name='_csrf_header']").attr("content");
 		$.ajax({
-			url:"/user/checkId.do",		// servlet 
+			url:"/user/checkid.do",		// servlet 
 			type: "post",
 			datatype:"text",
 			data: {"id" : $("#id").val()},

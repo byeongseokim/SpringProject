@@ -32,12 +32,13 @@ public class mainController {
 	@GetMapping("/main.do")
 	public String main(HttpServletRequest request, HttpServletResponse response,Model model) {
 	String userid=(String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-	System.out.println(userid);
 	if(!userid.equals("anonymousUser")) {
 	String grade=String.valueOf(serviceImpl.readgrade(userid));
 	HttpSession session = request.getSession();
 	session.setAttribute("grade",grade);
 	session.setAttribute("userid",userid);
+	System.out.println(grade);
+	System.out.println(userid);
 	}
 	List<cateVO> cate = cateServiceImpl.readcate();
 	model.addAttribute("cate", cate);

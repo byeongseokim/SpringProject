@@ -7,8 +7,8 @@ import ezen.pro.domain.cateVO;
 public interface catemapper {
 
 	
-	public void insertcate(cateVO vo);
-	public void deletecate(cateVO vo);
+	public void insertcate(String cate);
+	public void deletecate(String cate);
 	public List<cateVO> selectcate();
 
 }

@@ -2,7 +2,7 @@ drop table if exists board;
 drop table if exists user;
 drop table if exists reply;
 drop table if exists cate;
-
+drop SEQUENCE if exists cate_num;
 
 CREATE TABLE `board` (
   `bno` int(11) NOT NULL AUTO_INCREMENT,
@@ -14,8 +14,8 @@ CREATE TABLE `board` (
   PRIMARY KEY (`bno`)
 );
 CREATE TABLE `cate` (
-  `cate` varchar(10) NOT NULL,
-  PRIMARY KEY (`cate`)
+  `cate` varchar(10) primary key,
+  `cno` int(11) not null
 );
 CREATE TABLE `reply` (
   `rwriter` varchar(10) NOT NULL,
@@ -33,9 +33,15 @@ CREATE TABLE `user` (
   `grade` varchar(2) DEFAULT '1',
   PRIMARY KEY (`id`)
 );
-INSERT into cate values("공지");
-INSERT into cate values("자유게시판");
-INSERT into cate values("게임게시판");
-INSERT into cate values("커뮤니티게시판");
- alter table board add CONSTRAINT `board_cate` FOREIGN KEY (`cate`) REFERENCES `cate` (`cate`);
- alter table reply add CONSTRAINT `reply_board` FOREIGN KEY (`bno`) REFERENCES `board` (`bno`);
+
+ /*alter table board add CONSTRAINT `board_cate` FOREIGN KEY (`cate`) REFERENCES `cate` (`cate`);
+  * 
+ alter table reply add CONSTRAINT `reply_board` FOREIGN KEY (`bno`) REFERENCES `board` (`bno`);*/
+
+CREATE SEQUENCE cate_num
+INCREMENT BY 1              
+START WITH 1            
+MINVALUE   1
+MAXVALUE  999999  ;  
+
+INSERT into cate values('공지',nextval(cate_num));

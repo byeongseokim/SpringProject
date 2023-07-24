@@ -9,7 +9,7 @@ public interface cateService {
 	
 	public List<cateVO> readcate();
 	
-	public void addcate(cateVO vo);
+	public void addcate(String cate);
 	
-	public void dropcate(cateVO vo);
+	public void dropcate(String cate);
 }

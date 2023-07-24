@@ -5,12 +5,12 @@
 <!-- SQL Mapping -->
 <mapper namespace="ezen.pro.mapper.catemapper">
 <insert id="insertcate">
-insert into cate values(#{cate})
+insert into cate values(#{cate},nextval(cate_num))
 </insert>
 <delete id="deletecate">
-delete from cate where cate=#{cate}
+delete from cate where cate=#{cate} 
 </delete>
 <select id="selectcate" resultType="ezen.pro.domain.cateVO">
-select cate from cate
+select cate from cate order by cno
 </select>
 </mapper>
