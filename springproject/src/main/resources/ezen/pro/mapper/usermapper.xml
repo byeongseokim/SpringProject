@@ -11,10 +11,10 @@ insert into user(id,password,name,phone) values(#{id},#{password},#{name},#{phon
 delete from user where id=#{id}
 </delete>
 <update id="updategrade" >
-update user set grade=2 from id=#{id}
+update user set grade=#{grade} where id=#{id}
 </update>
 <select id="selectuser" resultType="ezen.pro.domain.userVO" >
-select id,password from user where id=#{id}
+select id,password,grade from user where id=#{id}
 </select>
 <select id="selectgrade" resultType="Integer">
 select grade from user where id=#{id}
@@ -28,4 +28,8 @@ select id from user where name=#{name} and phone=#{phone}
 <update id="selectpw">
 update user set password=#{password} where name=#{name} and id=#{id}
 </update>
+<select id="selectalluser" resultType="ezen.pro.domain.userVO">
+select id,name,phone,grade from user
+</select>
+
 </mapper>

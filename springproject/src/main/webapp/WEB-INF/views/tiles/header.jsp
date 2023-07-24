@@ -36,7 +36,7 @@
 						onclick="serchboard()"></td>
 				</tr>
 			</table>
-			<div class="catebutton">
+			<div>
 				<input type="button" onclick="serchca()" value="전체 보기">
 				<c:forEach var="cate" items="${cate}">
 					<input type="button" onclick="serchcate('${cate.cate}')" value="${cate.cate}">

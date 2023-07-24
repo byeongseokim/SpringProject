@@ -1,5 +1,7 @@
 package ezen.pro.mapper;
 
+import java.util.List;
+
 import ezen.pro.domain.userVO;
 
 public interface usermapper {
@@ -19,5 +21,9 @@ public interface usermapper {
 	public String selectid(userVO vo);
 	
 	public int selectpw(userVO vo);
+	
+	public List<userVO> selectalluser();
+	
+	public void updategrade(userVO vo);
 	
 }

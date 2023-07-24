@@ -40,14 +40,17 @@ public class customAuthenticationProvider implements AuthenticationProvider{
 		}
 		List<GrantedAuthority> role=new ArrayList<>();
 		if(user.getGrade()==2) {
-			role.add(new SimpleGrantedAuthority("admin"));
-			role.add(new SimpleGrantedAuthority("normal"));
+			role.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 		}else {
 			role.add(new SimpleGrantedAuthority("normal"));
 		}
+		User users= new User();
+        users.setId(id);
+        users.setPw(password);
 		UsernamePasswordAuthenticationToken result =new UsernamePasswordAuthenticationToken(id, password,role);
-		
-		return result;
+		result.setDetails(users);
+		System.out.println(result);
+		 return result;
 	}
 	
 	@Override

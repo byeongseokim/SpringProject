@@ -11,9 +11,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,7 +55,6 @@ public class userController {
 	@PostMapping("/login.do")
 	public String joinuser(userVO vo) {
 		
-		System.out.println("들어옴");
 		System.out.println(vo.getGrade());
 		return "main";
 	}
@@ -63,7 +64,6 @@ public class userController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
-            System.out.println("삭제하니?");
         }
 		return "redirect:/main/main.do";
 	}
@@ -90,7 +90,6 @@ public class userController {
 	@ResponseBody
 	@PostMapping(value = "/idsearch",produces="application/json;charset=UTF-8")
 	public String searcid(@RequestBody userVO vo) {
-		System.out.println("드와라");
 		try {
 			String id=userserviceImpl.searcid(vo);
 			if(id==""||id.equals("")) {
@@ -127,5 +126,20 @@ public class userController {
 		}catch(Exception e) {
 			return "일치하는 정보가 존재하지 않습니다.";
 		}
+	}
+	
+	@GetMapping("/usermodify.do")
+	public String usergrademodify(Model model) {
+		model.addAttribute("user",userserviceImpl.selectalluser());
+		return "usermodify";
+	}
+	
+	@ResponseBody
+	@PutMapping(value ="/grademodify.do" ,produces="application/json;charset=UTF-8")
+	public String grademodify(@RequestBody userVO vo) {
+		System.out.println(vo.getGrade());
+		System.out.println(vo.getId());
+		userserviceImpl.grademoify(vo);
+		return "성공적으로 변경되었습니다";
 	}
 }

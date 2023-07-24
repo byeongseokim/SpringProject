@@ -22,4 +22,8 @@ public interface userService {
 	public String searcid(userVO vo);
 	
 	public int searcpwd(userVO vo);
+	
+	public List<userVO> selectalluser();
+	
+	public void grademoify(userVO vo);
 }

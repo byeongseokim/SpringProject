@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 
 <%
-	response.sendRedirect(request.getContextPath()+"cate/cateadd.do");
+	response.sendRedirect(request.getContextPath()+"user/usermodify.do");
 %>

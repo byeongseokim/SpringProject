@@ -37,26 +37,42 @@ public class userServiceImpl implements userService {
 	@Override
 	public userVO readuser(String id) {
 
-		return mapper.selectuser(id);		
+		return mapper.selectuser(id);
 	}
-	
+
 	@Override
 	public int readgrade(String id) {
-	
+
 		return mapper.selectgrade(id);
 	}
+
 	@Override
 	public int check(String id) {
-	
+
 		return mapper.selectcheckid(id);
 	}
+
 	@Override
 	public String searcid(userVO vo) {
-		
+
 		return mapper.selectid(vo);
 	}
+
 	@Override
 	public int searcpwd(userVO vo) {
 		return mapper.selectpw(vo);
+	}
+
+	@Override
+	public List<userVO> selectalluser() {
+
+		return mapper.selectalluser();
+	}
+
+	@Override
+	public void grademoify(userVO vo) {
+		
+		 mapper.updategrade(vo);
+
 	}
 }
