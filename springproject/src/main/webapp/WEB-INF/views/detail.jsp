@@ -5,9 +5,9 @@
 <meta id="_csrf" name="_csrf" content="${_csrf.token}" />
 <meta id="_csrf_header" name="_csrf_header"
 	content="${_csrf.headerName}" />
-<link
+<!-- <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+	rel="stylesheet"> -->
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="/resources/sum/summernote-lite.js"></script>
 <script src="/resources/sum/lang/summernote-ko-KR.js"></script>
@@ -28,8 +28,7 @@
 <div>
 	<form id="boardform" name="boardform" action="post">
 		<div class="border">
-		<br>
-			<input type="text" name="valcate" id="cate"
+			<br> <input type="text" name="valcate" id="cate"
 				value='[<c:out value="${board.cate}"/>]'
 				style="width: 100px; text-align: center;" disabled> <select
 				style="display: none;" id="selcate" id="1">
@@ -62,60 +61,63 @@
 				<input type="button" class="btn btn-secondary" value="목록으로가기"
 					onClick="backToList(boardform)">
 			</div>
-		</div>
-		<div style="display: none;" id="modify_btn">
-			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" /> <input type="hidden" name="pagenum"
-				value="${nowpage}"> <input type=button value="수정반영하기"
-				onClick="modifyboard()">
-			<!-- put타입ajx여기서 값을변경해서그전에꺼삭제하고받아온걸로 값변경하기 id=summ노트도지워야함 -->
-			<input type="button" value="취소" onClick="fn_disable()">
 
-		</div>
-		<hr>
-		<div>
-			reply
-			<c:if test="${user_id!=null}">
-				<input type="text" id="replycon">
-				<input type="button" value="댓글작성" onclick="createreply()">
-			</c:if>
-		</div>
-		<div id="replyboard">
-			<table id="replytabel">
-				<thead>
-					<tr>
-						<td>작성자</td>
-						<td>내용</td>
-						<td>작성일자</td>
-						<td colspan="2"></td>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${reply}" var="tem" varStatus="status">
-						<tr>
-							<th><input style="border: none" type="text" readonly
-								value="${tem.rwriter}"></th>
-							<th><input style="border: none" type="text" readonly
-								value="${tem.rcon}" id="rcon${status.count}"></th>
-							<th><input style="border: none" type="text" readonly
-								value="<fmt:formatDate pattern='yyyy-MM-dd' value='${board.bdate}'/>"></th>
-							<c:if test="${ grade==2||user_id==tem.rwriter}">
-								<th id="delbtn${status.count}" style="color: red"><input
-									type="button" onclick="deletereply(${tem.rno})" value="삭제"></th>
-								<th id="modbtn${status.count}" style="color: green"><input
-									type="button" onclick="updatereply(${status.count})" value="수정"></th>
-								<th id="redelbtn${status.count}"
-									style="color: blue; display: none"><input type="button"
-									onclick="btn_modify(${status.count})" value="수정하기"></th>
-								<th id="cancelbtn${status.count}"
-									style="color: red; display: none"><input type="button"
-									onclick="resetbtn(${status.count})" value="취소"></th>
-							</c:if>
+			<div style="display: none;" id="modify_btn">
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" /> <input type="hidden" name="pagenum"
+					value="${nowpage}"> <input type=button value="수정반영하기"
+					onClick="modifyboard()">
+				<!-- put타입ajx여기서 값을변경해서그전에꺼삭제하고받아온걸로 값변경하기 id=summ노트도지워야함 -->
+				<input type="button" value="취소" onClick="fn_disable()">
+
+			</div>
+			<hr>
+			<div class="reply">
+
+				<c:if test="${user_id!=null}">
+					<input type="text" id="replycon">
+					<input type="button" value="댓글작성" onclick="createreply()">
+				</c:if>
+			</div>
+			<div id="replyboard">
+				<table id="replytabel">
+					<thead>
+						<tr class="td_color">
+							<td>작성자</td>
+							<td>내용</td>
+							<td>작성일자</td>
+							<td colspan="2"></td>
 						</tr>
-						<input type="hidden" id="rerno${status.count}" value="${tem.rno}">
-					</c:forEach>
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						<c:forEach items="${reply}" var="tem" varStatus="status">
+							<tr>
+								<th><input style="border: none" type="text" readonly
+									value="${tem.rwriter}"></th>
+								<th><input style="border: none" type="text" readonly
+									value="${tem.rcon}" id="rcon${status.count}"></th>
+								<th><input style="border: none" type="text" readonly
+									value="<fmt:formatDate pattern='yyyy-MM-dd' value='${board.bdate}'/>"></th>
+								<c:if test="${ grade==2||user_id==tem.rwriter}">
+									<th id="modbtn${status.count}" style="color: green"><input
+										type="button" onclick="updatereply(${status.count})"
+										value="수정"></th>
+									<th id="delbtn${status.count}" style="color: red"><input
+										type="button" onclick="deletereply(${tem.rno})" value="삭제"></th>
+
+									<th id="redelbtn${status.count}"
+										style="color: blue; display: none"><input type="button"
+										onclick="btn_modify(${status.count})" value="수정하기"></th>
+									<th id="cancelbtn${status.count}"
+										style="color: red; display: none"><input type="button"
+										onclick="resetbtn(${status.count})" value="취소"></th>
+								</c:if>
+							</tr>
+							<input type="hidden" id="rerno${status.count}" value="${tem.rno}">
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</form>
 </div>

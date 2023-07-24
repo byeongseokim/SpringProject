@@ -29,7 +29,7 @@ form {
 
 input[name=btie] {
 	margin: 10px auto;
-	width: 56%;
+	width: 66%;
 }
 
 input[class=btn btn-success] {
@@ -37,7 +37,6 @@ input[class=btn btn-success] {
 }
 
 body {
-	/* font-family: 'Noto Serif KR', serif; */
 	color: #222;
 	overflow-x: hidden;
 	font-size: 0.9rem;
@@ -63,21 +62,26 @@ div.summernote { /* �꽌癒몃끂�듃 */
 div.border { /* �뀒�몢由� */
 	border-radius: 8px;
 	width: 1000px;
-	height: 750px;
-	border: 2px solid #000;
+	height: 1000px;
+	border: 1px solid #000;
 	padding-left: 1%;
-	padding-right: 1%; margin : auto;
+	padding-right: 1%;
+	margin: auto;
 	justify-content: space-around;
-	margin: auto
+	margin: auto;
 }
 
 div[id=base_btn] {
 	padding-left: 1%;
+	margin: 0px 0px 0px 730px;
+}
+
+div[id=replyboard] {
+	margin: 0px 0px 0px 500px;
 }
 
 input {
 	font-size: 0.95rem;
-	width: 310px;
 	padding: 8px;
 	border-radius: 5px;
 	border: 1px solid #ddd;
@@ -95,6 +99,66 @@ button {
 	margin: 5px 0;
 	transition: 0.3s;
 	width: 40px;
+}
+
+#replytabel {
+	display: block;
+	padding: 0;
+	margin: 10% 0 0 -87%;
+	max-height: 200px;
+	overflow: auto;
+	border: 2px solid #ddd;
+	border-radius: 5px;
+	width: 760px;
+}
+
+.td_color {
+	
+}
+
+input[value=수정반영하기] {
+	color: #fff;
+	background-color: #52c992;
+	border-color: #52c992;
+}
+
+input[value=댓글작성] {
+	color: #fff;
+	background-color: #6c757d;
+	border-color: #6c757d;
+}
+
+input[value=삭제] {
+	color: #fff;
+	background-color: #f13547;
+	border-color: #f13547;
+}
+
+input[value=수정] {
+	color: #fff;
+	background-color: #52c992;
+	border-color: #52c992;
+}
+
+input[value=수정하기] {
+	color: #fff;
+	background-color: #198754;
+	border-color: #198754;
+}
+
+input[value=취소] {
+	color: #fff;
+	background-color: #6c757d;
+	border-color: #6c757d;
+}
+
+div.reply {
+	margin: 0px 10%;
+	display: block;
+}
+
+div.note-toolbar {
+	display: none;
 }
 
 @media ( max-width :768px) {
