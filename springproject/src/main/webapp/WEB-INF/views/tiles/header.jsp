@@ -29,14 +29,14 @@
 							</c:forEach>
 					</select></td>
 					<td><input type="text"
-						style="width: 500px; height: 50px; font-size: 45px" name="word"
+						style="width: 500px; height: 50px; font-size: 30px" name="word"
 						id="word" placeholder="검색어를 입력해주세요." onclick="$('#word').val('')"></td>
 					<td><input type="button" value="검색"
 						style="width: 100px; height: 50px; font-size: 30px"
 						onclick="serchboard()"></td>
 				</tr>
 			</table>
-			<div>
+			<div class="catebutton">
 				<input type="button" onclick="serchca()" value="전체 보기">
 				<c:forEach var="cate" items="${cate}">
 					<input type="button" onclick="serchcate('${cate.cate}')" value="${cate.cate}">
