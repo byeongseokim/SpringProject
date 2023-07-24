@@ -154,8 +154,8 @@ div.summernote { /* 서머노트 */
 div.border { /* 테두리 */
 	border-radius: 8px;
 	width: 1000px;
-	height: 540px;
-	border: 2px solid #000;
+	height: 800px;
+	border: 1px solid #000;
 	padding-left: 1%;
 	margin: auto;
 	justify-content: space-around;
