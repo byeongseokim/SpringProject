@@ -9,26 +9,38 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<link rel="stylesheet" href="/resources/css/memberinfo.css">
 </head>
 <body>
+<br>
+<br>
+<a href="/main/main.do" target="_self" title="네버 홈페이지"> <img
+	class="logo" src="/resources/images/nevermainimage.png" width="250"
+	height="70"></a>
+<br>
+<br>
+<br>
 	<div>
 		<form>
+		<div class="qjxms">
 			<input type="button" value="아이디 찾기" onclick="searcid()"> <input
-				type="button" value="비밀번호 찾기" onclick="searcpwd()">
+				type="button" value="비밀번호 찾기" onclick="searcpwd()"></div>
 			<div id="searchidform" style="display: none">
+			<div class="id_border">
 			<p>
 				<label for="idname">이름: </label> <input type="text" id="idname"
 					placeholder="이름을 입력해주세요" autofocus>
 					</p>
 					<p> <label for="idphone">전화번호: </label> <input
 					type="text" id="idphone" placeholder="입력예시: 010-1111-1111">
-					</p>
+					</p></div>
 					<div id="idhidden" style="display: none">
 					<label>찾은 아이디: </label>
 					<input id="idhid" type="text" readonly="readonly">
 				</div>
 			</div>
 			<div id="searchpwdform" style="display: none">
+			<div class="pwd_border">
 			<p>
 				<label for="pwdname">이름: </label> <input type="text" id="pwdname"
 					placeholder="이름을 입력해주세요">
@@ -37,6 +49,7 @@
 					</p> <div id="pwdhidden" style="display: none">
 					<label>변경된 비밀번호: </label>
 					<input id="pwdhid" type="text" readonly="readonly">
+				</div>
 				</div>
 			</div>
 		</form>
