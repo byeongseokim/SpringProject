@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ezen.pro.domain.userVO;
+import ezen.pro.service.boardServiceImpl;
+import ezen.pro.service.cateServiceImpl;
 import ezen.pro.service.userServiceImpl;
 
 @Controller
@@ -29,8 +32,11 @@ import ezen.pro.service.userServiceImpl;
 public class userController {
 	
 	@Autowired
+	boardServiceImpl boardServiceImpl;
+	@Autowired
 	userServiceImpl userserviceImpl;
-	
+	@Autowired
+	cateServiceImpl cateServiceImpl;
 	@GetMapping("/new.do")
 	public String newuser() {
 		return "joinuser";
@@ -131,6 +137,7 @@ public class userController {
 	@GetMapping("/usermodify.do")
 	public String usergrademodify(Model model) {
 		model.addAttribute("user",userserviceImpl.selectalluser());
+		model.addAttribute("cate", cateServiceImpl.readcate());
 		return "usermodify";
 	}
 	
@@ -139,7 +146,16 @@ public class userController {
 	public String grademodify(@RequestBody userVO vo) {
 		System.out.println(vo.getGrade());
 		System.out.println(vo.getId());
+		
 		userserviceImpl.grademoify(vo);
 		return "성공적으로 변경되었습니다";
+	}
+	
+	@GetMapping("/userinterface/{user_id}")
+	public String userinterface(Model model,@PathVariable("user_id") String id) {
+		model.addAttribute("user",userserviceImpl.selectinterfaceuser(id));
+		model.addAttribute("board",boardServiceImpl.selectwriter(id));
+		model.addAttribute("cate", cateServiceImpl.readcate());
+		return "userinterface";
 	}
 }

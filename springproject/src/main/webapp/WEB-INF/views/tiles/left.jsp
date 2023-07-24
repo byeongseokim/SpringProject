@@ -37,14 +37,14 @@
 					</div>
 				</div>
 				<div>
-					<sec:authorize access="hasRole('admin')">
-						<a href="/">회원관리시스템</a>
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
+						<a href="/user/usermodify.do">회원관리시스템</a>
 					</sec:authorize>
-					<a href="/">회원관리시스템</a>
 				</div>
 				<div>
-					<a href="/">카테고리 추가기능</a>
-
+				<sec:authorize access="hasRole('ROLE_ADMIN')">
+					<a href="/cate/cateadd.do">카테고리 추가기능</a>
+				</sec:authorize>
 				</div>
 			</nav>
 		</c:when>
@@ -61,7 +61,7 @@
 				</div>
 				<div>
 					<div>
-						<a>회원정보조회</a>
+						<a href="/user/userinterface/${user_id}">회원정보조회</a>
 					</div>
 				</div>
 			</nav>

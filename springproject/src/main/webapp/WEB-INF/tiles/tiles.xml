@@ -49,6 +49,11 @@
 			value="/WEB-INF/views/main.jsp" />
 	</definition>
 
+	<definition name="userinterface" extends="board-layout">
+		<put-attribute name="title" value="메인페이지"></put-attribute>
+		<put-attribute name="body"
+			value="/WEB-INF/views/userinterface.jsp" />
+	</definition>
 
 	<definition name="listboard" extends="board-layout">
 		<put-attribute name="title" value="글목록창"></put-attribute>
@@ -60,7 +65,7 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/categoryadd.jsp" />
 	</definition>
-	
+
 	<definition name="usermodify" extends="board-layout">
 		<put-attribute name="title" value="글목록창"></put-attribute>
 		<put-attribute name="body"

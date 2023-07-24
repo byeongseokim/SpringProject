@@ -26,4 +26,6 @@ public interface userService {
 	public List<userVO> selectalluser();
 	
 	public void grademoify(userVO vo);
+	
+	public userVO selectinterfaceuser(String id);
 }

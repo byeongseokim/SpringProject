@@ -24,4 +24,6 @@ public interface boardmapper {
 	public List<boardVO> pagingboard(pageVO vo);
 	
 	public int totboard(pageVO vo);
+	
+	public List<boardVO> selectwriter(String id);
 }

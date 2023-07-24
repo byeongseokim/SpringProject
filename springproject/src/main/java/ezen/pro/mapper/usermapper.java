@@ -26,4 +26,6 @@ public interface usermapper {
 	
 	public void updategrade(userVO vo);
 	
+	public userVO selectinterfaceuser(String id);
+	
 }

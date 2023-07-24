@@ -71,8 +71,14 @@ public class userServiceImpl implements userService {
 
 	@Override
 	public void grademoify(userVO vo) {
-		
-		 mapper.updategrade(vo);
 
+		mapper.updategrade(vo);
+
+	}
+
+	@Override
+	public userVO selectinterfaceuser(String id) {
+		
+		return mapper.selectinterfaceuser(id);
 	}
 }

@@ -87,12 +87,13 @@ public class boardController {
 	public String getBoardList(Model model, pageVO vo) {
 		// 게시글 목록을 가져와서 모델에 추가
 		System.out.println(vo.getCate());
+		System.out.println(vo.getWord());
 		if(vo.getWord()!=null) {
 			vo.setWord(vo.getWord().equals("")?null:vo.getWord());
 			page.setWord(vo.getWord());
 		}
 		if(vo.getCate()!=null){
-			if(vo.getCate().equals("옵션")) {
+			if(vo.getCate().equals("옵션")||vo.getCate().equals("")) {
 				page.setCate(null);
 				vo.setCate(null);
 			}
@@ -100,7 +101,8 @@ public class boardController {
 				page.setCate(vo.getCate());
 			}
 		}
-		System.out.println(page.getCate());
+		System.out.println(page.getCate()+"ASDASD");
+		System.out.println(page.getWord()+"Asd");
 		pagenumber=(vo.getPagenum()==0? 1 :vo.getPagenum());
 		page.setPagenum((pagenumber - 1) *page.getCount());
 		int tot = boardService.totboard(page);

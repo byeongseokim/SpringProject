@@ -20,6 +20,7 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${user}" var="item" varStatus="index">
+				<tr>
 					<th><input style="text-align: center; border: none;"
 						type="text" value="${item.id}" id="${index.count}"></th>
 					<th><input style="text-align: center; border: none"
@@ -28,7 +29,7 @@
 						type="text" value="${item.phone}"></th>
 					<th>
 					<c:choose>
-					<c:when test="${item.grade=ㄴ='2'}">
+					<c:when test="${item.grade=='2'}">
 					<input style="text-align: center; border: none"
 						type="text" value="관리자">
 					</c:when>
@@ -42,6 +43,7 @@
 							<option>관리자</option>
 					</select></th>
 					<th><input type="button" onclick="moifyuser(${index.count})" value="수정"></th>
+					<tr>
 				</c:forEach>
 			</tbody>
 		</table>

@@ -51,5 +51,10 @@ public class boardServiceImpl implements boardService {
     public int totboard(pageVO vo) {
     	return boardMapper.totboard(vo);
     }
-
+    
+    @Override
+    public List<boardVO> selectwriter(String id) {
+    
+    	return boardMapper.selectwriter(id);
+    }
 }

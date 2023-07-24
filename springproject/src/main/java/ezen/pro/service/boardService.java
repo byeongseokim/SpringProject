@@ -18,4 +18,6 @@ public interface boardService {
     public void changeBoard(boardVO board); //게시글 업데이트
     
     public int totboard(pageVO vo);
+    
+	public List<boardVO> selectwriter(String id);
 }
