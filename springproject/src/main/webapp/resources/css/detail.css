@@ -107,8 +107,8 @@ button {
 	margin: 10% 0 0 -87%;
 	max-height: 200px;
 	overflow: auto;
-	border: 2px solid #ddd;
-	border-radius: 5px;
+	/* border: 2px solid #ddd;
+	border-radius: 5px; */
 	width: 760px;
 }
 
@@ -157,9 +157,9 @@ div.reply {
 	display: block;
 }
 
-div.note-toolbar {
+ div.note-toolbar {
 	display: none;
-}
+} 
 
 @media ( max-width :768px) {
 	* {

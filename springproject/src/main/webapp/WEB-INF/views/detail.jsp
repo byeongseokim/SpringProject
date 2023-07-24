@@ -30,8 +30,8 @@
 		<div class="border">
 			<br> <input type="text" name="valcate" id="cate"
 				value='[<c:out value="${board.cate}"/>]'
-				style="width: 100px; text-align: center;" disabled> <select
-				style="display: none;" id="selcate" id="1">
+				style="width: 100px; text-align: center;" disabled> 
+				<select style="display: none;" id="selcate" id="1">
 				<c:forEach var="item" items="${cate}">
 					<c:choose>
 						<c:when test="${grade==2}">
@@ -266,6 +266,7 @@ function viewreply(data){
 		 $("#selcate").attr("style","block");
 		 $("#cate").attr("type","hidden");
 		 $('#bcon').summernote('enable');
+		 $(".note-toolbar").css("display","block");
 		 document.getElementById("modify_btn").style.display="block";
 		 document.getElementById("base_btn").style.display="none";
 	        function uploadSummernoteImageFile(file,editor){ 
@@ -311,6 +312,7 @@ function viewreply(data){
 			document.getElementById("modify_btn").style.display="none";
 			document.getElementById("base_btn").style.display="block";
 			document.getElementById("selcate").style.display="none";
+			 $(".note-toolbar").css("display","none");
 			 $("#cate").attr("type","text");
 			 $("#cate").val(data.cate);
 			alert("글 수정이 완료 되었습니다.");
@@ -325,7 +327,10 @@ function viewreply(data){
 			document.getElementById("bcon").disabled=true;
 			$('#bcon').summernote('disable');
 			document.getElementById("modify_btn").style.display="none";
-			document.getElementById("base_btn").style.display="block"; 
+			document.getElementById("base_btn").style.display="block";
+			document.getElementById("selcate").style.display="none";
+			$(".note-toolbar").css("display","none");
+			 $("#cate").attr("type","text");
 		} 
 
  </script>
