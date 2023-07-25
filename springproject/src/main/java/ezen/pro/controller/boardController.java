@@ -156,6 +156,7 @@ public class boardController {
 	public String addBoard(boardVO board) {
 		// 제목이 null이거나 비어있는지 확인
 		// 데이터베이스에 새로운 게시글 등록
+		System.out.println("asdfasdf");
 		boardService.boardRegister(board);
 		return "redirect:/board/list.do"; // 목록 페이지로 이동
 	}

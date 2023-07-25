@@ -11,9 +11,12 @@
 <meta name="description" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
-		<c:set var="contextPath" value="${pageContext.request.contextPath}" />
-	<link rel="shortcut icon" href="${contextPath}/resources/images/nevermark.ico" type="image/x-icon">
-<link href="${contextPath}/resources/css/mainlayout.css" rel="stylesheet">
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<link rel="shortcut icon"
+	href="${contextPath}/resources/images/nevermark.ico"
+	type="image/x-icon">
+<link href="${contextPath}/resources/css/mainlayout.css"
+	rel="stylesheet">
 <title><tiles:insertAttribute name="title" /></title>
 </head>
 <body>
@@ -21,11 +24,12 @@
 		<div class="header" style="margin: auto;">
 			<tiles:insertAttribute name="header" />
 		</div>
-		<div class='sidebar' style="margin: auto;">
-			<tiles:insertAttribute name="left" />
-		</div>
+
 		<div class="body" style="margin: auto;">
 			<tiles:insertAttribute name="body" />
+		</div>
+		<div class='sidebar' style="margin: auto;">
+			<tiles:insertAttribute name="left" />
 		</div>
 		<div class="footer" style="margin: auto;">
 			<tiles:insertAttribute name="footer" />
