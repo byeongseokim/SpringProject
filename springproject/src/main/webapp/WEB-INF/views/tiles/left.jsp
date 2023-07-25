@@ -13,11 +13,11 @@
 		<div class="Layout-module__content_area___b_3TU">
 			<p style="color: black; text-align: center;">지금 바로 안전하게 네버를 이용하세요</p>
 			<div class="MyView-module__my_login___tOTgr">
-				<a href="/user/login.do"
+				<a href="${contextPath}/user/login.do"
 					style="background-color: #2CA9E8; font-size: 35px; border-radius: 8px; color: black">NEVER
 					로그인</a><br> <br> <br>
 				<div>
-					<a href="/user/new.do">회원가입&nbsp;</a><a href="/user/checkid.do">아이디/비밀번호찾기&nbsp;</a>
+					<a href="/user/new.do">회원가입&nbsp;</a><a href="${contextPath}/user/checkid.do">아이디/비밀번호찾기&nbsp;</a>
 				</div>
 			</div>
 		</div>
@@ -32,19 +32,19 @@
 						환영합니다.</p>
 					<p>관리자 모드입니다.</p>
 					<div class="MyView-module__my_login___tOTgr">
-						<a href="/user/logout.do"
+						<a href="${contextPath}/user/logout.do"
 							style="background-color: #2CA9E8; font-size: 35px; border-radius: 8px; color: black">로그아웃</a><br>
 						<br> <br>
 					</div>
 				</div>
 				<div>
 					<sec:authorize access="hasRole('ROLE_ADMIN')">
-						<a href="/user/usermodify.do">회원관리시스템</a>
+						<a href="${contextPath}/user/usermodify.do">회원관리시스템</a>
 					</sec:authorize>
 				</div>
 				<div>
 					<sec:authorize access="hasRole('ROLE_ADMIN')">
-						<a href="/cate/cateadd.do">카테고리 추가기능</a>
+						<a href="${contextPath}/cate/cateadd.do">카테고리 추가기능</a>
 					</sec:authorize>
 				</div>
 			</nav>
@@ -55,7 +55,7 @@
 					<p style="color: black; text-align: center;">${user_id}님접속을
 						환영합니다.</p>
 					<div class="MyView-module__my_login___tOTgr">
-						<a href="/user/login.do"
+						<a href="${contextPath}/user/logout.do"
 							style="background-color: #2CA9E8; font-size: 35px; border-radius: 8px; color: black">${user_id}님
 							접속을 환영합니다.</a><br> <br> <br>
 					</div>
@@ -84,7 +84,7 @@
 function goPost(){
     let f = document.createElement('form');
     f.setAttribute('method', 'post');
-    f.setAttribute('action', '/user/userinterface');
+    f.setAttribute('action', '${contextPath}/user/userinterface');
     let obj;
     obj = document.createElement('input');
     obj.setAttribute('type', 'hidden');
@@ -121,14 +121,14 @@ function goPost(){
 <script>
         // 타일들의 이미지 경로
    const imagePaths = [
-    "/resources/images/gameimage/image1.jpg",
-    "/resources/images/gameimage/image2.jpg",
-    "/resources/images/gameimage/image3.jpg",
-    "/resources/images/gameimage/image4.jpg",
-    "/resources/images/gameimage/image5.jpg",
-    "/resources/images/gameimage/image6.jpg",
-    "/resources/images/gameimage/image7.jpg",
-    "/resources/images/gameimage/image8.jpg"
+    "${contextPath}/resources/images/gameimage/image1.jpg",
+    "${contextPath}/resources/images/gameimage/image2.jpg",
+    "${contextPath}/resources/images/gameimage/image3.jpg",
+    "${contextPath}/resources/images/gameimage/image4.jpg",
+    "${contextPath}/resources/images/gameimage/image5.jpg",
+    "${contextPath}/resources/images/gameimage/image6.jpg",
+    "${contextPath}/resources/images/gameimage/image7.jpg",
+    "${contextPath}/resources/images/gameimage/image8.jpg"
 ];
 
         // 퍼즐 게임 관련 변수

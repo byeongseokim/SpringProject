@@ -15,7 +15,7 @@
 <link href="${contextPath}/resources/css/basic.css" rel="stylesheet">
 <header>
 	<div>
-		<h1 class="css-transform" style="text-align: center;"><a href=/main/main.do>NEVER</a></h1>
+		<h1 class="css-transform" style="text-align: center;"><a href="${contextPath}/main/main.do">NEVER</a></h1>
 		<br>
 	</div>
 	<div>
@@ -50,19 +50,19 @@
 		var header = $("meta[name='_csrf_header']").attr("content");
 		function serchboard() {
 			console.log("실행!");
-			$("#serform").attr("action", '/board/list.do');
+			$("#serform").attr("action", '${contextPath}/board/list.do');
 			$("#selcate").attr("name","cate");
 			console.log($("#selcate").val());
 			$("#serform").submit();
 		};
 		function serchcate(index){
-			$("#serform").attr("action", '/board/list.do');
+			$("#serform").attr("action", '${contextPath}/board/list.do');
 			$("#selcate").val(index);
 			console.log($("#selcate").val());
 			$("#serform").submit();
 		}
 		function serchca(){
-			$("#serform").attr("action", '/board/list.do');
+			$("#serform").attr("action", '${contextPath}/board/list.do');
 			console.log($("#selcate").val());
 			$("#serform").submit();
 		}

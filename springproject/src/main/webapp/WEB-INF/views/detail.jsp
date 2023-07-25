@@ -5,21 +5,20 @@
 <meta id="_csrf" name="_csrf" content="${_csrf.token}" />
 <meta id="_csrf_header" name="_csrf_header"
 	content="${_csrf.headerName}" />
-<!-- <link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"> -->
+
+		<c:set var="contextPath" value="${pageContext.request.contextPath}" />'
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="/resources/sum/summernote-lite.js"></script>
-<script src="/resources/sum/lang/summernote-ko-KR.js"></script>
+<script src="${contextPath}/resources/sum/summernote-lite.js"></script>
+<script src="${contextPath}/resources/sum/lang/summernote-ko-KR.js"></script>
 <c:set var="grade" value='<%=(String) session.getAttribute("grade")%>' />
 <c:set var="user_id"
 	value='<%=(String) session.getAttribute("userid")%>' />
-<link rel="stylesheet" href="/resources/sum/summernote-lite.css">
-<link rel="stylesheet" href="/resources/css/detail.css">
+<link rel="stylesheet" href="${contextPath}/resources/sum/summernote-lite.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/detail.css">
 <br>
 <br>
-<a href="/main/main.do" target="_self" title="네버 홈페이지"> <img
-	class="logo" src="/resources/images/nevermainimage.png" width="250"
+<a href="${contextPath}/main/main.do" target="_self" title="네버 홈페이지"> <img
+	class="logo" src="${contextPath}/resources/images/nevermainimage.png" width="250"
 	height="70"></a>
 <br>
 <br>
@@ -172,7 +171,7 @@ function viewreply(data){
 			$.ajax({ 
 			    data:JSON.stringify(replydate), 
 			    type:"POST", 
-			    url:"/reply/addreply.do", 
+			    url:"${contextPath}/reply/addreply.do", 
 			    dataType:"JSON",
 			    contentType : "application/json; charset=utf-8",
 			    beforeSend : function(xhr){
@@ -193,7 +192,7 @@ function viewreply(data){
 			$.ajax({ 
 			    data:JSON.stringify(replydate), 
 			    type:"delete", 
-			    url:"/reply/removereply.do/"+index, 
+			    url:"${contextPath}/reply/removereply.do/"+index, 
 			    dataType:"JSON",
 			    contentType : "application/json; charset=utf-8",
 			    beforeSend : function(xhr){
@@ -235,7 +234,7 @@ function viewreply(data){
 		 		 $.ajax({ 
 				    data:JSON.stringify(replydate), 
 				    type:"put", 
-				    url:"/reply/modifyreply.do/", 
+				    url:"${contextPath}/reply/modifyreply.do/", 
 				    dataType:"JSON",
 				    contentType : "application/json; charset=utf-8",
 				    beforeSend : function(xhr){
@@ -250,7 +249,7 @@ function viewreply(data){
 			}); 
 		}
      function backToList(obj) {
-	    obj.action="/board/list.do";
+	    obj.action="${contextPath}/board/list.do";
 	    obj.method="get"
 	    obj.submit();
      }
@@ -280,12 +279,12 @@ function viewreply(data){
 		console.log(data);
 		 $.ajax({
 	         type:"delete", 
-	         url:"/board/delete.do/"+data,
+	         url:"${contextPath}/board/delete.do/"+data,
 	         beforeSend : function(xhr){
 	     		xhr.setRequestHeader(header, token);
 	     	},
 	     	success:function(data){
-	     		location.href = '/board/list.do/${nowpage}'
+	     		location.href = '${contextPath}/board/list.do/${nowpage}'
 	     	}
 		}); 
 	  }
@@ -299,7 +298,7 @@ function viewreply(data){
 		 console.log(data);
 		 $.ajax({
 	         type:"put", 
-	         url:"/board/update.do",
+	         url:"${contextPath}/board/update.do",
 	         contentType : "application/json; charset=utf-8",
 	         data:JSON.stringify(data),
 	         beforeSend : function(xhr){

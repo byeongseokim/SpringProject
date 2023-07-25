@@ -68,7 +68,7 @@ function moifyuser(index){
 	  $.ajax({ 
          data:JSON.stringify(data), 
          type:"put", 
-         url:"/user/grademodify.do", 
+         url:"${contextPath}/user/grademodify.do", 
          dataType:"text",
          contentType: 'application/json; charset=utf-8',
          beforeSend : function(xhr){

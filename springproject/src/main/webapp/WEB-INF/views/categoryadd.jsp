@@ -4,8 +4,9 @@
 <meta id="_csrf" name="_csrf" content="${_csrf.token}" />
 <meta id="_csrf_header" name="_csrf_header"
 	content="${_csrf.headerName}" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<link rel="stylesheet" href="/resources/css/category.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/category.css">
 <link
 	href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css"
 	rel="stylesheet">
@@ -37,7 +38,7 @@
 		$.ajax({
 			data : {"cate" : $("#idcate").val()},
 			type : "POST",
-			url : "/cate/cateadd.do",
+			url : "${contextPath}/cate/cateadd.do",
 			dataType : "text",
 			beforeSend : function(xhr) {
 				xhr.setRequestHeader(header, token);
@@ -56,7 +57,7 @@
 		$.ajax({
 			data : {"cate" : $("#cate"+index).val()},
 			type : "Delete",
-			url : "/cate/dropcate.do/"+$("#cate"+index).val(),
+			url : "${contextPath}/cate/dropcate.do/"+$("#cate"+index).val(),
 			dataType : "text",
 			beforeSend : function(xhr) {
 				xhr.setRequestHeader(header, token);

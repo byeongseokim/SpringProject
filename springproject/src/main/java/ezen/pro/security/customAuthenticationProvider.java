@@ -19,46 +19,41 @@ import ezen.pro.domain.userVO;
 import ezen.pro.service.userService;
 
 @Component
-public class customAuthenticationProvider implements AuthenticationProvider{
+public class customAuthenticationProvider implements AuthenticationProvider {
 
-	
-	
 	@Autowired
 	userService service;
-	
+
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-		String id=(String) authentication.getPrincipal();
-		String password=(String)authentication.getCredentials();
-		userVO  user = service.readuser(id);
-		if(user==null) {
+		String id = (String) authentication.getPrincipal();
+		String password = (String) authentication.getCredentials();
+		userVO user = service.readuser(id);
+		if (user == null) {
 			throw new UsernameNotFoundException("아이디가틀렸습니다");
 		}
-		BCryptPasswordEncoder hashpassword= new BCryptPasswordEncoder();
-		if(!hashpassword.matches(password,user.getPassword())) {
+		BCryptPasswordEncoder hashpassword = new BCryptPasswordEncoder();
+		if (!hashpassword.matches(password, user.getPassword())) {
 			throw new BadCredentialsException("비밀번호가틀렸습니다.");
 		}
-		List<GrantedAuthority> role=new ArrayList<>();
-		if(user.getGrade()==2) {
+		List<GrantedAuthority> role = new ArrayList<>();
+		if (user.getGrade() == 2) {
 			role.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-		}else {
+		} else {
 			role.add(new SimpleGrantedAuthority("normal"));
 		}
-		User users= new User();
-        users.setId(id);
-        users.setPw(password);
-		UsernamePasswordAuthenticationToken result =new UsernamePasswordAuthenticationToken(id, password,role);
+		User users = new User();
+		users.setId(id);
+		users.setPw(password);
+		UsernamePasswordAuthenticationToken result = new UsernamePasswordAuthenticationToken(id, password, role);
 		result.setDetails(users);
-		System.out.println(result);
-		 return result;
+		return result;
 	}
-	
+
 	@Override
 	public boolean supports(Class<?> authentication) {
-	
+
 		return true;
 	}
-	
-	
 
 }

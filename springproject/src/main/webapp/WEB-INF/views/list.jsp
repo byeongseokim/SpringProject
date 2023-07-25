@@ -2,14 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
+	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta id="_csrf" name="_csrf" content="${_csrf.token}" />
 <meta id="_csrf_header" name="_csrf_header"
 	content="${_csrf.headerName}" />
-	<link rel="stylesheet" href="/resources/css/list.css"> 
-	<link rel="shortcut icon" href="/resources/images/nevermark.ico" type="image/x-icon">
+	<link rel="stylesheet" href="${contextPath}/resources/css/list.css"> 
+	<link rel="shortcut icon" href="${contextPath}/resources/images/nevermark.ico" type="image/x-icon">
 <c:set var="grade" value='<%=(String) session.getAttribute("grade")%>' />
 <c:set var="user_id"
 	value='<%=(String) session.getAttribute("userid")%>' />
@@ -44,7 +44,7 @@
 							<th class="bo_num"><c:out value="${board.rownum}" /> <input
 								type=hidden value="${board.bno}"></th>
 							<th class="bo_tit"><a
-								href="/board/detail.do?bno=${board.bno}&nowpage=${nowpage}$word=${word}">
+								href="${contextPath}/board/detail.do?bno=${board.bno}&nowpage=${nowpage}$word=${word}">
 									<c:out value="${board.btie}" />
 							</a></th>
 							<th class="bo_writer"><c:out value="${board.bwriter}" /></th>
@@ -97,7 +97,7 @@ function modifycount(){
 	$.ajax({ 
         data:$("#countnumber").val(), 
         type:"PUT", 
-        url:"/board/updatecount", 
+        url:"${contextPath}/board/updatecount", 
         dataType:"text",
         beforeSend : function(xhr){
     		xhr.setRequestHeader(header, token);
@@ -118,7 +118,7 @@ function modifycount(){
 		console.log(idx);
 		var index='pagenum='+idx+'&word='+$("#nowword").val()+'&cate='+$("#nowcate").val();
 		console.log(index);
-	$("body").load('/board/list.do',index,function(){
+	$("body").load('${contextPath}/board/list.do',index,function(){
 	});
 }
 

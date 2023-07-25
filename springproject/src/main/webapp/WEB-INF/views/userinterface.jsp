@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+	<c:set var="contextPath" value="${pageContext.request.contextPath}" />'
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <meta id="_csrf" name="_csrf" content="${_csrf.token}" />
 <meta id="_csrf_header" name="_csrf_header"
@@ -70,40 +70,32 @@ table.type08 td {
 			<tr>
 				<th colspan="3" style="text-align: center;"><input
 					type="button" value="전화 번호 수정" onclick="phoneenable()" /> <input
-					type="button" value="비밀번호변경" onclick="passwordenable()" /></th>
+					type="button" value="비밀번호변경"  onclick="passwordenable()"/></th>
 			</tr>
-
+			
 			<tr id="phonemod" style="display: none;">
 				<th>변경할 전화번호</th>
-				<td><input type="text" id="changephone"
-					placeholder="010-1111-1111"></td>
+				<td><input type="text" id="changephone"placeholder="010-1111-1111"></td>
 				<td><input type="button" onclick="phonemodify()" value="변경"></td>
 			</tr>
-
+			
 			<tr id="passwordcheck" style="display: none;">
 				<th>비밀번호를 입력해주십시오</th>
 				<td><input type="password" id="checkpassword"></td>
-				<td><input type="button" onclick="passwordcheck()"
-					value="비밀번호확인"></td>
+				<td><input type="button" onclick="passwordcheck()" value="비밀번호확인"></td>
 			</tr>
-
+			
 			<tr id="changepassword" style="display: none;">
-				<th style="margin: auto">변경할 비밀번호를 입력해주십시오</th>
-				<td><label style="font-size: 15px">비밀번호: </label>
-				
-				<input type="password" onchange="isSame()" id="fipw">
-				
-				<br> <span
-					style="font-size: 15px" id="pwdchone"></span> <br> <label
-					style="font-size: 15px">비밀번호체크: </label> 
-					
-					<input type="password" onchange="isSame()" id="sepw">
-					
-					<br> <span style="font-size: 15px" id="pwdchtow"></span></td>
+			<th style="margin: auto">변경할 비밀번호를 입력해주십시오</th>
+				<td><label style="font-size: 15px">비밀번호: </label><input
+					type="password" onchange="isSame()" id="fipw"><br> <span style="font-size: 15px" id="pwdchone"></span> <br> 
+					<label style="font-size: 15px">비밀번호체크: </label>
+					<input type="password" onchange="isSame()" id="sepw"><br>
+					 <span style="font-size: 15px" id="pwdchtow"></span></td>
 				<td style="margin: auto"><br> <input type="button"
-					value="비밀번호 변경하기 " onclick="passwordmodify()"> <input
-					type="hidden" id="pwcheckone" value=""> <input
-					type="hidden" id="pwchecktwo" value=""></td>
+					value="비밀번호 변경하기 " onclick="passwordmodify()"> <input type="hidden" id="pwcheckone"
+					value=""> <input type="hidden" id="pwchecktwo" value="">
+				</td>
 			</tr>
 			<tr>
 				<th>카테고리</th>
@@ -137,6 +129,7 @@ var header = $("meta[name='_csrf_header']").attr("content");
 function phoneenable(){
 	$("#phonemod").css("display","");
 	$("#passwordcheck").css("display","none");
+	 $("#changepassword").css("display","none");
 }
 function phonemodify(){
 	var date={
@@ -146,7 +139,7 @@ function phonemodify(){
 	$.ajax({
 		 data:JSON.stringify(date), 
 		 type:"put",
-		 url:"/user/changephone.do", 
+		 url:"${contextPath}/user/changephone.do", 
 		 dataType:"text",
 		 contentType : "application/json; charset=utf-8",
 		 beforeSend : function(xhr){
@@ -164,6 +157,7 @@ function phonemodify(){
 function passwordenable(){
 $("#passwordcheck").css("display","");
 $("#phonemod").css("display","none");
+ $("#changepassword").css("display","none");
 }
 
 function passwordcheck(){
@@ -174,7 +168,7 @@ function passwordcheck(){
 	$.ajax({
 		 data:JSON.stringify(date), 
 		 type:"put",
-		 url:"/user/passwordcheck.do", 
+		 url:"${contextPath}/user/passwordcheck.do", 
 		 dataType:"text",
 		 contentType : "application/json; charset=utf-8",
 		 beforeSend : function(xhr){
@@ -219,7 +213,6 @@ function isSame() { //비밀번호 재확인
     }
 }
 function passwordmodify(){
-	
 if(!$("#pwcheckone").val()){
 	alert("비밀번호의 형식이 옳바르지 않습니다.");
 	$("#pwcheckone").focus();
@@ -231,29 +224,31 @@ if(!$("#pwchecktwo").val()){
 	$("#pwchecktwo").focus();
 	return;
 }
-var date = {
-		"id":"${user.id}",
-		"password":$("#sepw").val(),
-		"name":"${user.name }"
-}
+var date = { 
+		"id":"${user.id}", 
+		"password":$("#sepw").val(), 
+		"name":"${user.name }" 
+} 
+ 
+$.ajax({ 
+	data:JSON.stringify(date), // 보낼 데이터를 JSON 형식으로 변환 
+	type:"put", // 요청 방식은 PUT 
+	url:"${contextPath}/user/passwordmodify.do", // 비밀번호 변경 URL 
+	dataType:"text",  // 서버 응답 데이터 타입은 텍스트 
+	contentType : "application/json; charset=utf-8", // AJAX 데이터 타입과 문자 인코딩 
+	beforeSend : function(xhr){ 
+		xhr.setRequestHeader(header, token); // AJAX 요청 헤더에 토큰 값 추가 
+	 }, 
+	 success: function(response) { // 성공적으로 완료되었을 때 실행 
+	     console.log(response); 
+	    alert(response); 
+		 $("#changepassword").css("display","none");
+	   }, 
+	   error: function(error) { // 실패했을 때 실행 
+	     console.error(error); // 에러 내용 출력 
+	     alert("다시 시도해주세요"); 
+	   } 
+	 });
 
-$.ajax({
-	data:JSON.stringify(date), // 보낼 데이터를 JSON 형식으로 변환
-	type:"put", // 요청 방식은 PUT
-	url:"/user/passwordmodify.do", // 비밀번호 변경 URL
-	dataType:"text",  // 서버 응답 데이터 타입은 텍스트
-	contentType : "application/json; charset=utf-8", // AJAX 데이터 타입과 문자 인코딩
-	beforeSend : function(xhr){
-		xhr.setRequestHeader(header, token); // AJAX 요청 헤더에 토큰 값 추가
-	 },
-	 success: function(response) { // 성공적으로 완료되었을 때 실행
-	     console.log(response);
-	     alert(response);
-	   },
-	   error: function(error) { // 실패했을 때 실행
-	     console.error(error); // 에러 내용 출력
-	     alert("다시 시도해주세요");
-	   }
-	 });	
 }
 </script>

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+		<c:set var="contextPath" value="${pageContext.request.contextPath}" />'
  <meta id="_csrf" name="_csrf" content="${_csrf.token}"/>
  <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}"/>
  <%
@@ -9,20 +10,20 @@ request.setCharacterEncoding("UTF-8");
 %>
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script src="/resources/sum/summernote-lite.js"></script>
-<script src="/resources/sum/lang/summernote-ko-KR.js"></script>
+<script src="${contextPath}/resources/sum/summernote-lite.js"></script>
+<script src="${contextPath}/resources/sum/lang/summernote-ko-KR.js"></script>
  <c:set var="grade" value='<%=(String)session.getAttribute("grade")%>' />
 <c:set var="user_id" value='<%=(String) session.getAttribute("userid")%>' />
-<link rel="stylesheet" href="/resources/sum/summernote-lite.css">
-<link rel="stylesheet" href="/resources/css/boardwriter.css"> 
+<link rel="stylesheet" href="${contextPath}/resources/sum/summernote-lite.css">
+<link rel="stylesheet" href="${contextPath}/resources/css/boardwriter.css"> 
 <br>
 <div class="logo">
-			<a href="/main/main.do" target="_self"
-				title="네버 홈페이지"><img src="/resources/images/nevermainimage.png"
+			<a href="${contextPath}/main/main.do" target="_self"
+				title="네버 홈페이지"><img src="${contextPath}/resources/images/nevermainimage.png"
 				class="image"></a>
 				<br><br><br>
 		</div>
-	<form name="boardform" action="/board/add.do" method="post">
+	<form name="boardform" action="${contextPath}/board/add.do" method="post">
 	<div class="border">
 	<br>
 		<input type="text" name="btie" placeholder="  제목">
@@ -55,8 +56,6 @@ request.setCharacterEncoding("UTF-8");
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
 	var id=$('#id').val();
-	
-	console.log(id);
     $(document).ready(function(){ 
         $('#summernote').summernote({
         	spellCheck: true,
@@ -76,7 +75,7 @@ request.setCharacterEncoding("UTF-8");
             $.ajax({ 
 		         data:data, 
 		         type:"POST", 
-		         url:"/board/upload", 
+		         url:"${contextPath}/board/upload", 
 		         dataType:"JSON", 
 		         contentType:false, 
 		         processData:false,
@@ -84,14 +83,17 @@ request.setCharacterEncoding("UTF-8");
 		     		xhr.setRequestHeader(header, token);
 		     	},
 		        success:function(data){ 
-		             $(editor).summernote("insertImage",data.url); 
-		             $("#thumbnailPath").append("<option value="+data.url+">"+data.originName+"</option>");
+		        	var url="${contextPath}"+data.url;
+		             console.log(url);
+		             $(editor).summernote("insertImage",url); 
+		             $("#thumbnailPath").append("<option value="+url+">"+data.originName+"</option>");
+		            
          	} 
      }); 
         } 
     }); 
     function backToList(obj) {
-	    obj.action="/board/list.do";
+	    obj.action="${contextPath}/board/list.do";
 	    obj.method="get"
 	    obj.submit();
      }

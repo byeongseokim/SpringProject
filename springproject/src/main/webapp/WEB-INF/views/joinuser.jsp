@@ -15,12 +15,12 @@
 </head>
 <body>
 
-	<form action="/user/new.do" method="post" id="form">
+	<form action="${contextPath}/user/new.do" method="post" id="form">
 		<div class="member">
 			<!-- 1. 로고 -->
-			<a href="/main/main.do" target="_self" 
+			<a href="${contextPath}/main/main.do" target="_self" 
 						title="네버 홈페이지"> 
-			<img class="logo" src="/resources/images/nevermainimage.png" 
+			<img class="logo" src="${contextPath}/resources/images/nevermainimage.png" 
 				width="250" height="70" ></a> 
 			<!-- 2. 필드 -->
 			<div class="field">
@@ -109,7 +109,7 @@
 		var token = $("meta[name='_csrf']").attr("content");
 		var header = $("meta[name='_csrf_header']").attr("content");
 		$.ajax({
-			url:"/user/checkid.do",		// servlet 
+			url:"${contextPath}/user/checkid.do",		// servlet 
 			type: "post",
 			datatype:"text",
 			data: {"id" : $("#id").val()},

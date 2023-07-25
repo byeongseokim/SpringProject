@@ -8,8 +8,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="${contextPath}/resources/css/boardmain.css" rel="stylesheet">
-<link rel="shortcut icon" href="/resources/images/nevermark.ico" type="image/x-icon">
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<link rel="shortcut icon" href="${contextPath}/resources/images/nevermark.ico" type="image/x-icon">
 <title><tiles:insertAttribute name="title" /></title>
 </head>
 <body>

@@ -4,17 +4,15 @@
 <%
 request.setCharacterEncoding("UTF-8");
 %>
-<!DOCTYPE html>
-<head>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <meta charset="UTF-8">
 <title>네버 로그인</title>
-<link rel="stylesheet" href="/resources/css/login.css">
-<link rel="icon" href="/resources/images/nevermark.png" style="width:20; height: 20 ">
+<link rel="stylesheet" href="${contextPath}/resources/css/login.css">
+<link rel="icon" href="${contextPath}/resources/images/nevermark.png" style="width:20; height: 20 ">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-</head>
-
-<body>
 		<div class="main">
 			<!--웹페이지 상단-->
 			<header>
@@ -30,14 +28,13 @@ request.setCharacterEncoding("UTF-8");
 
 				<!--NAVER LOGO-->
 				<div class="logo">
-					<a href="/main/main.do" target="_self"
+					<a href="${contextPath}/main/main.do" target="_self"
 						title="네버 홈페이지"><img
-						src="/resources/images/nevermainimage.png" class="image"></a>
+						src="${contextPath}/resources/images/nevermainimage.png" class="image"></a>
 				</div>
 			</header>
 			<!--로그인 부분-->
-
-			<form id="logfrom" action="/user/login.do" method="post">
+			<form id="logfrom" action="${contextPath}/user/login.do" method="post">
 				<section class="login-wrap">
 					<div class="login-id-wrap">
 						<input  type="text" name='id' placeholder="아이디를 입력해주세요"
@@ -59,9 +56,9 @@ request.setCharacterEncoding("UTF-8");
 			<section class="find-signup-wrap">
 
 				<div id="find-signup-wrap-ko">
-					<span class="find-id"> <a href="/user/checkid.do" class="fidi">아이디 찾기</a>
-					</span> <span class="find-pw"> <a href="/user/checkid.do" class="fipw">비밀번호 찾기</a>
-					</span> <span class="sign-up"> <a href="/user/new.do" class="siup">회원가입</a>
+					<span class="find-id"> <a href="${contextPath}/user/checkid.do" class="fidi">아이디 찾기</a>
+					</span> <span class="find-pw"> <a href="${contextPath}/user/checkid.do" class="fipw">비밀번호 찾기</a>
+					</span> <span class="sign-up"> <a href="${contextPath}/user/new.do" class="siup">회원가입</a>
 					</span>
 				</div>
 			</section>
