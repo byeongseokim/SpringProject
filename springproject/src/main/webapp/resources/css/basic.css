@@ -79,12 +79,14 @@ select::after {
 }
 
 div.catebutton {
-	margin: 0px 0px 0px 100px;
-	background: #f9f9f9;
-	width: 470px;
-	position: relative;
-	border-radius: 3px;
+  margin: 0px 100px;
+  background: #f9f9f9;
+  height: 30px;
+  display: inline-block;
+  position: relative;
+  border-radius: 3px;
 }
+
 
 input[type=button] {
 	color: #398cb6;
