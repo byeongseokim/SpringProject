@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="grade" value='<%=(String) session.getAttribute("grade")%>' />
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %> 
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <c:set var="user_id"
 	value='<%=(String) session.getAttribute("userid")%>' />
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
@@ -42,9 +43,9 @@
 					</sec:authorize>
 				</div>
 				<div>
-				<sec:authorize access="hasRole('ROLE_ADMIN')">
-					<a href="/cate/cateadd.do">카테고리 추가기능</a>
-				</sec:authorize>
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
+						<a href="/cate/cateadd.do">카테고리 추가기능</a>
+					</sec:authorize>
 				</div>
 			</nav>
 		</c:when>
@@ -68,6 +69,17 @@
 		</c:otherwise>
 	</c:choose>
 </c:if>
+<div>
+<h1>날씨</h1>
+<div id="ww_c7a41b1f45773" v='1.3' loc='id' a='{"t":"horizontal","lang":"ko","sl_lpl":1,"ids":[],"font":"Times","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>Weather Data Source: <a href="https://wetterlang.de/seoul_wetter_30_tage/" id="ww_c7a41b1f45773_u" target="_blank">Wettervorhersage Seoul 30 tage</a></div><script async src="https://app2.weatherwidget.org/js/?id=ww_c7a41b1f45773"></script>
+	<script async
+		src="https://app2.weatherwidget.org/js/?id=ww_d596118875f8b"></script>
+</div>
+<h1>슬라이딩 퍼즐 게임</h1>
+<p>타일을 클릭하여 퍼즐을 완성하세요.</p>
+<div class="puzzle-container">
+	<!-- 여기에 타일들을 동적으로 생성하도록 JavaScript 코드 작성 -->
+</div>
 <script>
 function goPost(){
     let f = document.createElement('form');
@@ -103,15 +115,8 @@ function goPost(){
 	background-size: cover; /* 이미지가 타일에 꽉 차도록 설정 */
 	cursor: pointer;
 }
-
 </style>
-<!-- jQuery CDN 추가 -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<h1>슬라이딩 퍼즐 게임</h1>
-<p>타일을 클릭하여 퍼즐을 완성하세요.</p>
-<div class="puzzle-container">
-	<!-- 여기에 타일들을 동적으로 생성하도록 JavaScript 코드 작성 -->
-</div>
+
 
 <script>
         // 타일들의 이미지 경로
@@ -198,3 +203,35 @@ function goPost(){
             initializeGame(); // 페이지가 로드되면 게임을 초기화
         });
     </script>
+
+
+<!-- <script>
+	$(document).ready(
+					function() {
+						var date = {
+							"serviceKey" : 'VfowJ6Nu+T59459RM3tPRtjF65qPY67RHswtVf/etRJeaGsWme7F89Cl9TSI5nz5/WiNMuLTyx77QkyHWJt+5g==',
+							"numOfRows" :'1',
+							"pageNo" : '1',
+							'dataType' : "json",
+							"stnId" : '109',
+							"tmFc" : "202307250600"
+						}
+						$.ajax({
+									data : date,
+									type : "get",
+									url : "https://apis.data.go.kr/1360000/MidFcstInfoService/getMidFcst",
+									dataType : "json",
+									success : function(data) {
+										console.log(data);
+										console.log(data.response.body.items.item[0]);
+									$("#weeksun").text(data.response.body.items.item[0].wfSv);
+										
+
+									},
+									error : function(error) {
+										console.log(error);
+									}
+									
+								});
+					});
+</script> -->
