@@ -1,7 +1,18 @@
 @charset "UTF-8";
 
+:root { -
+	-color-ocean: #416dea; -
+	-font-face: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+		Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+		"Segoe UI Symbol";
+}
+
 * {
 	text-decoration: none
+}
+
+table {
+	margin: auto;
 }
 
 .css-transform {
@@ -25,6 +36,20 @@ a:hover {
 
 a:active {
 	color: #000000; /* 누른후색 */
+}
+
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+input.container {
+	flex-direction: column;
+	width: 100%;
+	padding: 20px;
 }
 
 option {
@@ -63,7 +88,6 @@ select {
 
 select::-ms-expand {
 	display: none;
-	
 }
 
 select::after {
@@ -75,24 +99,39 @@ select::after {
 	font-size: 12px;
 	color: #398cb6;
 	pointer-events: none;
-	
 }
 
-div.catebutton {
-  margin: 0px 100px;
-  background: #f9f9f9;
-  height: 30px;
-  display: inline-block;
-  position: relative;
-  border-radius: 3px;
+/* styles.css */
+.catebutton {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+	margin: 0px 100px;
 }
 
+.catebutton input {
+	margin: 5px;
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+	background-color: #416dea;
+	color: #fff;
+	border: none;
+	border-radius: 36px;
+}
 
-input[type=button] {
+.catebutton input:hover {
+	background-color: #3d5cc1;
+}
+
+.catebutton input:active {
+	background-color: #394f9a;
+}
+
+/* input[type=button] {
 	color: #398cb6;
 	position: relative;
-}
-
+} */
 .MyView-module__my_login___tOTgr {
 	padding: 21px 20px 18px;
 	line-height: 20px;
