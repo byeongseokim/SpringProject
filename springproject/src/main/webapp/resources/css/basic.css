@@ -35,47 +35,60 @@ option {
 	width: 100%;
 }
 
-
 select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  /* Add a background image for the arrow icon */
-  background: url('../images/dropArrow.png') no-repeat right center;
-  /* Adjust the padding to make space for the arrow icon */
-  padding-right: 25px;
-  /* Adjust the size of the background image */
-  background-size: 20px 20px; /* You can adjust the width and height as needed */
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	/* Add a background image for the arrow icon */
+	background: url('../images/dropArrow.png') no-repeat right center;
+	/* Adjust the padding to make space for the arrow icon */
+	padding-right: 25px;
+	/* Adjust the size of the background image */
+	background-size: 20px 20px;
+	/* You can adjust the width and height as needed */
 }
 
 select {
-  position: relative;
-  border: 1px solid #dfdfdf;
-  color: #398cb6;
-  appearance: none;
-  -webkit-appearance: none;
-  padding: 10px;
-  font-size: 14px;
-  border-radius: 3px;
-  background-color: #f9f9f9;
-  width: 100%;
+	position: relative;
+	border: 1px solid #dfdfdf;
+	color: #398cb6;
+	appearance: none;
+	-webkit-appearance: none;
+	padding: 10px;
+	font-size: 14px;
+	border-radius: 3px;
+	background-color: #f9f9f9;
+	width: 100%;
 }
-
 
 select::-ms-expand {
-  display: none;
+	display: none;
+	
 }
 
-
 select::after {
-  content: "\25BC"; 
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  font-size: 12px;
-  color: #398cb6; 
-  pointer-events: none;
+	content: "\25BC";
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
+	font-size: 12px;
+	color: #398cb6;
+	pointer-events: none;
+	
+}
+
+div.catebutton {
+	margin: 0px 0px 0px 100px;
+	background: #f9f9f9;
+	width: 470px;
+	position: relative;
+	border-radius: 3px;
+}
+
+input[type=button] {
+	color: #398cb6;
+	position: relative;
 }
 
 .MyView-module__my_login___tOTgr {
