@@ -28,4 +28,6 @@ public interface usermapper {
 	
 	public userVO selectinterfaceuser(String id);
 	
+	public void updatephone(userVO vo);
+	
 }

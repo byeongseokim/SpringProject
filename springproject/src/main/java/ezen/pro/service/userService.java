@@ -28,4 +28,6 @@ public interface userService {
 	public void grademoify(userVO vo);
 	
 	public userVO selectinterfaceuser(String id);
+	
+	public void changephone(userVO vo);
 }

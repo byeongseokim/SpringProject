@@ -10,7 +10,7 @@
 <c:if test="${user_id==null}">
 	<nav>
 		<div class="Layout-module__content_area___b_3TU">
-			<p style="color: black; text-align: center;">지금 당장 안전하게 네버를 이용하세요</p>
+			<p style="color: black; text-align: center;">지금 바로 안전하게 네버를 이용하세요</p>
 			<div class="MyView-module__my_login___tOTgr">
 				<a href="/user/login.do"
 					style="background-color: #2CA9E8; font-size: 35px; border-radius: 8px; color: black">NEVER
@@ -61,14 +61,34 @@
 				</div>
 				<div>
 					<div>
-						<a href="/user/userinterface/${user_id}">회원정보조회</a>
+						<input type="button" onclick="goPost()" value="회원정보조회">
 					</div>
 				</div>
 			</nav>
 		</c:otherwise>
 	</c:choose>
 </c:if>
-
+<script>
+function goPost(){
+    let f = document.createElement('form');
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', '/user/userinterface');
+    let obj;
+    obj = document.createElement('input');
+    obj.setAttribute('type', 'hidden');
+    obj.setAttribute('name', '${_csrf.parameterName}');
+    obj.setAttribute('value', "${_csrf.token}");
+    f.appendChild(obj);
+    let id;
+    id = document.createElement('input');
+    id.setAttribute('type', 'hidden');
+    id.setAttribute('name', 'user_id');
+    id.setAttribute('value', "${user_id}");
+    f.appendChild(id);
+    document.body.appendChild(f);
+    f.submit();
+}
+</script>
 <style>
 .puzzle-container {
 	display: grid;
@@ -78,11 +98,12 @@
 }
 
 .puzzle-tile {
-	width: 100px;
-	height: 100px;
+	width: 83.3px;
+	height: 53.3px;
 	background-size: cover; /* 이미지가 타일에 꽉 차도록 설정 */
 	cursor: pointer;
 }
+
 </style>
 <!-- jQuery CDN 추가 -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

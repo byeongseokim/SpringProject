@@ -78,7 +78,14 @@ public class userServiceImpl implements userService {
 
 	@Override
 	public userVO selectinterfaceuser(String id) {
-		
+
 		return mapper.selectinterfaceuser(id);
 	}
+
+	@Override
+	public void changephone(userVO vo) {
+		// TODO Auto-generated method stub
+		mapper.updatephone(vo);
+	}
+
 }
