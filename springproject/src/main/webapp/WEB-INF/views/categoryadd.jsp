@@ -5,15 +5,21 @@
 <meta id="_csrf_header" name="_csrf_header"
 	content="${_csrf.headerName}" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+<link rel="stylesheet" href="/resources/css/category.css">
+<link
+	href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css"
+	rel="stylesheet">
 <div>
-	<h1>카테고리 설정페이지</h1>
+	<div class="font">
+		<h1>카테고리 설정페이지</h1>
+	</div>
 	<form>
 		<div>
-			<label for="idcate">추가할 카테고리를 입력해주세요</label> <input id="idcate"
-				type="text" name="cate"> <input type="button" value="추가하기"
-				onclick="addcate()">
+			<label for="idcate"></label> <input id="idcate" type="text"
+				name="cate" placeholder="추가할 카테고리를 입력"> <input type="button"
+				value="추가하기" onclick="addcate()">
 		</div>
-		<div>
+		<div class="border">
 			<c:forEach items="${cate}" var="tem" varStatus="index">
 				<input style="border: none;" type="text" value="${tem.cate}"
 					id="cate${index.count}" readonly>

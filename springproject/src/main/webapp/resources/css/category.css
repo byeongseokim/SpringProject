@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+h1 {
+	margin: 100px -50px 33px -15px;
+}
+
+.font {
+	font-family: 'NanumSquareNeo';
+}
+
+input[id=idcate] {
+	margin: 0px 3px 5px 0px;
+}
+
+input[id^=cate] {
+	margin: 10px -1px 10px 8px;
+}
+
+input[id^=cate]:last-child {
+	margin-bottom: 10px;
+}
+
+.border {
+	border: 1px solid #d2d2d2;
+	border-radius: 5px;
+	color: #ddd;
+}
