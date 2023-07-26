@@ -12,7 +12,7 @@
 	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <c:if test="${user_id==null}">
 	<nav>
-		<div class="Layout-module__content_area___b_3TU">
+		<div class="Layout-module__content_area___b_3TU_login">
 			<table class="top" style="text-align: center;">
 				<tr>
 					<td>
@@ -100,20 +100,9 @@
 		</c:otherwise>
 	</c:choose>
 </c:if>
-<div>
-	<h1>날씨</h1>
-	<div id="ww_c7a41b1f45773" v='1.3' loc='id'
-		a='{"t":"horizontal","lang":"ko","sl_lpl":1,"ids":[],"font":"Times","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>
-		Weather Data Source: <a
-			href="https://wetterlang.de/seoul_wetter_30_tage/"
-			id="ww_c7a41b1f45773_u" target="_blank">Wettervorhersage Seoul 30
-			tage</a>
-	</div>
-	<script async
-		src="https://app2.weatherwidget.org/js/?id=ww_c7a41b1f45773"></script>
-	<script async
-		src="https://app2.weatherwidget.org/js/?id=ww_d596118875f8b"></script>
-</div>
+
+<h1 class="skfTl">날씨</h1>
+<div id="ww_e1359de239dd1" v='1.3' loc='auto' a='{"t":"horizontal","lang":"ko","sl_lpl":1,"ids":[],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722","el_phw":3}'>More forecasts: <a href="https://oneweather.org/sydney/30_days/" id="ww_e1359de239dd1_u" target="_blank">Sydney weather 30 days</a></div><script async src="https://app2.weatherwidget.org/js/?id=ww_e1359de239dd1"></script>
 <h1>슬라이딩 퍼즐 게임</h1>
 <p>타일을 클릭하여 퍼즐을 완성하세요.</p>
 <div class="puzzle-container">

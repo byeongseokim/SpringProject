@@ -18,7 +18,7 @@ body {
 .top {
 	border-collapse: collapse;
 	border-top: 3px solid #168;
-	margin: -3px -3px 0px 0px;
+	margin: -10px 0px 0px 0px;
 }
 
 .top th {
@@ -179,16 +179,28 @@ select::after {
 	height: 280px;
 }
 
-p {
-	text-align: center;
+.Layout-module__content_area___b_3TU_login {
+	background-color: #ffffff;
+	background-color: var(- -color_block_bg);
+	position: relative;
+	border-radius: 8px;
+	-webkit-box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0, 0, 0, .04);
+	box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0, 0, 0, .04);
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+    padding: 34px 70px 0px 70px;
+	position: relative;
+	bottom: 200px;
+	margin-bottom: 80px;
+	height: 280px;
 }
 
 .skfTl {
 	position: relative;
-	bottom: 120px;
+	bottom: 150px;
 }
 
-#ww_c7a41b1f45773 {
+#ww_e1359de239dd1 {
 	vertical-align: baseline;
 	padding: 0;
 	margin: 0;
