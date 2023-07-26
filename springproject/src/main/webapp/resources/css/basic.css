@@ -11,8 +11,33 @@
 	text-decoration: none
 }
 
-table {
-	margin: auto;
+body {
+	background: #fff;
+}
+
+.top {
+	border-collapse: collapse;
+	border-top: 3px solid #168;
+	margin: -3px -3px 0px 0px;
+}
+
+.top th {
+	color: #168;
+	background: #f0f6f9;
+}
+
+.top th, .top td {
+	padding: 10px;
+	border: 1px solid #ddd;
+	text-align: center;
+}
+
+.top th:first-child, .top td:first-child {
+	border-left: 0;
+}
+
+.top th:last-child, .top td:last-child {
+	border-right: 0;
 }
 
 .css-transform {
@@ -139,7 +164,7 @@ select::after {
 }
 
 .Layout-module__content_area___b_3TU {
-	background-color: #fff;
+	background-color: #ffffff;
 	background-color: var(- -color_block_bg);
 	position: relative;
 	border-radius: 8px;
@@ -147,4 +172,56 @@ select::after {
 	box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0, 0, 0, .04);
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
+	padding: 22px 18px 28px 18px;
+	position: relative;
+	bottom: 200px;
+	margin-bottom: 80px;
+	height: 280px;
+}
+
+p {
+	text-align: center;
+}
+
+.skfTl {
+	position: relative;
+	bottom: 120px;
+}
+
+#ww_c7a41b1f45773 {
+	vertical-align: baseline;
+	padding: 0;
+	margin: 0;
+	display: inline-block;
+	width: 100%;
+	max-width: 440px;
+	text-align: center;
+	position: relative;
+	font-size: 15px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	min-width: 111px;
+	line-height: normal;
+	position: relative;
+	bottom: 120px;
+}
+
+.material-symbols-outlined {
+	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+	border-radius: 8px;
+	padding: 10px;
+	font-family: 'Material Symbols Outlined';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 14px !important;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-webkit-font-feature-settings: 'liga';
+	-webkit-font-smoothing: antialiased;
 }

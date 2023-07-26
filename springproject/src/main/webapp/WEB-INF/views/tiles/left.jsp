@@ -8,18 +8,35 @@
 	value='<%=(String) session.getAttribute("userid")%>' />
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <link href="${contextPath}/resources/css/basic.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <c:if test="${user_id==null}">
 	<nav>
 		<div class="Layout-module__content_area___b_3TU">
-			<p style="color: black; text-align: center;">지금 바로 안전하게 네버를 이용하세요</p>
-			<div class="MyView-module__my_login___tOTgr">
-				<a href="${contextPath}/user/login.do"
-					style="background-color: #2CA9E8; font-size: 35px; border-radius: 8px; color: black">NEVER
-					로그인</a><br> <br> <br>
-				<div>
-					<a href="/user/new.do">회원가입&nbsp;</a><a href="${contextPath}/user/checkid.do">아이디/비밀번호찾기&nbsp;</a>
-				</div>
-			</div>
+			<table class="top" style="text-align: center;">
+				<tr>
+					<td>
+						<p style="color: black; text-align: center;">지금 바로 안전하게 네버를
+							이용하세요</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div class="MyView-module__my_login___tOTgr">
+							<a class="material-symbols-outlined"
+								href="${contextPath}/user/login.do">NEVER LOGIN<!-- style="background-color: #2CA9E8; font-size: 35px; border-radius: 8px; color: black" -->
+							</a>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><a href="${contextPath}/user/new.do">회원가입&nbsp;</a><a
+						href="${contextPath}/user/checkid.do">아이디/비밀번호찾기&nbsp;</a></td>
+
+
+
+				</tr>
+			</table>
 		</div>
 	</nav>
 </c:if>
@@ -28,26 +45,40 @@
 		<c:when test="${grade=='2'}">
 			<nav>
 				<div class="Layout-module__content_area___b_3TU">
-					<p style="color: black; text-align: center;">${user_id}님접속을
-						환영합니다.</p>
-					<p>관리자 모드입니다.</p>
-					<div class="MyView-module__my_login___tOTgr">
-						<a href="${contextPath}/user/logout.do"
-							style="background-color: #2CA9E8; font-size: 35px; border-radius: 8px; color: black">로그아웃</a><br>
-						<br> <br>
-					</div>
+					<table class="top" style="text-align: center;">
+						<tr>
+							<td colspan="3">
+								<p style="color: black; text-align: center;">${user_id}님접속을
+									환영합니다.</p>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="3" style="text-align: center;"><p>관리자
+									모드입니다.</p></td>
+						</tr>
+						<tr>
+							<td>
+								<div class="MyView-module__my_login___tOTgr">
+									<a href="${contextPath}/user/logout.do"
+										class="material-symbols-outlined">로그아웃 Logout</a>
+								</div>
+							</td>
+
+							<sec:authorize access="hasRole('ROLE_ADMIN')">
+								<td><a href="${contextPath}/user/usermodify.do">회원관리시스템</a></td>
+							</sec:authorize>
+
+
+							<sec:authorize access="hasRole('ROLE_ADMIN')">
+								<td><a href="${contextPath}/cate/cateadd.do">카테고리 추가기능</a></td>
+							</sec:authorize>
+						</tr>
+					</table>
 				</div>
-				<div>
-					<sec:authorize access="hasRole('ROLE_ADMIN')">
-						<a href="${contextPath}/user/usermodify.do">회원관리시스템</a>
-					</sec:authorize>
-				</div>
-				<div>
-					<sec:authorize access="hasRole('ROLE_ADMIN')">
-						<a href="${contextPath}/cate/cateadd.do">카테고리 추가기능</a>
-					</sec:authorize>
-				</div>
+
 			</nav>
+
 		</c:when>
 		<c:otherwise>
 			<nav>
@@ -70,8 +101,16 @@
 	</c:choose>
 </c:if>
 <div>
-<h1>날씨</h1>
-<div id="ww_c7a41b1f45773" v='1.3' loc='id' a='{"t":"horizontal","lang":"ko","sl_lpl":1,"ids":[],"font":"Times","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>Weather Data Source: <a href="https://wetterlang.de/seoul_wetter_30_tage/" id="ww_c7a41b1f45773_u" target="_blank">Wettervorhersage Seoul 30 tage</a></div><script async src="https://app2.weatherwidget.org/js/?id=ww_c7a41b1f45773"></script>
+	<h1>날씨</h1>
+	<div id="ww_c7a41b1f45773" v='1.3' loc='id'
+		a='{"t":"horizontal","lang":"ko","sl_lpl":1,"ids":[],"font":"Times","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'>
+		Weather Data Source: <a
+			href="https://wetterlang.de/seoul_wetter_30_tage/"
+			id="ww_c7a41b1f45773_u" target="_blank">Wettervorhersage Seoul 30
+			tage</a>
+	</div>
+	<script async
+		src="https://app2.weatherwidget.org/js/?id=ww_c7a41b1f45773"></script>
 	<script async
 		src="https://app2.weatherwidget.org/js/?id=ww_d596118875f8b"></script>
 </div>
