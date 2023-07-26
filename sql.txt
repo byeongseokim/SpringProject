@@ -34,9 +34,9 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`)
 );
 
- /*alter table board add CONSTRAINT `board_cate` FOREIGN KEY (`cate`) REFERENCES `cate` (`cate`);
-  * 
- alter table reply add CONSTRAINT `reply_board` FOREIGN KEY (`bno`) REFERENCES `board` (`bno`);*/
+ alter table board add CONSTRAINT `board_cate` FOREIGN KEY (`cate`) REFERENCES `cate` (`cate`);
+   
+ alter table reply add CONSTRAINT `reply_board` FOREIGN KEY (`bno`) REFERENCES `board` (`bno`);
 
 CREATE SEQUENCE cate_num
 INCREMENT BY 1              
@@ -44,4 +44,7 @@ START WITH 1
 MINVALUE   1
 MAXVALUE  999999  ;  
 
+
 INSERT into cate values('공지',nextval(cate_num));
+
+INSERT into cate values('자유게시판',nextval(cate_num));
