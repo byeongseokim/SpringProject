@@ -11,7 +11,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ezen.pro.domain.cateVO;
 import ezen.pro.service.cateServiceImpl;
@@ -20,7 +23,8 @@ import ezen.pro.service.userServiceImpl;
 @Controller
 @RequestMapping("/main/*")
 public class mainController {
-
+	
+	String val="https://www.youtube.com/embed/7d8rFHzsu2Q";
 	@Autowired
 	userServiceImpl serviceImpl;
 	@Autowired
@@ -38,6 +42,15 @@ public class mainController {
 		}
 		List<cateVO> cate = cateServiceImpl.readcate();
 		model.addAttribute("cate", cate);
+		model.addAttribute("banner",val);
 		return "main";
 	}
+	
+	@ResponseBody
+	@PostMapping("/mainbanner")
+	public String mainbaner(@RequestParam("val")String val) {
+	this.val="https://www.youtube.com/embed/"+val;
+	return "변경완료";
+	}
+	
 }

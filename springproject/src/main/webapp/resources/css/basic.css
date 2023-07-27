@@ -174,9 +174,25 @@ select::after {
 	box-sizing: border-box;
 	padding: 22px 18px 28px 18px;
 	position: relative;
-	bottom: 200px;
+	bottom: 100px;
 	margin-bottom: 80px;
 	height: 280px;
+}
+
+.Layout-module__content_area___b_2TU {
+	background-color: #ffffff;
+	background-color: var(- -color_block_bg);
+	position: relative;
+	border-radius: 8px;
+	-webkit-box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0, 0, 0, .04);
+	box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0, 0, 0, .04);
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 22px 18px 28px 18px;
+	position: relative;
+	margin-top: 5px;
+	bottom: 150px;
+	width: 340px;
 }
 
 .Layout-module__content_area___b_3TU_login {
@@ -188,14 +204,15 @@ select::after {
 	box-shadow: 0 0 0 1px #e3e5e8, 0 1px 2px 0 rgba(0, 0, 0, .04);
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
-    padding: 34px 70px 0px 70px;
+	padding: 34px 70px 0px 70px;
 	position: relative;
-	bottom: 200px;
-	margin-bottom: 80px;
+	margin-top: 10px;
+	bottom: 100px;
 	height: 280px;
 }
 
 .skfTl {
+	margin-top: 20px;
 	position: relative;
 	bottom: 150px;
 }
