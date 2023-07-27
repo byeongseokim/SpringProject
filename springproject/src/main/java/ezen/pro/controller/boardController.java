@@ -56,7 +56,7 @@ public class boardController {
 			System.out.println(id);
 			String originalFileName = multipartFile.getOriginalFilename();
 			String root = request.getSession().getServletContext().getRealPath("resources");
-			String savePath = root + "\\image\\review\\summerimagefiles\\" + id;
+			String savePath = root + "/image/review/summerimagefiles/"+id;
 			// 이게경로야 이게파일으름을 yyymmddhhmmss으로해서
 			//
 			System.out.println(savePath);
@@ -68,7 +68,7 @@ public class boardController {
 				targetFile.mkdir();
 			}
 
-			multipartFile.transferTo(new File(savePath + "\\" + boardFileRename));
+			multipartFile.transferTo(new File(savePath + "/" + boardFileRename));
 			jsonObject.addProperty("url", "/resources/image/review/summerimagefiles/" + id + "/" + boardFileRename);
 			jsonObject.addProperty("originName", originalFileName);
 			jsonObject.addProperty("reponseCode", "success");

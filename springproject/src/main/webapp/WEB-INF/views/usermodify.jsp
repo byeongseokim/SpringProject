@@ -4,6 +4,7 @@
 <meta id="_csrf" name="_csrf" content="${_csrf.token}" />
 <meta id="_csrf_header" name="_csrf_header"
 	content="${_csrf.headerName}" />
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <div>
 	<form>
@@ -20,29 +21,29 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${user}" var="item" varStatus="index">
-				<tr>
-					<th><input style="text-align: center; border: none;"
-						type="text" value="${item.id}" id="${index.count}"></th>
-					<th><input style="text-align: center; border: none"
-						type="text" value="${item.name}"></th>
-					<th><input style="text-align: center; border: none"
-						type="text" value="${item.phone}"></th>
-					<th>
-					<c:choose>
-					<c:when test="${item.grade=='2'}">
-					<input style="text-align: center; border: none"
-						type="text" value="관리자">
-					</c:when>
-					<c:otherwise><input style="text-align: center; border: none"
-						type="text" value="유저">
-					</c:otherwise>
-					</c:choose>
-						</th>
-					<th style="width: 100px"><select id="grade${index.count}">
-							<option>유저</option>
-							<option>관리자</option>
-					</select></th>
-					<th><input type="button" onclick="moifyuser(${index.count})" value="수정"></th>
+					<tr>
+						<th><input style="text-align: center; border: none;"
+							type="text" value="${item.id}" id="${index.count}"></th>
+						<th><input style="text-align: center; border: none"
+							type="text" value="${item.name}"></th>
+						<th><input style="text-align: center; border: none"
+							type="text" value="${item.phone}"></th>
+						<th><c:choose>
+								<c:when test="${item.grade=='2'}">
+									<input style="text-align: center; border: none" type="text"
+										value="관리자">
+								</c:when>
+								<c:otherwise>
+									<input style="text-align: center; border: none" type="text"
+										value="유저">
+								</c:otherwise>
+							</c:choose></th>
+						<th style="width: 100px"><select id="grade${index.count}">
+								<option>유저</option>
+								<option>관리자</option>
+						</select></th>
+						<th><input type="button" onclick="moifyuser(${index.count})"
+							value="수정"></th>
 					<tr>
 				</c:forEach>
 			</tbody>
